@@ -1,8 +1,120 @@
-/* .navbar-nav .nav-link.active,
-.navbar-nav .nav-link:focus,
-.navbar-nav .nav-link:hover {
-    color: #ffbf1a !important;
-} */
+.rounded-circle {
+    width: 100px;
+    height: 100px;
+}
+
+@keyframes oval-1 {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(250px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes oval-2 {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(250px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes oval-3 {
+    0% {
+        transform: translate(0);
+    }
+    25% {
+        transform: translate(-250px, -250px);
+    }
+    75% {
+        transform: translate(-250px, 0);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+@keyframes oval-4 {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(-300px, -300px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes oval-5 {
+    0% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(-150px, 0px);
+    }
+    50% {
+        transform: translate(-150px, -150px);
+    }
+    75% {
+        transform: translate(0, -150px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes oval-6 {
+    0% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(-300px, 300px);
+    }
+    75% {
+        transform: translate(0px, 300px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.oval-1 {
+    animation: oval-1 ease-in-out 8s infinite;
+}
+
+.oval-2 {
+    animation: oval-2 ease-in-out 8s infinite;
+}
+
+.oval-3 {
+    animation: oval-3 ease-in-out 8s infinite;
+}
+
+.oval-4 {
+    animation: oval-4 ease-in-out 8s infinite;
+}
+
+.oval-5 {
+    animation: oval-5 ease-in-out 8s infinite;
+}
+
+.oval-6 {
+    animation: oval-6 ease-in-out 8s infinite;
+}
+
+.main {
+    position: relative;
+    z-index: 9999;
+}
 
 @media (max-width: 768px) {
     .profile-link img {
