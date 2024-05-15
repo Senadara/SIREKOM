@@ -1,3 +1,7 @@
+body {
+    overflow-x: hidden;
+}
+
 .rounded-circle {
     width: 100px;
     height: 100px;
@@ -146,6 +150,7 @@
 .main {
     position: relative;
     z-index: 9999;
+    flex: 1;
 }
 
 @media (max-width: 768px) {
