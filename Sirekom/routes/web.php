@@ -28,3 +28,7 @@ Route::get('/admin/detailLomba', function () {
 Route::get('/admin/create-lomba', function () {
     return view('app.admin.create');
 });
+
+Route::get('/admin/peserta-lomba', function () {
+    return view('app.admin.list-peserta-lomba');
+});
