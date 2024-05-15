@@ -14,10 +14,10 @@
     <body>
 
         <main>
-            <div class="bg-black" style="width: 100vw; height: 100vh">
+            <div class="bg-black" style="width: 100vw; min-height: 100vh; height: auto;">
 
                 <div class="position-absolute"
-                    style="z-index: 999; width: 100vw; height: 100vh; backdrop-filter: blur(30px); background: rgba(255, 255, 255, 0.15); ">
+                    style="z-index: 999; width: 100vw; min-height: 100vh; height: auto; backdrop-filter: blur(30px); background: rgba(255, 255, 255, 0.02); ">
                 </div>
 
                 <div class="main">
