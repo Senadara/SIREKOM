@@ -20,3 +20,7 @@ Route::get('/', function () {
 Route::get('/admin/dashboard', function () {
     return view('app.admin.dashboard');
 });
+
+Route::get('/admin/create-lomba', function () {
+    return view('app.admin.create');
+});
