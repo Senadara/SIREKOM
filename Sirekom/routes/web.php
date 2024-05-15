@@ -20,3 +20,6 @@ Route::get('/', function () {
 Route::get('/admin/dashboard', function () {
     return view('app.admin.dashboard');
 });
+Route::get('/admin/detailLomba', function () {
+    return view('app.admin.detailLomba');
+});

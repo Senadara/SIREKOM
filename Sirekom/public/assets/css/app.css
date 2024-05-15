@@ -3,6 +3,38 @@
     height: 100px;
 }
 
+.custom-body {
+    height: 690px;
+    border-radius: 10px;
+    background: linear-gradient(
+        to right,
+        white 0%,
+        white 40%,
+        #ececee 40%,
+        #ececee 100%
+    );
+}
+
+.cardLomba {
+    width: 24rem;
+    margin-left: 40px;
+    margin-top: 25px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    box-shadow: 0px 4px 15px 0px #00000080;
+}
+
+.card-text {
+    color: white;
+    font-weight: 600;
+    line-height: 19.36px;
+}
+
+.text-muted {
+    color: white !important;
+    font-weight: 400;
+}
+
 @keyframes oval-1 {
     0% {
         transform: translateX(0);
