@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin/dashboard', function () {
-    return view('app.admin.dashboard');
-});
+Route::get('/admin/dashboard', [DashboardController::class, 'index']);
 
 Route::get('/admin/detailLomba', function () {
     return view('app.admin.detailLomba');
@@ -32,3 +31,8 @@ Route::get('/admin/create-lomba', function () {
 Route::get('/admin/peserta-lomba', function () {
     return view('app.admin.list-peserta-lomba');
 });
+
+
+
+
+
