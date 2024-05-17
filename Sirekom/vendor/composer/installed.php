@@ -3,13 +3,26 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
+<<<<<<< Updated upstream
         'reference' => '790e62b1e3dfc73a8c42de2dcdbdfdfb28729f9a',
+=======
+        'reference' => 'bee560beffecade00129d11b88f012218ed5a04e',
+>>>>>>> Stashed changes
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
+        'arielmejiadev/larapex-charts' => array(
+            'pretty_version' => '8.1.0',
+            'version' => '8.1.0.0',
+            'reference' => '5461a65f730c66735599e142e384d2689209eedf',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../arielmejiadev/larapex-charts',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'brick/math' => array(
             'pretty_version' => '0.12.1',
             'version' => '0.12.1.0',
@@ -382,7 +395,11 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
+<<<<<<< Updated upstream
             'reference' => '790e62b1e3dfc73a8c42de2dcdbdfdfb28729f9a',
+=======
+            'reference' => 'bee560beffecade00129d11b88f012218ed5a04e',
+>>>>>>> Stashed changes
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
