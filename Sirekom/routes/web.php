@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\LombaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,3 +32,8 @@ Route::get('/admin/create-lomba', function () {
 Route::get('/admin/peserta-lomba', function () {
     return view('app.admin.list-peserta-lomba');
 });
+
+Route::get('/admin/lomba-store', function () {
+    return view('app.admin.lombastore');
+});
+
