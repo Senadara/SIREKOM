@@ -10,26 +10,15 @@
                 <div class="d-flex flex-row">
                 
                 <div class="mt-3 mx-4">
-                    <div>
+                    <div class="text-center">
                         <img src="{{ asset('assets/img/profile.svg') }}" alt="profile">
                     </div>
-                    <div class="">
-                        Alif Gayuh Arimukti
-                    </div>
-                    <div>
-                        120000000 
-                    </div>
-                    <div>
-                        RPL
-                    </div>
-                    <div>
-                        2022
-                    </div>
-                    <div>
-                        0899999999
-                    </div>                 
-
-                </div>
+                    <div class="text-center"><th>Alif Gayuh Arimukti</th></div>
+                    <div class="text-center"><th>120000000</th></div>
+                    <div class="text-center"><th>RPL</th></div>
+                    <div class="text-center"><th>2022</th></div>
+                    <div class="text-center"><th>0899999999</th></div>              
+                </div>     
                 <div class="card-body">
                     <form action="" method="">
                         <div class="form-group">
