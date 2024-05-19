@@ -13,20 +13,14 @@ body {
     border-bottom-right-radius: 12px;
 }
 
-.cardLomba {
+.card-body {
     box-shadow: 0px 4px 15px 0px #00000080;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
 }
 
-.card-text {
-    font-weight: 600;
-    line-height: 19.36px;
-}
-
-.lombaText {
-    color: white !important;
-    font-weight: 400;
+.column-left {
+    border-radius: 0px 20px 20px 0px;
 }
 
 @keyframes oval-1 {

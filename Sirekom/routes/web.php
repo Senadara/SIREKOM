@@ -21,7 +21,7 @@ Route::get('/admin/dashboard', function () {
     return view('app.admin.dashboard');
 });
 
-Route::get('/admin/detailLomba', function () {
+Route::get('/admin/detail-lomba', function () {
     return view('app.admin.detailLomba');
 });
 
@@ -31,4 +31,9 @@ Route::get('/admin/create-lomba', function () {
 
 Route::get('/admin/peserta-lomba', function () {
     return view('app.admin.list-peserta-lomba');
+});
+
+
+Route::get('/mahasiswa/detail-lomba', function () {
+    return view('app.mahasiswa.detailLomba');
 });
