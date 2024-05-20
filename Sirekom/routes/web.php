@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LombaController;
+use App\Http\Controllers\DashboardController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,9 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin/dashboard', function () {
-    return view('app.admin.dashboard');
-});
+Route::get('/admin/dashboard', [DashboardController::class, 'index']);
 
 Route::get('/admin/detail-lomba', function () {
     return view('app.admin.detailLomba');
