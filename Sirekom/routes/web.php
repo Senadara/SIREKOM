@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LombaController;
 use App\Http\Controllers\DashboardController;
 
 /*
@@ -20,7 +21,7 @@ Route::get('/', function () {
 
 Route::get('/admin/dashboard', [DashboardController::class, 'index']);
 
-Route::get('/admin/detailLomba', function () {
+Route::get('/admin/detail-lomba', function () {
     return view('app.admin.detailLomba');
 });
 
@@ -32,7 +33,18 @@ Route::get('/admin/peserta-lomba', function () {
     return view('app.admin.list-peserta-lomba');
 });
 
+Route::get('/admin/lomba-store', function () {
+    return view('app.admin.lombastore');
+});
 
+Route::get('/mahasiswa/detail-lomba', function () {
+    return view('app.mahasiswa.detailLomba');
+});
 
+Route::get('/mahasiswa/data-lomba', function () {
+    return view('app.mahasiswa.data-lomba');
+});
 
-
+Route::get('/mahasiswa/profile', function () {
+    return view('app.mahasiswa.profile');
+});
