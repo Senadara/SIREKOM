@@ -9,20 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('lombas', function (Blueprint $table) {
-            $table->id('idLomba');
-            $table->unsignedBigInteger('idAdmin');
-            $table->string('namaLomba', 50);
-            $table->text('deskripsiLomba');
-            $table->date('tanggalPendaftaran');
-            $table->string('posterLomba');
-            $table->string('lampiran');
+            $table->id();
+            $table->string('name');
+            $table->text('desc');
+            $table->string('file_path')->nullable();
             $table->timestamps();
-            $table->foreign('idAdmin')->references('idAdmin')->on('admins');
         });
     }
+
 
     /**
      * Reverse the migrations.

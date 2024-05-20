@@ -1,70 +1,34 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Models\Lomba;
 use Illuminate\Http\Request;
-
-use function Ramsey\Uuid\v1;
+use App\Models\Lomba;
+use Illuminate\Support\Facades\Storage;
 
 class LombaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $lomba = Lomba::all();
-        return view('app.admin.list-lomba', [
-            'lombas' => $lomba
-        ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('app.admin.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
-    }
+        // Validate the form data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'desc' => 'required|string',
+            'file' => 'required|file|mimes:pdf,doc,docx|max:2048', // Adjust the mime types and max size as needed
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Lomba $lomba)
-    {
-        //
-    }
+        // Handle file upload
+        if ($request->hasFile('file')) {
+            $filePath = $request->file('file')->store('public/files');
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Lomba $lomba)
-    {
-        //
-    }
+        // Create new Lomba instance and save data
+        $lomba = new Lomba();
+        $lomba->name = $request->input('name');
+        $lomba->desc = $request->input('desc');
+        $lomba->file_path = $filePath ?? null; // Save the file path if file was uploaded
+        $lomba->save();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Lomba $lomba)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Lomba $lomba)
-    {
-        //
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Lomba added successfully!');
     }
 }
