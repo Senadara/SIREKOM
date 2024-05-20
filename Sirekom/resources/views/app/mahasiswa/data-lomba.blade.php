@@ -12,48 +12,22 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4 col-12 mb-4 d-flex justify-content-center">
-                <div class="card rounded-4 border-0" style="width: 18rem;">
-                    <img src="{{ asset('assets/img/Gemastik.png') }}" class="card-img-top" alt="...">
-                    <div class="card-body text-white" style="background-color: #922E2C; border-radius: 0 0 15px 15px">
-                        <h5 class="card-title fw-semibold">GEMASTIK</h5>
-                        <p class="card-text fw-normal" style="font-size: 16px">PAGELARAN MAHASISWA NASIONAL BIDANG TEKNOLOGI
-                            INFORMASI DAN KOMUNIKASI</p>
-                        <p class="card-text" style="color: #FFBF1A; font-size: 12px">1 Januari 2024 - 2 Januari 2024</p>
-                        <div class="col-12 text-center rounded-3" style="background-color: #FFBF1A">
-                            <a href="" class="btn text-decoration-none text-white">Bergabung Sekarang</a>
+            @foreach ($lombas as $lomba)
+                <div class="col-md-4 col-12 mb-4 d-flex justify-content-center">
+                    <div class="card rounded-4 border-0" style="width: 18rem;">
+                        <img src="{{ $lomba->posterLomba }}" class="card-img-top" alt="...">
+                        <div class="card-body text-white" style="background-color: #922E2C; border-radius: 0 0 15px 15px">
+                            <h5 class="card-title fw-semibold">{{ $lomba->namaLomba }}</h5>
+                            <p class="card-text fw-normal" style="font-size: 16px">{{ $lomba->deskripsiLomba }}</p>
+                            <p class="card-text" style="color: #FFBF1A; font-size: 12px">{{ $lomba->tanggalPendaftaran }}
+                            </p>
+                            <div class="col-12 text-center rounded-3" style="background-color: #FFBF1A">
+                                <a hphpref="" class="btn text-decoration-none text-white">Bergabung Sekarang</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4 col-12 mb-4 d-flex justify-content-center">
-                <div class="card rounded-4 border-0" style="width: 18rem;">
-                    <img src="{{ asset('assets/img/Gemastik.png') }}" class="card-img-top" alt="...">
-                    <div class="card-body text-white" style="background-color: #922E2C; border-radius: 0 0 15px 15px">
-                        <h5 class="card-title fw-semibold">GEMASTIK</h5>
-                        <p class="card-text fw-normal" style="font-size: 16px">PAGELARAN MAHASISWA NASIONAL BIDANG TEKNOLOGI
-                            INFORMASI DAN KOMUNIKASI</p>
-                        <p class="card-text" style="color: #FFBF1A; font-size: 12px">1 Januari 2024 - 2 Januari 2024</p>
-                        <div class="col-12 text-center rounded-3" style="background-color: #FFBF1A">
-                            <a href="" class="btn text-decoration-none text-white">Bergabung Sekarang</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-12 mb-4 d-flex justify-content-center">
-                <div class="card rounded-4 border-0" style="width: 18rem;">
-                    <img src="{{ asset('assets/img/Gemastik.png') }}" class="card-img-top" alt="...">
-                    <div class="card-body text-white" style="background-color: #922E2C; border-radius: 0 0 15px 15px">
-                        <h5 class="card-title fw-semibold">GEMASTIK</h5>
-                        <p class="card-text fw-normal" style="font-size: 16px">PAGELARAN MAHASISWA NASIONAL BIDANG TEKNOLOGI
-                            INFORMASI DAN KOMUNIKASI</p>
-                        <p class="card-text" style="color: #FFBF1A; font-size: 12px">1 Januari 2024 - 2 Januari 2024</p>
-                        <div class="col-12 text-center rounded-3" style="background-color: #FFBF1A">
-                            <a href="" class="btn text-decoration-none text-white">Bergabung Sekarang</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 @endsection
