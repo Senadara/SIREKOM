@@ -37,3 +37,8 @@ Route::get('/admin/lomba-store', function () {
     return view('app.admin.lombastore');
 });
 
+Route::get('/admin/list-lomba', function () {
+    return view('app.admin.list-lomba');
+});
+
+Route::resource('lomba', LombaController::class);
