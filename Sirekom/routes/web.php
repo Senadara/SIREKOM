@@ -53,4 +53,13 @@ Route::get('/mahasiswa/profile', function () {
     return view('app.mahasiswa.profile');
 });
 
+Route::get('/login', function () {
+    return view('app.login');
+});
+
+Route::get('/register', function () {
+    return view('app.register');
+});
+
 Route::resource('lomba', LombaController::class);
+
