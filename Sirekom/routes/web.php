@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LombaController;
-use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,13 +14,15 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/admin/dashboard', function () {
+    return view('app.admin.dashboard');
 });
 
-Route::get('/admin/dashboard', [DashboardController::class, 'index']);
-
-Route::get('/admin/detail-lomba', function () {
+Route::get('/admin/detailLomba', function () {
     return view('app.admin.detailLomba');
 });
 
@@ -30,23 +31,11 @@ Route::get('/admin/create-lomba', function () {
 });
 
 Route::get('/admin/peserta-lomba', function () {
-    return view('app.admin.list-peserta-lomba');
+return view('app.admin.list-peserta-lomba');
 });
 
-Route::get('/admin/lomba-store', function () {
-    return view('app.admin.lombastore');
+Route::get('/', function () {
+return view('addDataLomba');
 });
 
-Route::get('/mahasiswa/detail-lomba', function () {
-    return view('app.mahasiswa.detailLomba');
-});
-
-Route::get('/mahasiswa/data-lomba', function () {
-    return view('app.mahasiswa.data-lomba');
-});
-
-Route::get('/mahasiswa/profile', function () {
-    return view('app.mahasiswa.profile');
-});
-
-Route::resource('lomba', LombaController::class);
+Route::post('/lomba/store', [LombaController::class, 'store'])->name('lomba.store');
