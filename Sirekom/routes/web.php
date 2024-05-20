@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LombaController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\LombaController;
+use App\Http\Controllers\Mahasiswa\MahasiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,9 +42,7 @@ Route::get('/mahasiswa/detail-lomba', function () {
     return view('app.mahasiswa.detailLomba');
 });
 
-Route::get('/mahasiswa/data-lomba', function () {
-    return view('app.mahasiswa.data-lomba');
-});
+Route::get('/mahasiswa/data-lomba', [MahasiswaController::class, 'index']);
 
 Route::get('/mahasiswa/profile', function () {
     return view('app.mahasiswa.profile');
