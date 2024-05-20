@@ -2,7 +2,6 @@
 @section('content')
     <div class="container">
         <h1 class="text-white text-center py-3">DATA LOMBA</h1>
-
         <div class="row mb-3 d-flex justify-content-center ">
             <div class="col-3">
                 <select class="form-select mx-auto" aria-label="Default select example">

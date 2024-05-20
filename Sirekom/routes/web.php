@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LombaController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,8 +43,4 @@ Route::get('/mahasiswa/detail-lomba', function () {
 
 Route::get('/mahasiswa/data-lomba', function () {
     return view('app.mahasiswa.data-lomba');
-});
-
-Route::get('/mahasiswa/profile', function () {
-    return view('app.mahasiswa.profile');
 });
