@@ -40,3 +40,11 @@ Route::get('/admin/lomba-store', function () {
 Route::get('/mahasiswa/detail-lomba', function () {
     return view('app.mahasiswa.detailLomba');
 });
+
+Route::get('/mahasiswa/data-lomba', function () {
+    return view('app.mahasiswa.data-lomba');
+});
+
+Route::get('/mahasiswa/profile', function () {
+    return view('app.mahasiswa.profile');
+});
