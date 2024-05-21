@@ -5,13 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Lomba;
 use Illuminate\Http\Request;
 
-use function Ramsey\Uuid\v1;
-
 class LombaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $lomba = Lomba::all();
@@ -33,7 +29,40 @@ class LombaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //ini manual biar bisa berjalan 
+        $idAdmin = 1; // masih belum selesai
+
+        // validasi data form yang dikirimkan oleh user
+        $request->validate([
+            'namaLomba' => 'required|max:50',
+            'deskripsiLomba' => 'required',
+            'tanggalPendaftaran' => 'required|date',
+            'posterLomba' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'lampiran' => 'required|file|max:10240|mimes:pdf,docx,doc'
+        ]);
+
+        //cek apakah filenya ada 
+        if ($request->hasFile('posterLomba')) {
+            // ambil file yang keynya posterLomba dan masukkan ke dalam folder posters 
+            $posterLombaPath = $request->file('posterLomba')->store('posters', 'public');
+        }
+
+        if ($request->hasFile('lampiran')) {
+            $lampiranPath = $request->file('lampiran')->store('lampirans', 'public');
+        }
+
+        //memasukkan input an user ke dalam model Lomba
+        $lomba = new Lomba();
+        $lomba->idAdmin = $idAdmin;
+        $lomba->namaLomba = $request->namaLomba;
+        $lomba->deskripsiLomba = $request->deskripsiLomba;
+        $lomba->tanggalPendaftaran = $request->tanggalPendaftaran;
+        $lomba->posterLomba = $posterLombaPath;
+        $lomba->lampiran = $lampiranPath;
+        $lomba->save(); //memasukkan data yang ada di dalam model ke dalam database
+
+        //redirect ke /lomba
+        return redirect('/lomba')->with('success', "Lomba berhasil ditambahkan!!");
     }
 
     /**
