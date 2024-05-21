@@ -10,11 +10,16 @@
                 </a>
             </div>
         </div>
+        @if (session('success'))
+            <div class="alert alert-success my-3">
+                {{ session('success') }}
+            </div>
+        @endif
         <div class="row">
             @foreach ($lombas as $lomba)
                 <div class="col-md-4 col-12 mb-4 d-flex justify-content-center">
                     <div class="card rounded-4 border-0" style="width: 18rem;">
-                        <img src="{{ $lomba->posterLomba }}" class="card-img-top" alt="...">
+                        <img src="{{ Storage::url($lomba->posterLomba) }}" class="card-img-top" alt="...">
                         <div class="card-body text-white" style="background-color: #922E2C; border-radius: 0 0 15px 15px">
                             <h5 class="card-title fw-semibold">{{ $lomba->namaLomba }}</h5>
                             <p class="card-text fw-normal" style="font-size: 16px">{{ $lomba->deskripsiLomba }}</p>
@@ -22,7 +27,6 @@
                     </div>
                 </div>
             @endforeach
-
         </div>
     </div>
 @endsection
