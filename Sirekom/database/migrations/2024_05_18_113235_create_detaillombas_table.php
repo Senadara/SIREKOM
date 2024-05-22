@@ -17,8 +17,8 @@ return new class extends Migration
             $table->date('tanggalDaftar');
             $table->timestamps();
             $table->primary(['idLomba', 'idPeserta']);
-            $table->foreign('idLomba')->references('idLomba')->on('lombas');
-            $table->foreign('idPeserta')->references('idPeserta')->on('pesertas');
+            $table->foreign('idLomba')->references('id')->on('lombas');
+            $table->foreign('idPeserta')->references('id')->on('pesertas');
         });
     }
 

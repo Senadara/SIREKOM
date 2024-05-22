@@ -56,4 +56,4 @@ Route::get('/mahasiswa/profile/{$id}', [ProfileController::class, 'edit']);
 
 Route::put('/mahasiswa/profile/{$id}', [ProfileController::class, 'update']);
 
-Route::resource('lomba', LombaController::class);
+Route::resource('admin/lomba', LombaController::class);

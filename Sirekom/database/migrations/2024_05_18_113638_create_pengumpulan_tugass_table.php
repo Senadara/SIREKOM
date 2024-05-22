@@ -18,8 +18,8 @@ return new class extends Migration
             $table->timestamps();
 
             $table->primary(['idInformasi', 'idPeserta']);
-            $table->foreign('idInformasi')->references('idInformasi')->on('informasis');
-            $table->foreign('idPeserta')->references('idPeserta')->on('pesertas');
+            $table->foreign('idInformasi')->references('id')->on('informasis');
+            $table->foreign('idPeserta')->references('id')->on('pesertas');
         });
     }
 
