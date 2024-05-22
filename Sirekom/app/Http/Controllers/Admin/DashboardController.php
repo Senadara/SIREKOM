@@ -10,6 +10,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        // $chart = (new LarapexChart)
+        //     ->setType('bar')
         // $chart = (new LarapexChart)->setType('bar')
         //     ->setXAxis(['LIDM', 'GEMASTIK', 'PKM'])
         //     ->setDataset([

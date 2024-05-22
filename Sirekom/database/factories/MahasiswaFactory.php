@@ -2,27 +2,27 @@
 
 namespace Database\Factories;
 
-use App\Models\Peserta;
+use App\Models\Mahasiswa;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class PesertaFactory extends Factory
+class MahasiswaFactory extends Factory
 {
     /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
-    protected $model = Peserta::class;
+    protected $model = Mahasiswa::class;
     public function definition(): array
     {
         return [
             'username' => $this->faker->userName,
             'password' => Hash::make('password'),
-            'namaPeserta' => $this->faker->name,
+            'namaMahasiswa' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
             'nim' => $this->faker->unique()->numerify('##########'),
             'jurusan' => $this->faker->word,

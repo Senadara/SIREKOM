@@ -13,7 +13,7 @@
                     <div class="card-body-jupen">
                         <h4 class="dashboard-card-heading-jupen">JUMLAH PENDAFTAR</h4>
                         <div class="row-jupen">
-                            {{-- {!! $chart->container() !!} --}}
+                            {!! $chart->container() !!}
                         </div>
                     </div>
                 </div>
@@ -68,6 +68,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    {{-- {{ $chart->script() }} --}}
+    <<<<<<< HEAD {{ $chart->script() }}======={{-- {{ $chart->script() }} --}}>>>>>>> 4024eb38051145a19d81f3abeff79623acef54ac
 
-@endsection
+    @endsection

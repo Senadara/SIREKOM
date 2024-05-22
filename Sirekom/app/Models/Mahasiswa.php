@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pesertas extends Model
+class Mahasiswa extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['idPeserta'];
+    protected $guarded = ['idMahasiswa'];
 
     protected $attributes = [
         'fotoProfile' => 'assets/img/profile/default.jpg'

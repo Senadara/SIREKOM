@@ -9,7 +9,5 @@ class Peserta extends Model
 {
     use HasFactory;
 
-    protected $guarded = [
-        'idPeserta',
-    ];
+    protected $guarded=['idPeserta'];
 }
