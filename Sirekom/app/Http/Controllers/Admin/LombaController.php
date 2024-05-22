@@ -74,8 +74,7 @@ class LombaController extends Controller
      */
     public function show(Lomba $lomba)
     {
-        
-        echo "Ini function Show" . $lomba;
+        return view("app.mahasiswa.detailLomba", ["lomba" => $lomba]);
     }
 
     /**

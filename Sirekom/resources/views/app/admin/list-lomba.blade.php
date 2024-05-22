@@ -12,8 +12,8 @@
     }
 
     .img-card{
-        max-width: 300px;
-        max-height: 350px;
+        max-width: 100%;
+        /* max-height: 350px; */
         overflow: hidden;
     }
 
@@ -52,7 +52,8 @@
     
     .card:hover{
         cursor: pointer;
-
+        scale: 105%;
+        transition: 0.5s;
     }
 
     .card:hover .action{
@@ -79,8 +80,8 @@
         @endif
         <div class="row">
             @foreach ($lombas as $lomba)
-                <div class="col-md-4 col-12 mb-4 d-flex justify-content-center">
-                    <div class="card rounded-4 border-0" style="width: 18rem;">
+                <div class="col-md-4 col-9  mb-4 d-flex justify-content-center">
+                    <div class="card rounded-4 border-0" style="width: 20rem;">
                         <div class="action">
                             <button class="action-btn blue" onclick="window.location.href='{{ route('lomba.show', $lomba->id) }}'">
                                 <img src="{{ asset('assets/img/list-lomba/eye.png') }}" alt="View" class="action-image">
