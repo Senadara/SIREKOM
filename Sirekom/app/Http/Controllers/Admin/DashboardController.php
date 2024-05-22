@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
+use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
@@ -11,6 +12,7 @@ class DashboardController extends Controller
     {
         // $chart = (new LarapexChart)
         //     ->setType('bar')
+        // $chart = (new LarapexChart)->setType('bar')
         //     ->setXAxis(['LIDM', 'GEMASTIK', 'PKM'])
         //     ->setDataset([
         //         [
@@ -22,5 +24,4 @@ class DashboardController extends Controller
         // return view('app/admin/dashboard', compact('chart'));
         return view('app/admin/dashboard');
     }
-
 }

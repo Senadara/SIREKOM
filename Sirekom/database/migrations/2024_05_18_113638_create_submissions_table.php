@@ -4,20 +4,20 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('detaillombas', function (Blueprint $table) {
-            $table->unsignedBigInteger('idLomba');
+        Schema::create('submissions', function (Blueprint $table) {
+            $table->unsignedBigInteger('idTask');
             $table->unsignedBigInteger('idPeserta');
-            $table->date('tanggalDaftar');
+            $table->string('lampiran');
             $table->timestamps();
-            $table->primary(['idLomba', 'idPeserta']);
-            $table->foreign('idLomba')->references('idLomba')->on('lombas');
+
+            $table->primary(['idTask', 'idPeserta']);
+            $table->foreign('idTask')->references('idTask')->on('task');
             $table->foreign('idPeserta')->references('idPeserta')->on('pesertas');
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('detaillombas');
+        Schema::dropIfExists('submissions');
     }
 };

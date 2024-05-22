@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LombaController;
+use App\Http\Controllers\Admin\PesertaController;
 use App\Http\Controllers\Mahasiswa\MahasiswaController;
+use App\Http\Controllers\Mahasiswa\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +32,7 @@ Route::get('/admin/create-lomba', function () {
     return view('app.admin.create');
 });
 
-Route::get('/admin/peserta-lomba', function () {
-    return view('app.admin.list-peserta-lomba');
-});
+Route::get('/admin/peserta-lomba', [PesertaController::class, 'index']);
 
 Route::get('/mahasiswa/profile', function () {
     return view('app.mahasiswa.profile');
@@ -51,5 +51,9 @@ Route::get('/mahasiswa/data-lomba', [MahasiswaController::class, 'index']);
 Route::get('/mahasiswa/profile', function () {
     return view('app.mahasiswa.profile');
 });
+
+Route::get('/mahasiswa/profile/{$id}', [ProfileController::class, 'edit']);
+
+Route::put('/mahasiswa/profile/{$id}', [ProfileController::class, 'update']);
 
 Route::resource('lomba', LombaController::class);
