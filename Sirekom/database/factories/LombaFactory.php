@@ -24,7 +24,8 @@ class LombaFactory extends Factory
             'idAdmin' => 1,
             'namaLomba' => $this->faker->words(3, true), // Generates a random name with 3 words
             'deskripsiLomba' => $this->faker->sentence(), // Generates a random sentence
-            'tanggalPendaftaran' => $this->faker->date(), // Generates a random date
+            'tanggalBukaPendaftaran' => $this->faker->date(), // Generates a random date
+            'tanggalTutupPendaftaran' => $this->faker->date(), // Generates a random date
             'posterLomba' => $this->faker->imageUrl(), // Generates a random image URL
             'lampiran' => $this->faker->fileExtension() // Generates a random file extension
         ];

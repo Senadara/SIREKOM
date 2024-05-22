@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Lomba;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Storage;
 
 class LombaController extends Controller
 {
@@ -38,7 +38,8 @@ class LombaController extends Controller
         $request->validate([
             'namaLomba' => 'required|max:50',
             'deskripsiLomba' => 'required',
-            'tanggalPendaftaran' => 'required|date',
+            'tanggalBukaPendaftaran' => 'required|date',
+            'tanggalTutupPendaftaran' => 'required|date|after:tanggalBukaPendaftaran',
             'posterLomba' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'lampiran' => 'required|file|max:10240|mimes:pdf,docx,doc'
         ]);
@@ -58,13 +59,14 @@ class LombaController extends Controller
         $lomba->idAdmin = $idAdmin;
         $lomba->namaLomba = $request->namaLomba;
         $lomba->deskripsiLomba = $request->deskripsiLomba;
-        $lomba->tanggalPendaftaran = $request->tanggalPendaftaran;
+        $lomba->tanggalBukaPendaftaran = $request->tanggalBukaPendaftaran;
+        $lomba->tanggalTutupPendaftaran = $request->tanggalTutupPendaftaran;
         $lomba->posterLomba = $posterLombaPath;
         $lomba->lampiran = $lampiranPath;
         $lomba->save(); //memasukkan data yang ada di dalam model ke dalam database
 
         //redirect ke /lomba
-        return redirect('/lomba')->with('success', "Lomba berhasil ditambahkan!!");
+        return redirect('admin/lomba')->with('success', "Lomba berhasil ditambahkan!!");
     }
 
     /**
@@ -72,7 +74,8 @@ class LombaController extends Controller
      */
     public function show(Lomba $lomba)
     {
-        //
+        
+        echo "Ini function Show" . $lomba;
     }
 
     /**
@@ -80,7 +83,7 @@ class LombaController extends Controller
      */
     public function edit(Lomba $lomba)
     {
-        //
+       return view("app.admin.edit-lomba", ["lomba" => $lomba]);
     }
 
     /**
@@ -88,7 +91,39 @@ class LombaController extends Controller
      */
     public function update(Request $request, Lomba $lomba)
     {
-        //
+        $idAdmin = 1;
+        $request->validate([
+            'namaLomba' => 'required|max:50',
+            'deskripsiLomba' => 'required',
+            'tanggalBukaPendaftaran' => 'required|date',
+            'tanggalTutupPendaftaran' => 'required|date|after:tanggalBukaPendaftaran',
+            'posterLomba' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'lampiran' => 'file|max:10240|mimes:pdf,docx,doc'
+        ]);
+
+        //cek apakah filenya ada 
+        if ($request->hasFile('posterLomba')) {
+            if ($lomba->posterLomba) {
+                Storage::disk('public')->delete($lomba->posterLomba);
+            }
+            $lomba->posterLomba = $request->file('posterLomba')->store('posters', 'public');
+        }
+
+        if ($request->hasFile('lampiran')) {
+            if ($lomba->posterLomba) {
+                Storage::disk('public')->delete($lomba->lampiran);
+            }
+            $lomba->lampiran = $request->file('lampiran')->store('lampirans', 'public');
+        }
+
+        $lomba->idAdmin = $idAdmin;
+        $lomba->namaLomba = $request->namaLomba;
+        $lomba->deskripsiLomba = $request->deskripsiLomba;
+        $lomba->tanggalBukaPendaftaran = $request->tanggalBukaPendaftaran;
+        $lomba->tanggalTutupPendaftaran = $request->tanggalTutupPendaftaran;
+        $lomba->save();
+
+        return redirect('admin/lomba')->with('success', "Lomba berhasil diperbarui!!");
     }
 
     /**

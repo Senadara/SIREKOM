@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->date('deadlineTask');
             $table->string('lampiran');
             $table->timestamps();
-            $table->foreign('idLomba')->references('idLomba')->on('lombas');
+            $table->foreign('idLomba')->references('id')->on('lombas');
         });
     }
 
