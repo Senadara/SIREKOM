@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('task', function (Blueprint $table) {
-            $table->id('idTask');
+            $table->id('id');
             $table->unsignedBigInteger('idLomba');
             $table->string('namaTask', 100);
             $table->enum('tipe', [1, 2]);

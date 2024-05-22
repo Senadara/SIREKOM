@@ -11,14 +11,14 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('pesertas', function (Blueprint $table) {
-            $table->id('idPeserta');
+            $table->id('id');
             $table->unsignedBigInteger('idLomba');
             $table->unsignedBigInteger('idMahasiswa');
             $table->date('tanggalDaftar');
             $table->timestamps();
             // $table->primary(['idLomba', 'idMahasiswa']);
-            $table->foreign('idLomba')->references('idLomba')->on('lombas');
-            $table->foreign('idMahasiswa')->references('idMahasiswa')->on('mahasiswas');
+            $table->foreign('idLomba')->references('id')->on('lombas');
+            $table->foreign('idMahasiswa')->references('id')->on('mahasiswas');
         });
     }
 

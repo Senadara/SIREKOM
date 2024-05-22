@@ -17,8 +17,8 @@ return new class extends Migration {
             $table->timestamps();
 
             $table->primary(['idTask', 'idPeserta']);
-            $table->foreign('idTask')->references('idTask')->on('task');
-            $table->foreign('idPeserta')->references('idPeserta')->on('pesertas');
+            $table->foreign('idTask')->references('id')->on('task');
+            $table->foreign('idPeserta')->references('id')->on('pesertas');
         });
     }
 
