@@ -13,7 +13,7 @@
                     <div class="card-body-jupen">
                         <h4 class="dashboard-card-heading-jupen">JUMLAH PENDAFTAR</h4>
                         <div class="row-jupen">
-                            {!! $chart->container() !!}
+                            {!! $chartData->container() !!}
                         </div>
                     </div>
                 </div>
