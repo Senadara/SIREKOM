@@ -15,7 +15,7 @@ class PesertaController extends Controller
             ->join('mahasiswas', 'pesertas.idMahasiswa', '=', 'mahasiswas.id')
             ->join('lombas', 'pesertas.idLomba', '=', 'lombas.id')
             ->select('mahasiswas.nim', 'mahasiswas.jurusan', 'mahasiswas.angkatan', 'mahasiswas.namaMahasiswa', 'lombas.namaLomba')
-            ->paginate(5);
+            ->paginate(2);
 
         return view('app.admin.list-peserta-lomba', [
             'pesertas' => $pesertas
