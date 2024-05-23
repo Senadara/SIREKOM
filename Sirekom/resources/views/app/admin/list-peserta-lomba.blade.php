@@ -16,12 +16,12 @@
                             <th style="background-color: #922E2C" scope="col"><span
                                     class="text-white fw-semibold">NIM</span></th>
                             <th style="background-color: #922E2C" scope="col"><span
-                                    class="text-white fw-semibold">Prodi</span></th>
+                                    class="text-white fw-semibold">Jurusan</span></th>
                             <th style="background-color: #922E2C" scope="col"><span
                                     class="text-white fw-semibold">Angkatan</span>
                             </th>
-                            <th style="background-color: #922E2C" scope="col"><span class="text-white fw-semibold">No
-                                    Whatsapp</span>
+                            <th style="background-color: #922E2C" scope="col"><span class="text-white fw-semibold">
+                                    Nama Lomba</span>
                             </th>
                         </tr>
                     </thead>
@@ -29,11 +29,11 @@
                         @foreach ($pesertas as $peserta)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $peserta->namaPeserta }}</td>
+                                <td>{{ $peserta->namaMahasiswa }}</td>
                                 <td>{{ $peserta->nim }}</td>
                                 <td>{{ $peserta->jurusan }}</td>
                                 <td>{{ $peserta->angkatan }}</td>
-                                <td>{{ $peserta->noHP }}</td>
+                                <td>{{ $peserta->namaLomba }}</td>
                             </tr>
                         @endforeach
                     </tbody>
