@@ -22,5 +22,20 @@ class DatabaseSeeder extends Seeder
         ]);
         Lomba::factory(3)->create();
         Mahasiswa::factory(10)->create();
+        Peserta::create([
+            'idLomba' => 1,
+            'idMahasiswa' => 1,
+            'tanggalDaftar' => '2024-05-18',
+        ]);
+        Peserta::create([
+            'idLomba' => 2,
+            'idMahasiswa' => 2,
+            'tanggalDaftar' => '2024-05-19',
+        ]);
+        Peserta::create([
+            'idLomba' => 3,
+            'idMahasiswa' => 3,
+            'tanggalDaftar' => '2024-05-20',
+        ]);
     }
 }
