@@ -16,24 +16,26 @@
                             <th style="background-color: #922E2C" scope="col"><span
                                     class="text-white fw-semibold">NIM</span></th>
                             <th style="background-color: #922E2C" scope="col"><span
-                                    class="text-white fw-semibold">Prodi</span></th>
+                                    class="text-white fw-semibold">Jurusan</span></th>
                             <th style="background-color: #922E2C" scope="col"><span
                                     class="text-white fw-semibold">Angkatan</span>
                             </th>
-                            <th style="background-color: #922E2C" scope="col"><span class="text-white fw-semibold">No
-                                    Whatsapp</span>
+                            <th style="background-color: #922E2C" scope="col"><span class="text-white fw-semibold">
+                                    Nama Lomba</span>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Nanda</td>
-                            <td>1201220007</td>
-                            <td>Rekayasa Perangkat Lunak</td>
-                            <td>2022</td>
-                            <td>083848931368</td>
-                        </tr>
+                        @foreach ($pesertas as $peserta)
+                            <tr>
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>{{ $peserta->namaMahasiswa }}</td>
+                                <td>{{ $peserta->nim }}</td>
+                                <td>{{ $peserta->jurusan }}</td>
+                                <td>{{ $peserta->angkatan }}</td>
+                                <td>{{ $peserta->namaLomba }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -46,12 +48,13 @@
                         Peserta</button>
                 </div>
                 <div class="col">
-                    <button class="rounded border-0 shadow">
+                    {{-- <button class="rounded border-0 shadow">
                         <span>&lt;&lt;&lt;</span></button>
                     <button class="rounded border-0 text-light py-1 px-2" style="background-color: #922E2C">1</button>
                     <button class="rounded border-0 text-light py-1 px-2" style="background-color: #922E2C">2</button>
                     <button class="rounded border-0 text-light py-1 px-2" style="background-color: #922E2C">3</button>
-                    <button class="rounded border-0 shadow">&gt;&gt;&gt;</button>
+                    <button class="rounded border-0 shadow">&gt;&gt;&gt;</button> --}}
+                    {!! $pesertas->withQueryString()->links('pagination::bootstrap-5') !!}
                 </div>
             </div>
         </div>

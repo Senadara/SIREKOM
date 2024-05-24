@@ -1,19 +1,20 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <h4 class="text-center mt-3 text-white">TAMBAH DATA LOMBA</h4>
+        <h4 class="text-center mt-3 text-white">EDIT DATA LOMBA</h4>
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card mt-3 mb-5">
                     <div class="card-body">
-                        <form action="/admin/lomba" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('lomba.update', $lomba->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
                             <div class="row justify-content-around">
                                 <div class="col-md-5">
                                     <div class="mb-3">
                                         <label for="namaLomba" class="form-label fw-bold">Nama Lomba</label>
                                         <input type="text" class="form-control @error('namaLomba') is-invalid @enderror"
-                                            id="namaLomba" name="namaLomba" value="{{ old('namaLomba') }}">
+                                            id="namaLomba" name="namaLomba" value="{{ $lomba->namaLomba }}">
                                         @error('namaLomba')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -23,7 +24,7 @@
                                     <div class="mb-3">
                                         <label for="deskripsiLomba" class="form-label fw-bold">Deskripsi Lomba</label>
                                         <textarea class="form-control @error('deskripsiLomba') is-invalid @enderror" id="deskripsiLomba" name="deskripsiLomba"
-                                            rows="5">{{ old('deskripsiLomba') }}</textarea>
+                                            rows="5">{{ $lomba->deskripsiLomba }}</textarea>
                                         @error('deskrpsiLomba')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -36,7 +37,7 @@
                                         <input type="date"
                                             class="form-control @error('tanggalBukaPendaftaran') is-invalid @enderror"
                                             id="tanggalBukaPendaftaran" name="tanggalBukaPendaftaran"
-                                            value="{{ old('tanggalBukaPendaftaran') }}">
+                                            value="{{ $lomba->tanggalBukaPendaftaran }}">
                                         @error('tanggalBukaPendaftaran')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -49,7 +50,7 @@
                                         <input type="date"
                                             class="form-control @error('tanggalTutupPendaftaran') is-invalid @enderror"
                                             id="tanggalTutupPendaftaran" name="tanggalTutupPendaftaran"
-                                            value="{{ old('tanggalTutupPendaftaran') }}">
+                                            value="{{ $lomba->tanggalTutupPendaftaran }}">
                                         @error('tanggalTutupPendaftaran')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -58,8 +59,9 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="lampiran" class="form-label fw-bold">Lampiran</label>
+                                        <a href="{{ Storage::url($lomba->lampiran) }}">Guidebook</a>
                                         <input type="file" class="form-control @error('lampiran') is-invalid @enderror"
-                                            id="lampiran" name="lampiran">
+                                            id="lampiran" name="lampiran" >
                                         @error('lampiran')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -71,11 +73,11 @@
                                     <div class="mb-3">
                                         <label for="posterLomba" class="form-label fw-bold">Poster Lomba</label>
                                         <div class="text-white">
-                                            <img src="{{ asset('assets/img/no-image.svg') }}" id="result" alt=""
+                                            <img src="{{ Storage::url($lomba->posterLomba) }}" id="result" alt=""
                                                 width="200" height="200" style="border-radius: 10px;">
                                             <input type="file"
                                                 class="form-control mt-3 @error('posterLomba') is-invalid @enderror"
-                                                id="posterLomba" name="posterLomba" >
+                                                id="posterLomba" name="posterLomba">
                                             @error('posterLomba')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
