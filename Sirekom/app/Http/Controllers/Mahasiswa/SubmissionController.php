@@ -28,7 +28,7 @@ class SubmissionController extends Controller
             foreach ($images as $image) {
                 $randomString = Str::random(5);
                 $imageName = $randomString . '_' . $image->getClientOriginalName();
-                $image->move(public_path('storage/submission'), $imageName);
+                $image->storeAs(public_path('storage/submission'), $imageName);
 
                 $file = new Submission();
                 $file->filename = $imageName;
@@ -45,20 +45,16 @@ class SubmissionController extends Controller
      */
     public function destroy(Request $request)
     {
-        $files = Submission::all(); // Ambil semua file dari database
+        $files = Submission::all();
 
         foreach ($files as $file) {
             $filePath = public_path('storage/submission/' . $file->filename);
             if (File::exists($filePath)) {
-                File::delete($filePath); // Hapus file dari folder
+                File::delete($filePath);
             }
-            $file->delete(); // Hapus file dari database
+            $file->delete();
         }
 
         return response()->json(['success' => 'All files deleted successfully.']);
     }
-
-    /**
-     * Remove the specified file from storage.
-     */
 }
