@@ -56,6 +56,12 @@ Route::get('/mahasiswa/profile/{$id}', [ProfileController::class, 'edit']);
 
 Route::put('/mahasiswa/profile/{$id}', [ProfileController::class, 'update']);
 
+Route::resource('lomba', LombaController::class);
+
+Route::get('/mahasiswa/detailInfodanSubmit', function () {
+    return view('app.mahasiswa.detailInfodanSubmit');
+});
+  
 Route::get('/mahasiswa/submission', [SubmissionController::class, 'index']);
 
 Route::post('mahasiswa/submission/store', [SubmissionController::class, 'store'])->name('FileUpload');
