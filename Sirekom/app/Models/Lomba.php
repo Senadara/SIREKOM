@@ -16,4 +16,9 @@ class Lomba extends Model
         'posterLomba',
         'lampiran',
     ];
+
+    public function peserta()
+    {
+        return $this->hasMany(Peserta::class, 'idLomba');
+    }
 }
