@@ -1,4 +1,7 @@
 @extends('layouts.app')
+
+@section('title', 'Detail Lomba')
+
 @section('content')
     <div class="container pb-5 pt-2">
         <h4 class="text-center mb-4 text-white fw-semibold " style="font-size: 36px">DETAIL LOMBA</h4>

@@ -4,25 +4,21 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
         Schema::create('pesertas', function (Blueprint $table) {
-            $table->id('idPeserta');
-            $table->string('username', 50);
-            $table->string('password', 255);
-            $table->string('namaPeserta', 100);
-            $table->string('email', 100);
-            $table->string('nim', 10);
-            $table->string('jurusan', 100);
-            $table->string('angkatan', 4);
-            $table->string('noHP', 12);
-            $table->string('fotoProfile');
+            $table->id('id');
+            $table->unsignedBigInteger('idLomba');
+            $table->unsignedBigInteger('idMahasiswa');
+            $table->date('tanggalDaftar');
             $table->timestamps();
+            // $table->primary(['idLomba', 'idMahasiswa']);
+            $table->foreign('idLomba')->references('id')->on('lombas');
+            $table->foreign('idMahasiswa')->references('id')->on('mahasiswas');
         });
     }
 

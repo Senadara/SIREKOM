@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg px-3" style="background-color: #922E2C">
     <a class="navbar-brand " href="#">
-        <img src="{{ asset('assets/img/Logo.svg') }}" alt="SIREKOM" height="70">
+        <img src="{{ asset('assets/img/Logo.svg') }}" alt="SIREKOM" height="50">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
