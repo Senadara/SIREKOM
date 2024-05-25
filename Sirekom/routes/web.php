@@ -48,8 +48,11 @@ Route::get('/mahasiswa/detail-lomba', function () {
 
 Route::get('/mahasiswa/data-lomba', [MahasiswaController::class, 'index']);
 
-Route::get('/mahasiswa/profile', function () {
-    return view('app.mahasiswa.profile');
+Route::get('/login', function () {
+    return view('login');
+});
+Route::get('/register', function () {
+    return view('register');
 });
 
 Route::get('/mahasiswa/profile/{$id}', [ProfileController::class, 'edit']);
