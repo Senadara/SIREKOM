@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('title', 'Dashboard')
-
 @section('content')
 
     <div class="container dashboard-container">
@@ -13,7 +11,7 @@
                     <div class="card-body-jupen">
                         <h4 class="dashboard-card-heading-jupen">JUMLAH PENDAFTAR</h4>
                         <div class="row-jupen">
-                            {!! $chartData->container() !!}
+                            {!! $chart->container() !!}
                         </div>
                     </div>
                 </div>
@@ -67,7 +65,7 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <<<<<<< HEAD {{ $chart->script() }}======={{-- {{ $chart->script() }} --}}>>>>>>> 4024eb38051145a19d81f3abeff79623acef54ac
-
-    @endsection
+    {{-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> --}}
+    <script src="{{ $chart->cdn() }}"></script>
+    {{ $chart->script() }}
+@endsection
