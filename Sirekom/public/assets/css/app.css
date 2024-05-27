@@ -23,6 +23,16 @@ body {
     border-radius: 0px 20px 20px 0px;
 }
 
+.dropzone {
+    background: #e3e6ff;
+    border-radius: 13px;
+    max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px dotted #1833ff;
+    margin-top: 50px;
+}
+
 @keyframes oval-1 {
     0% {
         transform: translateX(0);

@@ -543,6 +543,10 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         'App\\Http\\Controllers\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/LoginController.php',
         'App\\Http\\Controllers\\Mahasiswa\\MahasiswaController' => __DIR__ . '/../..' . '/app/Http/Controllers/Mahasiswa/MahasiswaController.php',
         'App\\Http\\Controllers\\Mahasiswa\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/Mahasiswa/ProfileController.php',
+<<<<<<< HEAD
+=======
+        'App\\Http\\Controllers\\Mahasiswa\\SubmissionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Mahasiswa/SubmissionController.php',
+>>>>>>> 07835ada9bb007e77e3b34d9e98031fb47a75710
         'App\\Http\\Controllers\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/RegisterController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
@@ -558,7 +562,11 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         'App\\Models\\Lomba' => __DIR__ . '/../..' . '/app/Models/Lomba.php',
         'App\\Models\\Mahasiswa' => __DIR__ . '/../..' . '/app/Models/Mahasiswa.php',
         'App\\Models\\Peserta' => __DIR__ . '/../..' . '/app/Models/Peserta.php',
+<<<<<<< HEAD
         'App\\Models\\Task' => __DIR__ . '/../..' . '/app/Models/Task.php',
+=======
+        'App\\Models\\Submission' => __DIR__ . '/../..' . '/app/Models/Submission.php',
+>>>>>>> 07835ada9bb007e77e3b34d9e98031fb47a75710
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -697,7 +705,10 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         'Cron\\MonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
         'Database\\Factories\\LombaFactory' => __DIR__ . '/../..' . '/database/factories/LombaFactory.php',
         'Database\\Factories\\MahasiswaFactory' => __DIR__ . '/../..' . '/database/factories/MahasiswaFactory.php',
+<<<<<<< HEAD
         'Database\\Factories\\TaskFactory' => __DIR__ . '/../..' . '/database/factories/TaskFactory.php',
+=======
+>>>>>>> 07835ada9bb007e77e3b34d9e98031fb47a75710
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
         'Database\\Seeders\\LombaSeeder' => __DIR__ . '/../..' . '/database/seeders/LombaSeeder.php',

@@ -19,9 +19,8 @@ class Lomba extends Model
         'lampiran'
     ];
 
-    // Mendefinisikan hubungan satu ke banyak
-    public function tasks()
+    public function peserta()
     {
-        return $this->hasMany(Task::class, 'idLomba');
+        return $this->hasMany(Peserta::class, 'idLomba');
     }
 }
