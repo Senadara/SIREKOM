@@ -10,10 +10,18 @@ class Lomba extends Model
     use HasFactory;
 
     protected $fillable = [
+        'idAdmin',
         'namaLomba',
         'deskripsiLomba',
-        'tanggalPendaftaran',
+        'tanggalBukaPendaftaran',
+        'tanggalTutupPendaftaran',
         'posterLomba',
-        'lampiran',
+        'lampiran'
     ];
+
+    // Mendefinisikan hubungan satu ke banyak
+    public function tasks()
+    {
+        return $this->hasMany(Task::class, 'idLomba');
+    }
 }

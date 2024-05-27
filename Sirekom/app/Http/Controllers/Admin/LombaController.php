@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Lomba;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
@@ -72,9 +73,20 @@ class LombaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Lomba $lomba)
+    public function show($idLomba)
     {
-        return view("app.mahasiswa.detailLomba", ["lomba" => $lomba]);
+        $tasks = DB::table('tasks')
+            ->join('lombas', 'tasks.idLomba', '=', 'lombas.id')
+            ->select('tasks.namaTask', 'tasks.tipe', 'tasks.deskripsiTask', 'tasks.deadlineTask', 'tasks.lampiran', 
+            'lombas.namaLomba', 'lombas.deskripsiLomba', 'lombas.tanggalBukaPendaftaran', 'lombas.tanggalTutupPendaftaran', 
+            'lombas.posterLomba', 'lombas.lampiran')
+            ->where('tasks.idLomba', $idLomba)
+            ->paginate(2);
+
+        return view('app.mahasiswa.detailLomba', [
+            'tasks' => $tasks
+        ]);
+       
     }
 
     /**

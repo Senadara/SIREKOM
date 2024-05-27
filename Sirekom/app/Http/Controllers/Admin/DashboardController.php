@@ -6,8 +6,8 @@ use App\Models\Lomba;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use ArielMejiaDev\LarapexCharts\LarapexChart;
 use Laravel\LarapexCharts\Classes\Chart;
+use ArielMejiaDev\LarapexCharts\LarapexChart;
 
 class DashboardController extends Controller
 {

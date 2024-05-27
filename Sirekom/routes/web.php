@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LombaController;
+use App\Http\Controllers\Mahasiswa\TaskController;
 use App\Http\Controllers\Admin\PesertaController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Mahasiswa\ProfileController;
@@ -31,7 +32,6 @@ Route::get('/admin/detail-lomba', function () {
 Route::get('/admin/create-lomba', function () {
     return view('app.admin.create');
 });
-
 
 Route::get('/mahasiswa/profile', function () {
     return view('app.mahasiswa.profile');
