@@ -44,8 +44,8 @@
 
                 </div>
                 <div class="col">
-                    <button class="rounded-2 border-0 text-light py-1 px-3" style="background-color: #922E2C">Export Data
-                        Peserta</button>
+                    <a href="/peserta/export_excel/{{ $idLomba }}" class="rounded-2 border-0 text-light py-1 px-3"
+                        style="background-color: #922E2C; text-decoration:none;">Export Data Peserta</a>
                 </div>
                 <div class="col">
                     {{-- <button class="rounded border-0 shadow">
