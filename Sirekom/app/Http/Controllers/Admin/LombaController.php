@@ -31,7 +31,7 @@ class LombaController extends Controller
      */
     public function store(Request $request)
     {
-        //ini manual biar bisa berjalan 
+        //ini manual biar bisa berjalan
         $idAdmin = 1; // masih belum selesai
 
         // validasi data form yang dikirimkan oleh user
@@ -44,9 +44,9 @@ class LombaController extends Controller
             'lampiran' => 'required|file|max:10240|mimes:pdf,docx,doc'
         ]);
 
-        //cek apakah filenya ada 
+        //cek apakah filenya ada
         if ($request->hasFile('posterLomba')) {
-            // ambil file yang keynya posterLomba dan masukkan ke dalam folder posters 
+            // ambil file yang keynya posterLomba dan masukkan ke dalam folder posters
             $posterLombaPath = $request->file('posterLomba')->store('posters', 'public');
         }
 
@@ -100,7 +100,7 @@ class LombaController extends Controller
             'lampiran' => 'file|max:10240|mimes:pdf,docx,doc'
         ]);
 
-        //cek apakah filenya ada 
+        //cek apakah filenya ada
         if ($request->hasFile('posterLomba')) {
             if ($lomba->posterLomba) {
                 Storage::disk('public')->delete($lomba->posterLomba);
@@ -130,6 +130,18 @@ class LombaController extends Controller
      */
     public function destroy(Lomba $lomba)
     {
-        //
+        // Delete file kabeh
+        if ($lomba->posterLomba) {
+            Storage::disk('public')->delete($lomba->posterLomba);
+        }
+        if ($lomba->lampiran) {
+            Storage::disk('public')->delete($lomba->lampiran);
+        }
+
+        // Delete the Lomba teko database
+        $lomba->delete();
+
+        return redirect('admin/lomba')->with('success', "Lomba berhasil dihapus!!");
     }
+
 }

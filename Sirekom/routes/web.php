@@ -61,7 +61,7 @@ Route::resource('lomba', LombaController::class);
 Route::get('/mahasiswa/detailInfodanSubmit', function () {
     return view('app.mahasiswa.detailInfodanSubmit');
 });
-  
+
 Route::get('/mahasiswa/submission', [SubmissionController::class, 'index']);
 
 Route::post('mahasiswa/submission/store', [SubmissionController::class, 'store'])->name('FileUpload');
@@ -69,12 +69,12 @@ Route::post('mahasiswa/submission/store', [SubmissionController::class, 'store']
 Route::post('mahasiswa/submission/file-delete', [SubmissionController::class, 'destroy']);
 
 
-// Route::get('/mahasiswa/{id}/submission', [SubmissionController::class, 'index']);
-// Route::post('/mahasiswa/submission/store', [SubmissionController::class, 'FileUpload'])->name('FileUpload');
-// Route::delete('/mahasiswa/submission/{id}', [SubmissionController::class, 'destroy'])->name('submission.destroy');
-// Route::post('/mahasiswa/submission', [SubmissionController::class, 'store'])->name('storeSubmission');
+Route::get('/mahasiswa/{id}/submission', [SubmissionController::class, 'index']);
+Route::post('/mahasiswa/submission/store', [SubmissionController::class, 'FileUpload'])->name('FileUpload');
+Route::delete('/mahasiswa/submission/{id}', [SubmissionController::class, 'destroy'])->name('submission.destroy');
+Route::post('/mahasiswa/submission', [SubmissionController::class, 'store'])->name('storeSubmission');
 
-// Route::resource('lomba', LombaController::class);
-// Route::resource('admin/lomba', LombaController::class);
+Route::resource('lomba', LombaController::class);
+Route::resource('admin/lomba', LombaController::class);
 
 Route::get('/admin/peserta-lomba', [PesertaController::class, 'index']);
