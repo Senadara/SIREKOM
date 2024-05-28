@@ -19,7 +19,7 @@
         <div class="me-auto"></div>
         <div class="navbar-nav align-items-center">
             <a class="nav-link ms-3 text-white active" aria-current="page" href="/admin/dashboard">Data Pendaftar</a>
-            <a class="nav-link ms-3 text-white active" aria-current="page" href="/admin/lomba-store">Data Lomba</a>
+            <a class="nav-link ms-3 text-white active" aria-current="page" href="/admin/lomba">Data Lomba</a>
             <a class="nav-link ms-3 text-white active" aria-current="page" href="/">Dashboard</a>
             <a href="" class="mx-4 profile-link link-underline link-underline-opacity-0 "><img
                     src="{{ asset('assets/img/profile.svg') }}" alt="Profile" width="50" height="50"></a>
