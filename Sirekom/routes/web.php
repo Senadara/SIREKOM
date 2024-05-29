@@ -64,7 +64,7 @@ Route::resource('admin/lomba', LombaController::class);
 Route::get('/mahasiswa/detailInfodanSubmit', function () {
     return view('app.mahasiswa.detailInfodanSubmit');
 });
-  
+
 Route::get('/mahasiswa/submission', [SubmissionController::class, 'index']);
 
 Route::post('mahasiswa/submission/store', [SubmissionController::class, 'store'])->name('FileUpload');
@@ -80,4 +80,9 @@ Route::post('mahasiswa/submission/file-delete', [SubmissionController::class, 'd
 // Route::resource('lomba', LombaController::class);
 // Route::resource('admin/lomba', LombaController::class);
 
-Route::get('/admin/peserta-lomba', [PesertaController::class, 'index']);
+
+
+Route::get('/admin/peserta-lomba/{idLomba?}', [PesertaController::class, 'index']);
+
+// export excel
+Route::get('/peserta/export_excel/{idLomba?}', [PesertaController::class, 'export_excel']);
