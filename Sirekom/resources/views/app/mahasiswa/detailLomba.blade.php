@@ -293,7 +293,7 @@
                                 <h6>Announcement!!!</h6>
                             </div>
                             <div class="message">
-                                <p>...</p>
+                                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mi sem, cursus non luctus at, varius ut ex. Aliquam a purus ac velit auctor lacinia. Proin sit amet sem nec metus rutrum venenatis sed viverra mi. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
                             </div>
                         </div>
                     </div>
