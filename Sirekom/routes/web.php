@@ -80,4 +80,9 @@ Route::post('/mahasiswa/submission', [SubmissionController::class, 'store'])->na
 Route::resource('lomba', LombaController::class);
 Route::resource('admin/lomba', LombaController::class);
 
-Route::get('/admin/peserta-lomba', [PesertaController::class, 'index']);
+
+
+Route::get('/admin/peserta-lomba/{idLomba?}', [PesertaController::class, 'index']);
+
+// export excel
+Route::get('/peserta/export_excel/{idLomba?}', [PesertaController::class, 'export_excel']);
