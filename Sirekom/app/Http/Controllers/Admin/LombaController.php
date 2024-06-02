@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Lomba;
+use App\Models\Peserta;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -130,7 +131,7 @@ class LombaController extends Controller
      */
     public function destroy(Lomba $lomba)
     {
-        // Delete file kabeh
+        // del file
         if ($lomba->posterLomba) {
             Storage::disk('public')->delete($lomba->posterLomba);
         }
@@ -138,10 +139,11 @@ class LombaController extends Controller
             Storage::disk('public')->delete($lomba->lampiran);
         }
 
-        // Delete the Lomba teko database
+        Peserta::where('idLomba', $lomba->id)->delete();
+
         $lomba->delete();
 
-        return redirect('admin/lomba')->with('success', "Lomba berhasil dihapus!!");
+        return redirect('admin/lomba')->with('success', 'Lomba berhasil dihapus!!');
     }
 
 }
