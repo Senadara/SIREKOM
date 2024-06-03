@@ -261,7 +261,7 @@
                     <div class="leftContent">
                         {{-- btn uiverse --}}
                         <button class="button">
-                            <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 25px">
+                            <img src={{ asset('assets/img/list-lomba/editing.png') }} alt="" style="width: 25px">
                             Registered
                             <div class="arrow">›</div>
                         </button>
@@ -303,13 +303,13 @@
                         <div class="card-it done">
                             <img src={{ asset('assets/img/detail-lomba/document.png') }} alt=""
                                 style="width: 40px">
-                            <a href="">Ini adalah task/informasi untuk mahasiswa</a>
+                            <a href="">Announcement</a>
                             <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 40px">
                         </div>
                         <div class="card-it undone">
                             <img src={{ asset('assets/img/detail-lomba/document.png') }} alt=""
                                 style="width: 40px">
-                            <a href="">Ini adalah task/informasi untuk mahasiswa</a>
+                            <a href="">Task</a>
                             <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 40px">
                         </div>
                     </div>
