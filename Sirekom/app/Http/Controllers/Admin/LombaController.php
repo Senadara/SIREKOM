@@ -74,7 +74,8 @@ class LombaController extends Controller
      */
     public function show(Lomba $lomba)
     {
-        return view("app.mahasiswa.detailLomba", ["lomba" => $lomba]);
+        return view("app.admin.detailLomba", ["lomba" => $lomba]);
+        //yemima ubah
     }
 
     /**
@@ -132,4 +133,22 @@ class LombaController extends Controller
     {
         //
     }
+
+
+    public function announ()
+    {
+        // Fetch the relevant Lomba model data if needed, for example:
+        $lomba = Lomba::first(); // Adjust this as necessary
+        
+        return view("app.admin.announcement-admin", ["lomba" => $lomba]);
+    }
+
+    public function task()
+    {
+        // Fetch the relevant Lomba model data if needed, for example:
+        $lomba = Lomba::first(); // Adjust this as necessary
+        
+        return view("app.admin.task-admin", ["lomba" => $lomba]);
+    }
+
 }

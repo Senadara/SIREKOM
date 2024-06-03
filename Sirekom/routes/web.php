@@ -61,6 +61,12 @@ Route::put('/mahasiswa/profile/{$id}', [ProfileController::class, 'update']);
 
 Route::resource('admin/lomba', LombaController::class);
 
+// Announcement route
+Route::get('admin/announcement-admin', [LombaController::class, 'announ'])->name('announcement.admin');
+
+//Task route
+Route::get('admin/task-admin', [LombaController::class, 'task'])->name('task.admin');
+
 Route::get('/mahasiswa/detailInfodanSubmit', function () {
     return view('app.mahasiswa.detailInfodanSubmit');
 });
