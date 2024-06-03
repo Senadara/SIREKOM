@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Mahasiswa\ProfileController;
 use App\Http\Controllers\Mahasiswa\SubmissionController;
 use App\Http\Controllers\Mahasiswa\MahasiswaController;
+use App\Http\Controllers\Superadmin\SuperadminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +47,9 @@ Route::get('/mahasiswa/detail-lomba', function () {
     return view('app.mahasiswa.detailLomba');
 });
 
-Route::get('/mahasiswa/data-lomba', [MahasiswaController::class, 'index']);
+Route::get('/mahasiswa/lomba', [MahasiswaController::class, 'index']);
+
+Route::get('/mahasiswa/lomba/{lomba}', [MahasiswaController::class, 'show']);
 
 Route::get('/login', function () {
     return view('login');
@@ -92,3 +95,6 @@ Route::get('/admin/peserta-lomba/{idLomba?}', [PesertaController::class, 'index'
 
 // export excel
 Route::get('/peserta/export_excel/{idLomba?}', [PesertaController::class, 'export_excel']);
+
+// Route Superadmin
+Route::resource('/superadmin' , SuperadminController::class);
