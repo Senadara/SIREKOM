@@ -16,4 +16,10 @@ class MahasiswaController extends Controller
         ]);
     }
 
+    public function show(Lomba $lomba)
+    {
+        
+        return view("app.mahasiswa.detailLomba", ["lomba" => $lomba]);
+    }
+
 }
