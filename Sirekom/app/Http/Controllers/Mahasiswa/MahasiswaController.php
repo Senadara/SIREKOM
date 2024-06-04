@@ -50,4 +50,9 @@ class MahasiswaController extends Controller
         $mahasiswa->update($validatedData);
         return redirect('/mahasiswa');
     }
+    public function show(Lomba $lomba)
+    {
+
+        return view("app.mahasiswa.detailLomba", ["lomba" => $lomba]);
+    }
 }

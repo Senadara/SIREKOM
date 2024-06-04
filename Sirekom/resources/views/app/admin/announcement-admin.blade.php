@@ -36,9 +36,10 @@
 
         .detailProfile {
             /* display: flex;
-            width: 100%;
-            justify-content: flex-end;
-            background-color: aqua; */
+                                                                    width: 100%;
+                                                                    justify-content: flex-end;
+                                                                    background-color: aqua; */
+
             position: absolute;
             right: 0;
         }
@@ -62,6 +63,25 @@
 
         .contentLomba {
             margin-top: 120px;
+            text-align: center;
+        }
+
+        .contentLomba {
+            text-align: center;
+        }
+        .row {
+            display: flex;
+            justify-content: center;
+        }
+        .col-9 {
+            flex: 0 0 auto;
+            width: 75%;
+        }
+        .card-it {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
         }
 
         .leftContent {
@@ -241,80 +261,30 @@
         }
     </style>
 
-
     <div class="container ">
         <div class="Header">
             <img class="img-header" src="{{ asset('assets/img/detail-lomba/wallpaper.png') }}" alt="">
-            <div class="header-lomba"><img class="img-profile" src="{{ Storage::url($lomba->posterLomba) }}" alt="">
-            </div>
             <div class="detailProfile">
-                <div class="tagJudulLomba">{{ $lomba->namaLomba }}</div>
-                <div class="br">
-                    <img src={{ asset('assets/img/detail-lomba/break.png') }} alt="">
-                </div>
+                <div class="tagJudulLomba">Annoucement</div>
             </div>
         </div>
+        <br>
         <div class="contentLomba">
             <div class="row">
-                <div class="col-3">
-                    <div class="leftContent">
-                        {{-- btn uiverse --}}
-                        <button class="button">
-                            <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 25px">
-                            Registered
-                            <div class="arrow">›</div>
-                        </button>
-
-                        <button class="guidebook" onclick=window.location.href="{{ Storage::url($lomba->lampiran) }}"><img
-                                src={{ asset('assets/img/detail-lomba/doc.png') }} alt=""
-                                style="width: 25px">Guidebook</button>
-
-
-                    </div>
-                </div>
                 <div class="col-9">
-                    <div class="rightContent">
-                        <h6>Tanggal Pendaftaran {{ $lomba->tanggalBukaPendaftaran }} s/d
-                            {{ $lomba->tanggalTutupPendaftaran }} </h6>
-                        <p>{{ $lomba->deskripsiLomba }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-3">
                     <div class="">
-                        <div class="card-notification">
-                            <div class="header-announcement">
-                                <div class="logo-announcement">
-                                    <img src={{ asset('assets/img/detail-lomba/announcement.png') }} alt="">
-                                </div>
-
-                                <h6>Announcement!!!</h6>
-                            </div>
-                            <div class="message">
-                                <p>...</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-9">
-                    <div class="information-task">
-                        <div class="card-it done">
-                            <img src={{ asset('assets/img/detail-lomba/document.png') }} alt=""
-                                style="width: 40px">
-                            <a href="">Ini adalah task/informasi untuk mahasiswa</a>
-                            <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 40px">
-                        </div>
                         <div class="card-it undone">
-                            <img src={{ asset('assets/img/detail-lomba/document.png') }} alt=""
-                                style="width: 40px">
-                            <a href="">Ini adalah task/informasi untuk mahasiswa</a>
-                            <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 40px">
+                            <p>
+                            Kami mengundang seluruh mahasiswa di Indonesia untuk berpartisipasi dalam Pagelaran 
+                            Mahasiswa Nasional Bidang Teknologi Informasi dan Komunikasi (GEMASTIK) ke-17 tahun 2024. 
+                            <br><br>Acara ini diselenggarakan oleh Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi 
+                            Republik Indonesia bekerja sama dengan berbagai universitas ternama di Indonesia.
+                            </p>
                         </div>
+                        <br>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 @endsection
