@@ -15,10 +15,7 @@ return array(
     'App\\Http\\Controllers\\LoginController' => $baseDir . '/app/Http/Controllers/LoginController.php',
     'App\\Http\\Controllers\\Mahasiswa\\MahasiswaController' => $baseDir . '/app/Http/Controllers/Mahasiswa/MahasiswaController.php',
     'App\\Http\\Controllers\\Mahasiswa\\ProfileController' => $baseDir . '/app/Http/Controllers/Mahasiswa/ProfileController.php',
-<<<<<<< HEAD
-=======
     'App\\Http\\Controllers\\Mahasiswa\\SubmissionController' => $baseDir . '/app/Http/Controllers/Mahasiswa/SubmissionController.php',
->>>>>>> 07835ada9bb007e77e3b34d9e98031fb47a75710
     'App\\Http\\Controllers\\RegisterController' => $baseDir . '/app/Http/Controllers/RegisterController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
@@ -34,11 +31,7 @@ return array(
     'App\\Models\\Lomba' => $baseDir . '/app/Models/Lomba.php',
     'App\\Models\\Mahasiswa' => $baseDir . '/app/Models/Mahasiswa.php',
     'App\\Models\\Peserta' => $baseDir . '/app/Models/Peserta.php',
-<<<<<<< HEAD
-    'App\\Models\\Task' => $baseDir . '/app/Models/Task.php',
-=======
     'App\\Models\\Submission' => $baseDir . '/app/Models/Submission.php',
->>>>>>> 07835ada9bb007e77e3b34d9e98031fb47a75710
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
@@ -177,10 +170,6 @@ return array(
     'Cron\\MonthField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
     'Database\\Factories\\LombaFactory' => $baseDir . '/database/factories/LombaFactory.php',
     'Database\\Factories\\MahasiswaFactory' => $baseDir . '/database/factories/MahasiswaFactory.php',
-<<<<<<< HEAD
-    'Database\\Factories\\TaskFactory' => $baseDir . '/database/factories/TaskFactory.php',
-=======
->>>>>>> 07835ada9bb007e77e3b34d9e98031fb47a75710
     'Database\\Factories\\UserFactory' => $baseDir . '/database/factories/UserFactory.php',
     'Database\\Seeders\\DatabaseSeeder' => $baseDir . '/database/seeders/DatabaseSeeder.php',
     'Database\\Seeders\\LombaSeeder' => $baseDir . '/database/seeders/LombaSeeder.php',

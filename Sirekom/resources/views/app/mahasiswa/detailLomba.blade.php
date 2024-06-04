@@ -247,12 +247,12 @@
 
 
     <div class="container ">
-        @foreach ($tasks as $task)
+        
         <div class="Header">
             <img class="img-header" src="{{ asset("assets/img/detail-lomba/wallpaper.png") }}" alt="">
-            <div class="header-lomba"><img class="img-profile" src="{{ Storage::url($task->posterLomba) }}" alt=""></div>
+            <div class="header-lomba"><img class="img-profile" src="{{ Storage::url($lomba->posterLomba) }}" alt=""></div>
             <div class="detailProfile">
-                <div class="tagJudulLomba">{{ $task->namaLomba }}</div>
+                <div class="tagJudulLomba">{{ $lomba->namaLomba }}</div>
                 <div class="br">
                     <img src={{ asset("assets/img/detail-lomba/break.png" ) }} alt="">
                 </div>
@@ -269,15 +269,15 @@
                        <div class="arrow">›</div>
                      </button>
 
-                    <button class="guidebook" onclick=window.location.href="{{ Storage::url($task->lampiran) }}" ><img src={{ asset('assets/img/detail-lomba/doc.png') }} alt="" style="width: 25px">Guidebook</button>
+                    <button class="guidebook" onclick=window.location.href="{{ Storage::url($lomba->lampiran) }}" ><img src={{ asset('assets/img/detail-lomba/doc.png') }} alt="" style="width: 25px">Guidebook</button>
                     
                     
                   </div>
                 </div>
                 <div class="col-9">
                  <div class="rightContent">
-                    <h6>Tanggal Pendaftaran {{ $task->tanggalBukaPendaftaran }} s/d {{ $task->tanggalTutupPendaftaran }} </h6>
-                    <p>{{ $task->deskripsiLomba }}</p>
+                    <h6>Tanggal Pendaftaran {{ $lomba->tanggalBukaPendaftaran }} s/d {{ $lomba->tanggalTutupPendaftaran }} </h6>
+                    <p>{{ $lomba->deskripsiLomba }}</p>
                  </div>
                 </div>
             </div>
@@ -300,6 +300,7 @@
                 </div>
                 <div class="col-9">
                     <div class="information-task">
+                    @foreach ($tasks as $task)
                         <div class="card-it {{ $task->tipe == 1 ? 'done' : 'undone' }}">
                             <img src={{ asset('assets/img/detail-lomba/document.png') }} alt="" style="width: 40px">
                             <a href="">{{ $task->namaTask }}</a>
