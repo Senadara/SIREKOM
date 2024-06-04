@@ -302,7 +302,7 @@
                     <div class="information-task">
                     <div class="card-it undone">
                     <img src="{{ asset('assets/img/detail-lomba/document.png') }}" alt="" style="width: 40px">
-                    <a href="{{ url('/admin/announcement-admin') }}">Announcement</a>
+                    <a href="{{ url('/admin/list-task') }}">List Tugas</a>
                     <img src="{{ asset('assets/img/detail-lomba/check.png') }}" alt="" style="width: 40px">
                 </div>
                         <div class="card-it undone">
