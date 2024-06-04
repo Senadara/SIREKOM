@@ -37,5 +37,11 @@ class DatabaseSeeder extends Seeder
             'idMahasiswa' => 3,
             'tanggalDaftar' => '2024-05-20',
         ]);
+
+        //roles
+        $this->call(RolesSeeder::class);
+        $this->call(AdminSeeder::class);
+        $this->call(MahasiswaSeeder::class);
+        $this->call(PesertaSeeder::class);
     }
 }
