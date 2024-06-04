@@ -8,6 +8,7 @@ use App\Http\Controllers\Mahasiswa\ProfileController;
 use App\Http\Controllers\Mahasiswa\SubmissionController;
 use App\Http\Controllers\Mahasiswa\MahasiswaController;
 use App\Http\Controllers\Superadmin\SuperadminController;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,7 +69,17 @@ Route::resource('admin/lomba', LombaController::class);
 Route::get('admin/announcement-admin', [LombaController::class, 'announ'])->name('announcement.admin');
 
 //Task route
-Route::get('admin/task-admin', [LombaController::class, 'task'])->name('task.admin');
+Route::resource('tasks', TaskController::class);
+
+// List all tasks
+Route::get('admin/list-task', [TaskController::class, 'index'])->name('tasks.index');
+Route::get('admin/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
+Route::post('admin/tasks', [TaskController::class, 'store'])->name('tasks.store');
+Route::get('admin/tasks/{task}', [TaskController::class, 'show'])->name('tasks.show');
+Route::get('admin/tasks/{task}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
+Route::put('admin/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
+Route::delete('admin/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
+
 
 Route::get('/mahasiswa/detailInfodanSubmit', function () {
     return view('app.mahasiswa.detailInfodanSubmit');
