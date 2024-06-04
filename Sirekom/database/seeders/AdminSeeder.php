@@ -17,6 +17,10 @@ class AdminSeeder extends Seeder
             'username' => 'agung',
             'password' => 'gemes', // password
         ]);
+        $admin = Admin::create([
+            'username' => 'andry',
+            'password' => 'gemes', // password
+        ]);
         $admin->assignRole('admin');
     }
 }

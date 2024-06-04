@@ -16,10 +16,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Admin::create([
-            'username' => 'admin',
-            'password' => 'admin',
-        ]);
         Lomba::factory(3)->create();
         Mahasiswa::factory(10)->create();
         Peserta::create([
