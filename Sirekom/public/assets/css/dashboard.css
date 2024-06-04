@@ -14,7 +14,7 @@ w.dashboard-container {
     margin-top: 10px;
 }
 
-.card-body-jupen{
+.card-body-jupen {
     margin-bottom: -70px;
 }
 
@@ -37,19 +37,18 @@ w.dashboard-container {
     font-weight: bolder;
 }
 
-
 .dashboard-card-item {
     font-size: 1.2rem;
     margin-top: 60px;
     /* padding-top: 100px; */
 }
 
-.dashboard-card-jupen{
+.dashboard-card-jupen {
     margin-top: 10px;
     padding: 60px;
 }
 
-.dashboard-card-juter{
+.dashboard-card-juter {
     margin-top: 10px;
 }
 
@@ -57,7 +56,7 @@ w.dashboard-container {
     background-color: #e9ecef;
 }
 
-.card-body-total{
+.card-body-total {
     background-color: maroon;
     border-radius: 15px;
     margin-top: 20px;
@@ -67,7 +66,6 @@ w.dashboard-container {
 .dashboard-card-inner-heading {
     font-size: 1.25rem;
     color: whitesmoke;
-    
 }
 
 .dashboard-card-inner-title {
@@ -85,35 +83,4 @@ w.dashboard-container {
     font-size: 3rem;
     margin-top: 10px;
     font-weight: bold;
-}
-
-.card-body-timeline{
-    background-color: maroon;
-    border-radius: 15px;
-    padding: 60px;
-}
-
-.dashboard-timeline-heading {
-    font-size: 1.25rem;
-    text-align: center;
-    margin-bottom: 20px;
-    color: whitesmoke;
-    margin-bottom: 25px;
-    padding: 0px;
-}
-
-.timeline {
-    list-style-type: none;
-    margin-top: 25px;
-    text-align: center;
-    padding-left: 0;
-
-    
-}
-
-.timeline-item {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    color: whitesmoke;
-  
 }
