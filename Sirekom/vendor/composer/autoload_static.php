@@ -597,6 +597,7 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         'App\\Http\\Controllers\\Mahasiswa\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/Mahasiswa/ProfileController.php',
         'App\\Http\\Controllers\\Mahasiswa\\SubmissionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Mahasiswa/SubmissionController.php',
         'App\\Http\\Controllers\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/RegisterController.php',
+        'App\\Http\\Controllers\\Superadmin\\SuperadminController' => __DIR__ . '/../..' . '/app/Http/Controllers/Superadmin/SuperadminController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
