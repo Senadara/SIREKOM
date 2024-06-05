@@ -19,36 +19,44 @@ class MahasiswaController extends Controller
         ]);
     }
 
+    public function edit()
+    {
+        // add view edit
+    }
+
     public function update(Request $request, Mahasiswa $mahasiswa)
     {
         $validatedData = $request->validate([
-            'nim' => 'required|digits:10|unique:mahasiswas,nim,' . $mahasiswa->id,
-            'nama' => 'required',
+            'username' => 'required',
+            'password' => 'required',
+            'namaMahasiswa' => 'required',
             'email' => 'required|email|unique:mahasiswas,email,' . $mahasiswa->id,
-            'nohp' => 'required|digits_between:11,12|unique:mahasiswas,nohp,' . $mahasiswa->id,
-            'prodi' => 'required',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'nim' => 'required|digits:10|unique:mahasiswas,nim,' . $mahasiswa->id,
+            'jurusan' => 'required',
+            'angkatan' => 'required',
+            'noHP' => 'required|digits_between:11,12|unique:mahasiswas,nohp,' . $mahasiswa->id,
+            'fotoProfile' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $mahasiswa = Mahasiswa::find($mahasiswa->id);
 
         // Mengecek Apakah Terdapat File foto yang baru
-        if ($request->hasFile('foto')) {
+        if ($request->hasFile('fotoProfile')) {
             // Menghapus foto lama apabila terdapat foto yang baru
             if ($mahasiswa->foto) {
-                Storage::delete('public/image/' . $mahasiswa->foto);
+                Storage::delete('public/assets/img/profile' . $mahasiswa->fotoProfile);
             }
 
             // Menyimpan foto yang baru
-            $file = $request->file('foto');
+            $file = $request->file('fotoProfile');
             $randomString = Str::random(10);
             $name_file = $randomString . "_" . $file->getClientOriginalName();
-            $file->storeAs('public/image/', $name_file);
-            $validatedData['foto'] = $name_file;
+            $file->storeAs('public/assets/img/profile', $name_file);
+            $validatedData['fotoProfile'] = $name_file;
         }
 
         $mahasiswa->update($validatedData);
-        return redirect('/mahasiswa');
+        return redirect('/mahasiswa/lomba');
     }
     public function show(Lomba $lomba)
     {
