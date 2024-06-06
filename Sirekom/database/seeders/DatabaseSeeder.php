@@ -16,10 +16,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Admin::create([
-            'username' => 'admin',
-            'password' => 'admin',
-        ]);
         Lomba::factory(3)->create();
         Mahasiswa::factory(10)->create();
         Peserta::create([
@@ -37,5 +33,11 @@ class DatabaseSeeder extends Seeder
             'idMahasiswa' => 3,
             'tanggalDaftar' => '2024-05-20',
         ]);
+
+        //roles
+        $this->call(RolesSeeder::class);
+        $this->call(AdminSeeder::class);
+        $this->call(MahasiswaSeeder::class);
+        $this->call(PesertaSeeder::class);
     }
 }
