@@ -15,7 +15,7 @@ class PesertaSeeder extends Seeder
     {
         $peserta = Peserta::create([
             'idLomba' => '1',
-            'idMahasiswa' => '11',
+            'idMahasiswa' => '7',
             'tanggalDaftar' => '2024-06-04',
         ]);
         $peserta->assignRole('peserta');
