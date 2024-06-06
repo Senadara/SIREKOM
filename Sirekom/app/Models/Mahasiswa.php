@@ -4,14 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\Mahasiswa as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
 
-class Mahasiswa extends Model
+class Mahasiswa extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, HasRoles;
 
     protected $guarded = ['idMahasiswa'];
-
     protected $attributes = [
         'fotoProfile' => 'assets/img/profile/default.jpg'
     ];
+    protected $guard_name = 'web';
 }
