@@ -13,13 +13,11 @@
         }
 
         .img-header {
-            top: 10px;
-            right: 0;
-            margin-bottom: 10px;
-            width: 100%;
-            height: 200px;
-            border-radius: 10px;
-            overflow: hidden;
+           margin-bottom: 10px;
+           width: 100%;
+           height: 200px;
+           border-radius: 10px;
+           overflow: hidden;
         }
 
         .img-profile {
@@ -35,24 +33,19 @@
         }
 
         .detailProfile {
-            /* display: flex;
-                                                                    width: 100%;
-                                                                    justify-content: flex-end;
-                                                                    background-color: aqua; */
-
             position: absolute;
             right: 0;
         }
 
         .tagJudulLomba {
-            font-size: 36px;
+            font-size: 40px;
             color: white;
-            padding: 10px 80px;
+            padding: 15px 60px;
             background-color: #922E2C;
-            right: 0;
+            /* right: 0; */
             text-transform: uppercase;
             font-weight: bold;
-            border-radius: 5px 0 0 5px;
+            border-radius: 15px 15px 15px 15px;
         }
 
         .br {
@@ -76,7 +69,9 @@
             margin-bottom: 10px;
         }
 
-        .guidebook {
+        /* button register dan guidebook */
+        .guidebook,
+        .button {
             left: 3rem;
             width: 150px;
             height: 40px;
@@ -94,34 +89,8 @@
             transition-duration: .2s;
         }
 
-        .guidebook:hover {
-            background-color: rgb(77, 77, 77);
-            transition-duration: .2s;
-        }
-
-        .guidebook:active {
-            transform: translate(1px, 1px);
-            transition-duration: .2s;
-        }
-
-
-        /*---- btn uiverse ----*/
-        .button {
-            left: 3rem;
+        .button{
             width: 200px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 10px;
-            padding: 0px 15px;
-            background-color: rgb(66, 66, 66);
-            border-radius: 10px;
-            color: white;
-            border: none;
-            position: relative;
-            cursor: pointer;
-            transition-duration: .2s;
         }
 
         .bell {
@@ -143,6 +112,8 @@
             justify-content: center;
         }
 
+
+        .guidebook:hover,
         .button:hover {
             background-color: rgb(77, 77, 77);
             transition-duration: .2s;
@@ -150,6 +121,11 @@
 
         .button:hover .arrow {
             animation: slide-right .6s ease-out both;
+        }
+
+        .button:active,
+        .guidebook:active{
+            transform: translate(1px, 1px);
         }
 
         /* arrow animation */
@@ -164,12 +140,6 @@
                 opacity: 1;
             }
         }
-
-        .button:active {
-            transform: translate(1px, 1px);
-            transition-duration: .2s;
-        }
-
 
         /* Right Content */
         .rightContent {
@@ -213,7 +183,7 @@
         }
 
         .logo-announcement img {
-            max-width: 15px;
+            max-width: 20px;
 
         }
 
@@ -223,12 +193,12 @@
 
         .card-it {
             margin-bottom: 10px;
-            padding: 1rem 2rem;
+            padding: 1rem 1rem;
             display: flex;
             justify-content: space-between;
-            border-radius: 10px;
+            border-radius: 15px;
             align-items: center;
-            box-shadow: 3px 3px 12px -3px rgba(0, 0, 0, 0.75);
+            box-shadow: 5px 20px 20px -3px rgba(0, 0, 0, 0.75);
             -webkit-box-shadow: 3px 3px 12px -3px rgba(0, 0, 0, 0.75);
             -moz-box-shadow: 3px 3px 12px -3px rgba(0, 0, 0, 0.75);
         }
@@ -260,11 +230,12 @@
                 <div class="col-3">
                     <div class="leftContent">
                         {{-- btn uiverse --}}
-                        <button class="button">
-                            <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 25px">
-                            Registered
+                          <button class="button">
+                            <img src={{ asset('assets/img/list-lomba/editing.png') }} alt="" style="width: 25px">
+                            apa?
+                            <!-- <img src={{ asset('assets/img/list-lomba/bin.png') }} alt="" style="widht: 25px"> -->
                             <div class="arrow">›</div>
-                        </button>
+                        </button>  
 
                         <button class="guidebook" onclick=window.location.href="{{ Storage::url($lomba->lampiran) }}"><img
                                 src={{ asset('assets/img/detail-lomba/doc.png') }} alt=""
@@ -293,7 +264,7 @@
                                 <h6>Announcement!!!</h6>
                             </div>
                             <div class="message">
-                                <p>...</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                             </div>
                         </div>
                     </div>

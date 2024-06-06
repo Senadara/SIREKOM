@@ -78,6 +78,8 @@ Route::get('admin/tasks/{task}/edit', [TaskController::class, 'edit'])->name('ta
 Route::put('admin/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
 Route::delete('admin/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
 
+//route task admin
+Route::get('admin/task-admin',[LombaController::class, 'task'])->name('task.admin');
 
 Route::get('/mahasiswa/detailInfodanSubmit', function () {
     return view('app.mahasiswa.detailInfodanSubmit');
