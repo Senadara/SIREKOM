@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Mahasiswa\ProfileController;
 use App\Http\Controllers\Mahasiswa\SubmissionController;
 use App\Http\Controllers\Mahasiswa\MahasiswaController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Superadmin\SuperadminController;
 use App\Http\Controllers\TaskController;
 
@@ -21,9 +22,9 @@ use App\Http\Controllers\TaskController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/admin/dashboard', [DashboardController::class, 'index']);
 
@@ -52,12 +53,13 @@ Route::get('/mahasiswa/lomba', [MahasiswaController::class, 'index']);
 
 Route::get('/mahasiswa/lomba/{lomba}', [MahasiswaController::class, 'show']);
 
-Route::get('/login', function () {
+Route::get('/', function () {
     return view('login');
 });
-Route::get('/register', function () {
-    return view('register');
-});
+
+Route::get('/register', [RegisterController::class, 'index']);
+
+Route::post('/register', [RegisterController::class, 'register']);
 
 Route::get('/mahasiswa/profile/{$id}', [ProfileController::class, 'edit']);
 Route::put('/mahasiswa/profile/{$id}', [ProfileController::class, 'update']);
@@ -67,7 +69,7 @@ Route::resource('admin/lomba', LombaController::class);
 Route::get('admin/announcement-admin', [LombaController::class, 'announ'])->name('announcement.admin');
 
 //Task route
-Route::resource('tasks', TaskController::class);
+// Route::resource('tasks', TaskController::class);
 
 // List all tasks
 Route::get('admin/list-task', [TaskController::class, 'index'])->name('tasks.index');
@@ -101,4 +103,4 @@ Route::get('/admin/peserta-lomba/{idLomba?}', [PesertaController::class, 'index'
 Route::get('/peserta/export_excel/{idLomba?}', [PesertaController::class, 'export_excel']);
 
 // Route Superadmin
-Route::resource('/superadmin' , SuperadminController::class);
+Route::resource('/superadmin', SuperadminController::class);

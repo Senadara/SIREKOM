@@ -10,7 +10,7 @@ class Mahasiswa extends Model
 {
     use HasFactory, HasRoles;
 
-    protected $guarded = ['idMahasiswa'];
+    protected $guarded = ['id'];
     protected $attributes = [
         'fotoProfile' => 'assets/img/profile/default.jpg'
     ];
