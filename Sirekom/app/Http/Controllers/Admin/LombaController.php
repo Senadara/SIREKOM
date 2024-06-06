@@ -14,6 +14,7 @@ class LombaController extends Controller
     public function index()
     {
         $lomba = Lomba::all();
+        // dd($lomba);
         return view('app.admin.list-lomba', [
             'lombas' => $lomba
         ]);

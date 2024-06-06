@@ -96,7 +96,7 @@
                             </button>
                         </form>
                     </div>
-                    <img class="img-card" src="{{ Storage::url($lomba->posterLomba) }}" class="card-img-top" alt="...">
+                    <img class="img-card" src="{{ Storage::url($lomba->posterLomba) }}" class="card-img-top" alt="">
                     <div class="card-body text-white" style="background-color: #922E2C; border-radius: 0 0 15px 15px">
                         <h5 class="card-title fw-semibold">{{ $lomba->namaLomba }}</h5>
                         <p class="card-text fw-normal" style="font-size: 16px">{{ $lomba->deskripsiLomba }}</p>
