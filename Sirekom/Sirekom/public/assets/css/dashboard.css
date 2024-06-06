@@ -1,0 +1,119 @@
+.dashboard-container {
+    margin-top: 20px;
+}
+
+.dashboard-title {
+    margin-bottom: 30px;
+    font-size: 30px;
+    color: whitesmoke;
+}
+
+.dashboard-card {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    margin-top: 10px;
+}
+
+.card-body-jupen{
+    margin-bottom: -70px;
+}
+
+.dashboard-card-heading-jupen {
+    font-size: 1.5rem;
+    margin-bottom: -150px;
+    font-size: 15px;
+    font-weight: bolder;
+    margin-top: -40px;
+}
+
+.row-jupen {
+    margin-top: 170px;
+}
+
+.dashboard-card-heading-juter {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+
+.dashboard-card-item {
+    font-size: 1.2rem;
+    margin-top: 60px;
+    /* padding-top: 100px; */
+}
+
+.dashboard-card-jupen{
+    margin-top: 10px;
+    padding: 60px;
+}
+
+.dashboard-card-juter{
+    margin-top: 10px;
+}
+
+.dashboard-card-inner {
+    background-color: #e9ecef;
+}
+
+.card-body-total{
+    background-color: maroon;
+    border-radius: 15px;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.dashboard-card-inner-heading {
+    font-size: 1.25rem;
+    color: whitesmoke;
+    
+}
+
+.dashboard-card-inner-title {
+    font-size: 3rem;
+    color: whitesmoke;
+    font-weight: bold;
+}
+
+.dashboard-date {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.dashboard-time {
+    font-size: 3rem;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.card-body-timeline{
+    background-color: maroon;
+    border-radius: 15px;
+    padding: 60px;
+}
+
+.dashboard-timeline-heading {
+    font-size: 1.25rem;
+    text-align: center;
+    margin-bottom: 20px;
+    color: whitesmoke;
+    margin-bottom: 25px;
+    padding: 0px;
+}
+
+.timeline {
+    list-style-type: none;
+    margin-top: 25px;
+    text-align: center;
+    padding-left: 0;
+
+    
+}
+
+.timeline-item {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: whitesmoke;
+  
+}
