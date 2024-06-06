@@ -14,11 +14,14 @@
         <div class="col-md-6 d-flex bg-white align-items-center justify-content-center " style="height: 100vh; width: 30%;">
             <div class="card p-4" style="width: 24rem;">
                 <h1 class="text-center mb-4 text-danger">Sign In</h1>
-                <form action="" method="POST">
+                <form method="POST" action="{{ url('/mahasiswa/login') }}">
                     @csrf
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan Username" required>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan Username" autofocus required>
+                        @error('username')
+                            {{ $username }}    
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>

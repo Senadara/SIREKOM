@@ -20,8 +20,8 @@ class DatabaseSeeder extends Seeder
             'username' => 'admin',
             'password' => 'admin',
         ]);
-        Lomba::factory(3)->create();
-        Mahasiswa::factory(10)->create();
+        //Lomba::factory(3)->create();
+        //Mahasiswa::factory(10)->create();
         Peserta::create([
             'idLomba' => 1,
             'idMahasiswa' => 1,
