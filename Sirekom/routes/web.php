@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LombaController;
 use App\Http\Controllers\Admin\PesertaController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Mahasiswa\ProfileController;
 use App\Http\Controllers\Mahasiswa\SubmissionController;
 use App\Http\Controllers\Mahasiswa\MahasiswaController;
@@ -22,9 +23,16 @@ use App\Http\Controllers\TaskController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return redirect(route('mahasiswa/login'));
+});
+
+//Route Login
+Route::get('/', [AuthController::class, 'index']);
+Route::post('/', [AuthController::class, 'RoleAuth']);
+Route::post('/logout', [AuthController::class, 'logout']);
+// Route::get('/mahasiswa/login', [AuthController::class, 'mahasiswa']);
+// Route::post('/mahasiswa/login', [AuthController::class, 'mahasiswaAuthenticate']);
 
 Route::get('/admin/dashboard', [DashboardController::class, 'index']);
 
@@ -53,9 +61,9 @@ Route::get('/mahasiswa/lomba', [MahasiswaController::class, 'index']);
 
 Route::get('/mahasiswa/lomba/{lomba}', [MahasiswaController::class, 'show']);
 
-Route::get('/', function () {
-    return view('login');
-});
+// Route::get('/', function () {
+//     return view('login');
+// });
 
 Route::get('/register', [RegisterController::class, 'index']);
 
