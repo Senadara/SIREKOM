@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Peserta;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Lomba extends Model
 {
@@ -22,6 +23,11 @@ class Lomba extends Model
     public function peserta()
     {
         return $this->hasMany(Peserta::class, 'idLomba');
+    }
+
+    public function task()
+    {
+        return $this->hasMany(Task::class, 'idLomba');
     }
 
 }

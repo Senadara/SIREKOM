@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Traits\HasRoles;
 
 class Peserta extends Model
 {
-    use HasFactory;
+    use HasFactory, HasRoles;
 
     protected $guarded = ['idPeserta'];
 
@@ -20,4 +21,5 @@ class Peserta extends Model
     {
         return $this->belongsTo(Mahasiswa::class, 'idMahasiswa');
     }
+    protected $guard_name = 'web';
 }

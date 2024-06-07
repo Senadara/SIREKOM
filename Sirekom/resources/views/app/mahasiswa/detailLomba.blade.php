@@ -260,19 +260,19 @@
             <div class="col-3">
                 <div class="leftContent">
                     {{-- btn uiverse --}}
-                    <form id="register-form" action="{{ route('mahasiswa.register', ['idLomba' => $lomba->id]) }}" method="POST">
+                    <form id="register-form" action="{{ route('mahasiswa.register', ['idLomba' => $lomba->id]) }}"
+                        method="POST">
                         @csrf
                         <button type="submit" class="button" id="registered">
                             <img src="{{ asset('assets/img/detail-lomba/check.png') }}" alt="" style="width: 25px">
-                        Registered
+                            Registered
                             <div class="arrow">›</div>
                         </button>
                     </form>
 
 
                     <button class="guidebook" onclick=window.location.href="{{ Storage::url($lomba->lampiran) }}"><img
-                            src={{ asset('assets/img/detail-lomba/doc.png') }} alt=""
-                            style="width: 25px">
+                            src={{ asset('assets/img/detail-lomba/doc.png') }} alt="" style="width: 25px">
                         Guidebook
                     </button>
                 </div>
