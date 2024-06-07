@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Lomba;
+use App\Models\Peserta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -32,7 +33,7 @@ class LombaController extends Controller
      */
     public function store(Request $request)
     {
-        //ini manual biar bisa berjalan 
+        //ini manual biar bisa berjalan
         $idAdmin = 1; // masih belum selesai
 
         // validasi data form yang dikirimkan oleh user
@@ -45,9 +46,9 @@ class LombaController extends Controller
             'lampiran' => 'required|file|max:10240|mimes:pdf,docx,doc'
         ]);
 
-        //cek apakah filenya ada 
+        //cek apakah filenya ada
         if ($request->hasFile('posterLomba')) {
-            // ambil file yang keynya posterLomba dan masukkan ke dalam folder posters 
+            // ambil file yang keynya posterLomba dan masukkan ke dalam folder posters
             $posterLombaPath = $request->file('posterLomba')->store('posters', 'public');
         }
 
@@ -83,11 +84,13 @@ class LombaController extends Controller
             ->where('tasks.idLomba', $lomba->id)
             ->get();
 
-        return view('app.mahasiswa.detailLomba', [
+        return view('app.admin.detailLomba', [
             'tasks' => $tasks,
             'lomba' => $lomba,
         ]);
        
+        // return view("app.admin.detailLomba", ["lomba" => $lomba]);
+        //yemima ubah
     }
 
     /**
@@ -113,7 +116,7 @@ class LombaController extends Controller
             'lampiran' => 'file|max:10240|mimes:pdf,docx,doc'
         ]);
 
-        //cek apakah filenya ada 
+        //cek apakah filenya ada
         if ($request->hasFile('posterLomba')) {
             if ($lomba->posterLomba) {
                 Storage::disk('public')->delete($lomba->posterLomba);
@@ -143,6 +146,34 @@ class LombaController extends Controller
      */
     public function destroy(Lomba $lomba)
     {
-        //
+        // del file
+        if ($lomba->posterLomba) {
+            Storage::disk('public')->delete($lomba->posterLomba);
+        }
+        if ($lomba->lampiran) {
+            Storage::disk('public')->delete($lomba->lampiran);
+        }
+
+        Peserta::where('idLomba', $lomba->id)->delete();
+
+        $lomba->delete();
+
+        return redirect('admin/lomba')->with('success', 'Lomba berhasil dihapus!!');
+    }
+  
+   public function announ()
+    {
+        // Fetch the relevant Lomba model data if needed, for example:
+        $lomba = Lomba::first(); // Adjust this as necessary
+        
+        return view("app.admin.announcement-admin", ["lomba" => $lomba]);
+    }
+
+    public function task()
+    {
+        // Fetch the relevant Lomba model data if needed, for example:
+        $lomba = Lomba::first(); // Adjust this as necessary
+        
+        return view("app.admin.task-admin", ["lomba" => $lomba]);
     }
 }

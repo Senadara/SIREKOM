@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamps();
 
             // $table->primary(['idSubmission']);
-            $table->foreign('idTask')->references('id')->on('task');
+            $table->foreign('idTask')->references('id')->on('tasks');
             $table->foreign('idPeserta')->references('id')->on('pesertas');
         });
     }

@@ -23,4 +23,5 @@ class Lomba extends Model
     {
         return $this->hasMany(Peserta::class, 'idLomba');
     }
+
 }

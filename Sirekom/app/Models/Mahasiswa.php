@@ -14,4 +14,9 @@ class Mahasiswa extends Model
     protected $attributes = [
         'fotoProfile' => 'assets/img/profile/default.jpg'
     ];
+
+    public function pesertas()
+    {
+        return $this->hasMany(Peserta::class, 'idMahasiswa');
+    }
 }

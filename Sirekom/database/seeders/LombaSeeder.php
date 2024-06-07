@@ -8,7 +8,7 @@ use App\Models\Lomba;
 use Illuminate\Database\Seeder;
 
 class LombaSeeder extends Seeder
-{
+{   
     /**
      * Seed the application's database.
      */
