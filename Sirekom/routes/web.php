@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LombaController;
 use App\Http\Controllers\Admin\PesertaController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Api\PesertaController as ApiPesertaController;
 use App\Http\Controllers\Mahasiswa\ProfileController;
 use App\Http\Controllers\Mahasiswa\SubmissionController;
 use App\Http\Controllers\Mahasiswa\MahasiswaController;
@@ -82,7 +83,11 @@ Route::post('mahasiswa/submission/file-delete', [SubmissionController::class, 'd
 
 
 
-Route::get('/admin/peserta-lomba/{idLomba?}', [PesertaController::class, 'index']);
+// Route::get('/admin/peserta-lomba/{idLomba?}', [PesertaController::class, 'index']);
+// coba api
+Route::get('/admin/peserta-lomba/{idLomba?}', [ApiPesertaController::class, 'memanggilAPIGetAlldata']);
 
 // export excel
-Route::get('/peserta/export_excel/{idLomba?}', [PesertaController::class, 'export_excel']);
+Route::get('/peserta/export_excel/{idLomba?}', [ApiPesertaController::class, 'export_excel']);
+
+// Route::get('/peserta/lomba/{idLomba}', [PesertaController::class, 'getPesertaByLomba'])->name('peserta.lomba');

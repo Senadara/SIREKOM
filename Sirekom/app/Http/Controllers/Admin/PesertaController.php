@@ -2,39 +2,36 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Lomba;
-use App\Models\Peserta;
 use Illuminate\Http\Request;
-use App\Exports\PesertaExport;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
-use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\BaseController;
+use App\Http\Resources\Peserta as PesertaResources;
 
-class PesertaController extends Controller
+class PesertaController extends BaseController
 {
-    public function index($idLomba = null)
+    public function index(Request $request, $idLomba = null)
     {
+        //query get semua peserta
         $query = DB::table('pesertas')
             ->join('mahasiswas', 'pesertas.idMahasiswa', '=', 'mahasiswas.id')
             ->join('lombas', 'pesertas.idLomba', '=', 'lombas.id')
             ->select('mahasiswas.nim', 'mahasiswas.jurusan', 'mahasiswas.angkatan', 'mahasiswas.namaMahasiswa', 'lombas.namaLomba');
 
+        //cek apakah ada idLomba yang dikirim 
         if ($idLomba) {
+            //filter peserta by idLombanya
             $query->where('pesertas.idLomba', $idLomba);
         }
 
-        $pesertas = $query->paginate(5);
+        //get semua data
+        $pesertas = $query->get();
 
-        return view('app.admin.list-peserta-lomba', [
-            'pesertas' => $pesertas,
-            'idLomba' => $idLomba,
-        ]);
-    }
+        //cek apakah request ajax ada atau tidak
+        if ($request->ajax()) {
+            //jika ada maka return json peserta
+            return response()->json(['pesertas' => $pesertas]);
+        }
 
-
-    public function export_excel($idLomba = null)
-    {
-        // dd($idLomba);
-        return Excel::download(new PesertaExport($idLomba), 'peserta.xlsx');
+        return $this->sendResponse(PesertaResources::collection($pesertas), "Berhasil Get");
     }
 }

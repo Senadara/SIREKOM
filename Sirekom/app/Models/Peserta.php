@@ -9,7 +9,7 @@ class Peserta extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['idPeserta'];
+    protected $guarded = ['id'];
 
     public function lomba()
     {
