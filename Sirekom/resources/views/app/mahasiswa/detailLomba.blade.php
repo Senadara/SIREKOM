@@ -36,10 +36,9 @@
 
         .detailProfile {
             /* display: flex;
-                                                                    width: 100%;
-                                                                    justify-content: flex-end;
-                                                                    background-color: aqua; */
-
+                                    width: 100%;
+                                    justify-content: flex-end;
+                                    background-color: aqua; */
             position: absolute;
             right: 0;
         }
@@ -299,20 +298,22 @@
                     </div>
                 </div>
                 <div class="col-9">
-                    <div class="information-task">
-                        <div class="card-it done">
-                            <img src={{ asset('assets/img/detail-lomba/document.png') }} alt=""
-                                style="width: 40px">
-                            <a href="">Ini adalah task/informasi untuk mahasiswa</a>
-                            <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 40px">
+                    @role('peserta')
+                        <div class="information-task">
+                            <div class="card-it done">
+                                <img src={{ asset('assets/img/detail-lomba/document.png') }} alt=""
+                                    style="width: 40px">
+                                <a href="">Ini adalah task/informasi untuk mahasiswa</a>
+                                <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 40px">
+                            </div>
+                            <div class="card-it undone">
+                                <img src={{ asset('assets/img/detail-lomba/document.png') }} alt=""
+                                    style="width: 40px">
+                                <a href="">Ini adalah task/informasi untuk mahasiswa</a>
+                                <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 40px">
+                            </div>
                         </div>
-                        <div class="card-it undone">
-                            <img src={{ asset('assets/img/detail-lomba/document.png') }} alt=""
-                                style="width: 40px">
-                            <a href="">Ini adalah task/informasi untuk mahasiswa</a>
-                            <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 40px">
-                        </div>
-                    </div>
+                    @endrole
                 </div>
             </div>
 

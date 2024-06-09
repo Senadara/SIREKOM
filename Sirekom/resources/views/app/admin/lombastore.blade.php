@@ -5,6 +5,10 @@
             <h1>DAFTAR LOMBA</h1>
         </div>
         <div class=" container text-center container-table container-xl bg-white p-4 rounded-4">
+            <div class="col">
+                <button class="rounded-2 border-0 bg-danger text-light py-1 px-3">Tambah Data Peserta</button>
+            </div>
+            <br>    
             <div class="row">
                 <table class="table">
                     <thead class="table-danger">
