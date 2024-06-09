@@ -40,12 +40,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-    
+
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-    
+
         'mahasiswa' => [
             'driver' => 'session',
             'provider' => 'mahasiswas',
@@ -121,7 +121,7 @@ return [
             'provider' => 'admins',
             'table' => 'password_reset_tokens',
             'expire' => 60,
-            'throttle' => 60, 
+            'throttle' => 60,
         ],
         'mahasiswas' => [
             'provider' => 'admins',

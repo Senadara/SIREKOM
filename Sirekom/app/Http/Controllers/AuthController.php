@@ -8,19 +8,12 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function admin()
+    public function index()
     {
-        return view('app.admin.login');
+        return view('login');
     }
 
-    
-    public function mahasiswa()
-    {
-        return view('app.mahasiswa.login');
-    }
-
-
-    public function adminAuthenticate(Request $request)
+    public function RoleAuth(Request $request)
     {
         $credentials = $request->only('username', 'password');
 
@@ -28,16 +21,6 @@ class AuthController extends Controller
             $request->session()->regenerate();
             return redirect()->intended('/admin/dashboard');
         }
-
-        return back()->withErrors([
-            'username' => 'The provided credentials do not match our records.',
-        ]);
-    }
-
-
-    public function mahasiswaAuthenticate(Request $request)
-    {
-        $credentials = $request->only('username', 'password');
 
         if (Auth::guard('mahasiswa')->attempt($credentials)) {
             $request->session()->regenerate();
@@ -49,51 +32,11 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function logout(Request $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        Auth::guard('web')->logout();
+        $request->session()->invalidate();
+        // $request->session()->regenerateToken();
+        return redirect('/');
     }
 }

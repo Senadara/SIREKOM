@@ -18,6 +18,10 @@
     <div class="collapse navbar-collapse p-2" id="navbarNavAltMarkup">
         <div class="me-auto"></div>
         <div class="navbar-nav align-items-center">
+            <form action="/logout" method="POST">
+                @csrf
+                <button class="btn btn-primary">logout</button>
+            </form>
             <a class="nav-link ms-3 text-white active" aria-current="page" href="/admin/dashboard">Data Pendaftar</a>
             <a class="nav-link ms-3 text-white active" aria-current="page" href="/admin/lomba">Data Lomba</a>
             <a class="nav-link ms-3 text-white active" aria-current="page" href="/  ">Dashboard</a>

@@ -30,4 +30,3 @@ class Admin extends Authenticatable
     ];
     protected $guard_name = 'web';
 }
-
