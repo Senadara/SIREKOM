@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LombaController;
 use App\Http\Controllers\Admin\PesertaController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Api\PesertaController as ApiPesertaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Mahasiswa\ProfileController;
 use App\Http\Controllers\Mahasiswa\SubmissionController;
@@ -105,10 +106,15 @@ Route::post('/mahasiswa/submission', [SubmissionController::class, 'store'])->na
 
 
 
-Route::get('/admin/peserta-lomba/{idLomba?}', [PesertaController::class, 'index']);
+// Route::get('/admin/peserta-lomba/{idLomba?}', [PesertaController::class, 'index']);
+// coba api
+Route::get('/admin/peserta-lomba/{idLomba?}', [ApiPesertaController::class, 'memanggilAPIGetAlldata']);
 
 // export excel
-Route::get('/peserta/export_excel/{idLomba?}', [PesertaController::class, 'export_excel']);
+
+Route::get('/peserta/export_excel/{idLomba?}', [ApiPesertaController::class, 'export_excel']);
+
+// Route::get('/peserta/lomba/{idLomba}', [PesertaController::class, 'getPesertaByLomba'])->name('peserta.lomba');
 
 // Route Superadmin
 Route::resource('/superadmin', SuperadminController::class);
