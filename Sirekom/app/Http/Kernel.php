@@ -68,8 +68,8 @@ class Kernel extends HttpKernel
         'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
     ];
 
-    protected $routeMiddleware = [
-        'auth.admin' => \App\Http\Middleware\RedirectIfNotAdmin::class,
-        'auth.mahasiswa' => \App\Http\Middleware\RedirectIfNotMahasiswa::class,
-    ];
+    // protected $routeMiddleware = [
+    //     'auth.admin' => \App\Http\Middleware\RedirectIfNotAdmin::class,
+    //     'auth.mahasiswa' => \App\Http\Middleware\RedirectIfNotMahasiswa::class,
+    // ];
 }

@@ -72,17 +72,15 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class, // Update if using a User model for non-role specific users
+            'model' => App\Models\User::class,
         ],
         'admins' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Admin::class, // Replace with your Admin model
-            'table' => 'admins',
+            'model' => App\Models\Admin::class,
         ],
         'mahasiswas' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Mahasiswa::class, // Use your existing Mahasiswa model
-            'table' => 'mahaasiswas',
+            'model' => App\Models\Mahasiswa::class,
         ],
 
         // 'users' => [
@@ -124,7 +122,7 @@ return [
             'throttle' => 60,
         ],
         'mahasiswas' => [
-            'provider' => 'admins',
+            'provider' => 'mahasiswas',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,

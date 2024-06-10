@@ -15,5 +15,5 @@ class Mahasiswa extends Authenticatable
     protected $attributes = [
         'fotoProfile' => 'assets/img/profile/default.jpg'
     ];
-    protected $guard_name = 'web';
+    protected $guard_name = 'mahasiswa';
 }
