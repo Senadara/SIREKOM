@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LombaController;
 use App\Http\Controllers\Admin\PesertaController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Api\PesertaController as ApiPesertaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Mahasiswa\ProfileController;
 use App\Http\Controllers\Mahasiswa\SubmissionController;
@@ -69,6 +70,9 @@ route::middleware(['auth:mahasiswa'])->group(function () {
     Route::get('/mahasiswa/detailInfodanSubmit', function () {
         return view('app.mahasiswa.detailInfodanSubmit');
     });
+
+    // coba api
+    Route::get('/admin/peserta-lomba/{idLomba?}', [ApiPesertaController::class, 'memanggilAPIGetAlldata']);
 });
 
 Route::get('/admin/detail-lomba', function () {
@@ -106,3 +110,10 @@ Route::get('admin/tasks/{task}', [TaskController::class, 'show'])->name('tasks.s
 Route::get('admin/tasks/{task}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
 Route::put('admin/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
 Route::delete('admin/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
+
+
+// export excel
+
+Route::get('/peserta/export_excel/{idLomba?}', [ApiPesertaController::class, 'export_excel']);
+
+// Route::get('/peserta/lomba/{idLomba}', [PesertaController::class, 'getPesertaByLomba'])->name('peserta.lomba');
