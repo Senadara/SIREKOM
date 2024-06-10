@@ -36,9 +36,9 @@
 
         .detailProfile {
             /* display: flex;
-                                                                                                                            width: 100%;
-                                                                                                                            justify-content: flex-end;
-                                                                                                                            background-color: aqua; */
+                width: 100%;
+                justify-content: flex-end;
+                background-color: aqua; */
             position: absolute;
             right: 0;
         }
@@ -322,7 +322,6 @@
                     @endrole
                 </div>
             </div>
-
         </div>
     </div>
 @endsection
