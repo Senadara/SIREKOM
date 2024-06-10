@@ -56,8 +56,8 @@ Route::get('/mahasiswa/detail-lomba', function () {
 });
 
 Route::get('/mahasiswa/lomba', [MahasiswaController::class, 'index']);
-
-Route::get('/mahasiswa/lomba/{lomba}', [MahasiswaController::class, 'show']);
+Route::post('/mahasiswa/lomba/{idLomba}', [MahasiswaController::class, 'register'])->name('mahasiswa.register');
+Route::get('/mahasiswa/lomba/{lomba}', [MahasiswaController::class, 'show'])->name('mahasiswa.lomba.show');
 
 Route::get('/register', function () {
     return view('register');
@@ -105,4 +105,4 @@ Route::get('/admin/peserta-lomba/{idLomba?}', [PesertaController::class, 'index'
 Route::get('/peserta/export_excel/{idLomba?}', [PesertaController::class, 'export_excel']);
 
 // Route Superadmin
-Route::resource('/superadmin' , SuperadminController::class);
+Route::resource('/superadmin', SuperadminController::class);

@@ -21,4 +21,8 @@ class Lomba extends Model
     {
         return $this->hasMany(Peserta::class, 'idLomba');
     }
+    public function task()
+    {
+        return $this->hasMany(Task::class, 'idLomba');
+    }
 }

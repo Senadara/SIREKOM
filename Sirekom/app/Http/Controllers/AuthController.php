@@ -13,7 +13,7 @@ class AuthController extends Controller
         return view('app.admin.login');
     }
 
-    
+
     public function mahasiswa()
     {
         return view('app.mahasiswa.login');

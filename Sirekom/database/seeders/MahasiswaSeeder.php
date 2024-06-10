@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Mahasiswa;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class MahasiswaSeeder extends Seeder
 {
@@ -15,7 +16,7 @@ class MahasiswaSeeder extends Seeder
     {
         $mahasiswa = Mahasiswa::create([
             'username' => 'LoverBoy',
-            'password' => 'flashpoint',
+            'password' => Hash::make('password'),
             'namaMahasiswa' => 'Dito Aditya Nugroho',
             'email' => 'dito@gmail.com',
             'nim' => '1201220007',

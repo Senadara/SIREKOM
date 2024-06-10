@@ -40,12 +40,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-    
+
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-    
+
         'mahasiswa' => [
             'driver' => 'session',
             'provider' => 'mahasiswas',
@@ -82,7 +82,7 @@ return [
         'mahasiswas' => [
             'driver' => 'eloquent',
             'model' => App\Models\Mahasiswa::class, // Use your existing Mahasiswa model
-            'table' => 'mahaasiswas',
+            'table' => 'mahasiswas',
         ],
 
         // 'users' => [
@@ -121,7 +121,7 @@ return [
             'provider' => 'admins',
             'table' => 'password_reset_tokens',
             'expire' => 60,
-            'throttle' => 60, 
+            'throttle' => 60,
         ],
         'mahasiswas' => [
             'provider' => 'admins',

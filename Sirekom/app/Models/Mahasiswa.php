@@ -16,4 +16,10 @@ class Mahasiswa extends Authenticatable
         'fotoProfile' => 'assets/img/profile/default.jpg'
     ];
     protected $guard_name = 'web';
+
+    public function peserta()
+    {
+        return $this->hasMany(Peserta::class, 'idLomba');
+    }
 }
+
