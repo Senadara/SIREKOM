@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
 <style>
     .bgc {
         background-color: #922E2C;

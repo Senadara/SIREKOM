@@ -3,10 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-      
-      'reference' => '49c1137576ebbb77f97350e599b92bcd57f9920c',
-      'reference' => '997b2a6d3e5a683300e38cd2e5fbc879990aea07',
-
+        'reference' => '26f8d0055007962c4f40d947ad9aa441515f7099',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -412,13 +409,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-          
-          
-          
-          'reference' => '49c1137576ebbb77f97350e599b92bcd57f9920c',
-          'reference' => '997b2a6d3e5a683300e38cd2e5fbc879990aea07',
-
-          
+            'reference' => '26f8d0055007962c4f40d947ad9aa441515f7099',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -1302,9 +1293,9 @@
             'dev_requirement' => false,
         ),
         'symfony/translation' => array(
-            'pretty_version' => 'v6.4.7',
-            'version' => '6.4.7.0',
-            'reference' => '7495687c58bfd88b7883823747b0656d90679123',
+            'pretty_version' => 'v6.4.8',
+            'version' => '6.4.8.0',
+            'reference' => 'a002933b13989fc4bd0b58e04bf7eec5210e438a',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/translation',
             'aliases' => array(),

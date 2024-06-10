@@ -162,5 +162,4 @@ class LombaController extends Controller
 
         return view("app.admin.task-admin", ["lomba" => $lomba]);
     }
-
 }

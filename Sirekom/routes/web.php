@@ -4,10 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LombaController;
 use App\Http\Controllers\Admin\PesertaController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Api\PesertaController as ApiPesertaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Mahasiswa\ProfileController;
 use App\Http\Controllers\Mahasiswa\SubmissionController;
 use App\Http\Controllers\Mahasiswa\MahasiswaController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Superadmin\SuperadminController;
 use App\Http\Controllers\TaskController;
 
@@ -27,10 +29,11 @@ Route::get('/', function () {
 });
 
 //Route Login
-Route::get('/admin/login', [AuthController::class, 'admin']);
-Route::post('/admin/login', [AuthController::class, 'adminAuthenticate']);
-Route::get('/mahasiswa/login', [AuthController::class, 'mahasiswa']);
-Route::post('/mahasiswa/login', [AuthController::class, 'mahasiswaAuthenticate']);
+Route::get('/', [AuthController::class, 'index']);
+Route::post('/', [AuthController::class, 'RoleAuth']);
+Route::post('/logout', [AuthController::class, 'logout']);
+// Route::get('/mahasiswa/login', [AuthController::class, 'mahasiswa']);
+// Route::post('/mahasiswa/login', [AuthController::class, 'mahasiswaAuthenticate']);
 
 Route::get('/admin/dashboard', [DashboardController::class, 'index']);
 
@@ -59,9 +62,13 @@ Route::get('/mahasiswa/lomba', [MahasiswaController::class, 'index']);
 Route::post('/mahasiswa/lomba/{idLomba}', [MahasiswaController::class, 'register'])->name('mahasiswa.register');
 Route::get('/mahasiswa/lomba/{lomba}', [MahasiswaController::class, 'show'])->name('mahasiswa.lomba.show');
 
-Route::get('/register', function () {
-    return view('register');
-});
+// Route::get('/', function () {
+//     return view('login');
+// });
+
+Route::get('/register', [RegisterController::class, 'index']);
+
+Route::post('/register', [RegisterController::class, 'register']);
 
 Route::get('/mahasiswa/profile/{$id}', [ProfileController::class, 'edit']);
 Route::put('/mahasiswa/profile/{$id}', [ProfileController::class, 'update']);
@@ -71,7 +78,7 @@ Route::resource('admin/lomba', LombaController::class);
 Route::get('admin/announcement-admin', [LombaController::class, 'announ'])->name('announcement.admin');
 
 //Task route
-Route::resource('tasks', TaskController::class);
+// Route::resource('tasks', TaskController::class);
 
 // List all tasks
 Route::get('admin/list-task', [TaskController::class, 'index'])->name('tasks.index');
@@ -99,10 +106,15 @@ Route::post('/mahasiswa/submission', [SubmissionController::class, 'store'])->na
 
 
 
-Route::get('/admin/peserta-lomba/{idLomba?}', [PesertaController::class, 'index']);
+// Route::get('/admin/peserta-lomba/{idLomba?}', [PesertaController::class, 'index']);
+// coba api
+Route::get('/admin/peserta-lomba/{idLomba?}', [ApiPesertaController::class, 'memanggilAPIGetAlldata']);
 
 // export excel
-Route::get('/peserta/export_excel/{idLomba?}', [PesertaController::class, 'export_excel']);
+
+Route::get('/peserta/export_excel/{idLomba?}', [ApiPesertaController::class, 'export_excel']);
+
+// Route::get('/peserta/lomba/{idLomba}', [PesertaController::class, 'getPesertaByLomba'])->name('peserta.lomba');
 
 // Route Superadmin
 Route::resource('/superadmin', SuperadminController::class);
