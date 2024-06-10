@@ -16,5 +16,10 @@ class Peserta extends Model
     {
         return $this->belongsTo(Lomba::class, 'idLomba');
     }
+
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class, 'idMahasiswa');
+    }
     protected $guard_name = 'web';
 }

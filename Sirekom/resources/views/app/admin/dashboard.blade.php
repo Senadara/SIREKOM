@@ -15,7 +15,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card text-center mb-20 dashboard-card-juter">
                     <div class="card-body">
                         <h4 class="dashboard-card-heading-juter">JUMLAH TERKINI</h4>
