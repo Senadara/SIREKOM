@@ -324,21 +324,14 @@
 </div>
 </div>
 
+
 <script>
-    document.getElementById('registered').addEventListener('click', function () {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, register it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById('registered').submit();
-            }
-        });
+    document.getElementById('registered').addEventListener('click', function (event) {
+        event.preventDefault();
+        var confirmation = confirm("Are you sure you want to register?");
+        if (confirmation) {
+            document.getElementById('register-form').submit();
+        }
     });
 </script>
 @endsection
