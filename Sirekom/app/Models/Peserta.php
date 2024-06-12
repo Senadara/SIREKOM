@@ -9,6 +9,7 @@ use Spatie\Permission\Traits\HasRoles;
 class Peserta extends Model
 {
     use HasFactory, HasRoles;
+    protected $table = 'pesertas';
 
     protected $guarded = ['id'];
 
