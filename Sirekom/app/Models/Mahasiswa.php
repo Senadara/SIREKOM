@@ -7,16 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Mahasiswa as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 
+
 class Mahasiswa extends Authenticatable
 {
     use HasFactory, HasRoles;
+    protected $table = 'mahasiswas';
 
     protected $guarded = ['id'];
     protected $attributes = [
         'fotoProfile' => 'assets/img/profile/default.jpg'
     ];
-
-    protected $guard_name = 'web';
 
     public function peserta()
     {
@@ -24,6 +24,4 @@ class Mahasiswa extends Authenticatable
     }
 
     protected $guard_name = 'mahasiswa';
-
 }
-

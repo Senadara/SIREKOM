@@ -41,14 +41,22 @@ return [
             'provider' => 'users',
         ],
 
+        'api' => [
+            'driver' => 'jwt',
+            'provider' => 'admins',
+        ],
+
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-
         'mahasiswa' => [
             'driver' => 'session',
             'provider' => 'mahasiswas',
+        ],
+        'peserta' => [
+            'driver' => 'session',
+            'provider' => 'pesertas',
         ],
     ],
 
@@ -80,8 +88,7 @@ return [
         ],
         'mahasiswas' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Mahasiswa::class, // Use your existing Mahasiswa model
-            'table' => 'mahasiswas',
+            'model' => App\Models\Mahasiswa::class,
 
         ],
 

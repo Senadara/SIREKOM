@@ -36,9 +36,9 @@
 
         .detailProfile {
             /* display: flex;
-                                                                                                                            width: 100%;
-                                                                                                                            justify-content: flex-end;
-                                                                                                                            background-color: aqua; */
+                                    width: 100%;
+                                    justify-content: flex-end;
+                                    background-color: aqua; */
             position: absolute;
             right: 0;
         }
@@ -241,6 +241,12 @@
         }
     </style>
 
+    @role('mahasiswa')
+        <p>User has mahasiswa role.</p>
+    @else
+        <p>User does not have mahasiswa role.</p>
+    @endrole
+
 
     <div class="container ">
         <div class="Header">
@@ -322,7 +328,6 @@
                     @endrole
                 </div>
             </div>
-
         </div>
     </div>
 @endsection
