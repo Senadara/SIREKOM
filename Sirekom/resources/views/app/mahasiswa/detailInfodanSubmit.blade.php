@@ -21,7 +21,8 @@ $currentDate = date("Y-m-d H:i:s");
                     <?= $currentDate ?>
                     <br></br>
 
-                <form action="#" method="post" enctype="multipart/form-data">
+                <form action="{{ route('submission.store') }}" method="post" enctype="multipart/form-data">
+                    @csrf
                     <table class="table table-bordered border-primary">
 
                         <tr>
@@ -52,10 +53,8 @@ $currentDate = date("Y-m-d H:i:s");
                         <tr>
                             <th>Upload File</th>
                             <td>
-                                <input type="file" name="file" class="form-control-file">
-                                <button type="..." class="btn btn-warning">Edit</button>
-                                <button type="..." class="btn btn-danger">Delete</button>
-
+                                <input type="file" name="lampiran" class="form-control-file">
+                                <button type="submit" class="btn btn-primary">Submit</button>
                             </td>
                         </tr>
 
@@ -64,8 +63,24 @@ $currentDate = date("Y-m-d H:i:s");
                             <td><input type="text" name="desc" class="form-control"></td>
                         </tr>
                     </table>
-                    <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
+
+                <h2 class="mt-5">Uploaded Files</h2>
+                <ul class="list-group">
+                    @foreach($submissions as $submission)
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="{{ Storage::url($submission->lampiran) }}" target="_blank">{{ $submission->lampiran }}</a>
+                            <div class="btn-group">
+                                <button class="btn btn-warning btn-sm" onclick="window.location.href='{{ route('submission.edit', $submission->id) }}'">Edit</button>
+                                <form action="{{ route('submission.destroy', $submission->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this file?');">Delete</button>
+                                </form>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
 
             </div>
         </div>

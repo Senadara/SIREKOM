@@ -87,15 +87,11 @@ Route::get('/mahasiswa/detailInfodanSubmit', function () {
     return view('app.mahasiswa.detailInfodanSubmit');
 });
 
-Route::get('/mahasiswa/submission', [SubmissionController::class, 'index']);
-Route::post('mahasiswa/submission/store', [SubmissionController::class, 'store'])->name('FileUpload');
-Route::post('mahasiswa/submission/file-delete', [SubmissionController::class, 'destroy']);
-
-
-Route::get('/mahasiswa/{id}/submission', [SubmissionController::class, 'index']);
-Route::post('/mahasiswa/submission/store', [SubmissionController::class, 'FileUpload'])->name('FileUpload');
+Route::get('/mahasiswa/submission', [SubmissionController::class, 'index'])->name('submission.index');
+Route::post('/mahasiswa/submission/store', [SubmissionController::class, 'store'])->name('submission.store');
+Route::get('/mahasiswa/submission/{id}/edit', [SubmissionController::class, 'edit'])->name('submission.edit');
+Route::put('/mahasiswa/submission/{id}', [SubmissionController::class, 'update'])->name('submission.update');
 Route::delete('/mahasiswa/submission/{id}', [SubmissionController::class, 'destroy'])->name('submission.destroy');
-Route::post('/mahasiswa/submission', [SubmissionController::class, 'store'])->name('storeSubmission');
 
 
 

@@ -76,8 +76,7 @@ class LombaController extends Controller
      */
     public function show(Lomba $lomba)
     {
-        return view("app.admin.detailLomba", ["lomba" => $lomba]);
-        //yemima ubah
+        return view("app.mahasiswa.detailLomba", ["lomba" => $lomba]);
     }
 
     /**
@@ -85,7 +84,7 @@ class LombaController extends Controller
      */
     public function edit(Lomba $lomba)
     {
-        return view("app.admin.edit-lomba", ["lomba" => $lomba]);
+       return view("app.admin.edit-lomba", ["lomba" => $lomba]);
     }
 
     /**
@@ -148,19 +147,4 @@ class LombaController extends Controller
         return redirect('admin/lomba')->with('success', 'Lomba berhasil dihapus!!');
     }
 
-    public function announ()
-    {
-        // Fetch the relevant Lomba model data if needed, for example:
-        $lomba = Lomba::first(); // Adjust this as necessary
-
-        return view("app.admin.announcement-admin", ["lomba" => $lomba]);
-    }
-
-    public function task()
-    {
-        // Fetch the relevant Lomba model data if needed, for example:
-        $lomba = Lomba::first(); // Adjust this as necessary
-
-        return view("app.admin.task-admin", ["lomba" => $lomba]);
-    }
-
+}
