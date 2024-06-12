@@ -89,11 +89,8 @@ return [
         ],
         'mahasiswas' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Mahasiswa::class, // Use your existing Mahasiswa model
-        ],
-        'pesertas' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Peserta::class, // Use your existing Peserta model
+            'model' => App\Models\Mahasiswa::class,
+
         ],
 
         // 'users' => [
