@@ -10,11 +10,16 @@ class Peserta extends Model
 {
     use HasFactory, HasRoles;
 
-    protected $guarded = ['idPeserta'];
+    protected $guarded = ['id'];
 
     public function lomba()
     {
         return $this->belongsTo(Lomba::class, 'idLomba');
+    }
+
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class, 'idMahasiswa');
     }
     protected $guard_name = 'web';
 }

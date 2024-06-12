@@ -9,8 +9,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class Admin extends Authenticatable
 {
-    protected $table = 'admins';
-
+    use HasFactory, HasRoles;
     protected $fillable = [
         'username', 'password',
     ];
@@ -23,11 +22,9 @@ class Admin extends Authenticatable
     {
         return 'username';
     }
-    use HasFactory, HasRoles;
 
     protected $guarded = [
         'idAdmin',
     ];
-    protected $guard_name = 'web';
+    protected $guard_name = 'admin';
 }
-

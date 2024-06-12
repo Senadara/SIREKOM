@@ -36,9 +36,9 @@
 
         .detailProfile {
             /* display: flex;
-                                    width: 100%;
-                                    justify-content: flex-end;
-                                    background-color: aqua; */
+                                                                                                                            width: 100%;
+                                                                                                                            justify-content: flex-end;
+                                                                                                                            background-color: aqua; */
             position: absolute;
             right: 0;
         }
@@ -259,16 +259,22 @@
                 <div class="col-3">
                     <div class="leftContent">
                         {{-- btn uiverse --}}
-                        <button class="button">
-                            <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 25px">
-                            Registered
-                            <div class="arrow">›</div>
+                        @role('mahasiswa')
+                            <form id="register-form" action="{{ route('mahasiswa.register', ['idLomba' => $lomba->id]) }}"
+                                method="POST">
+                                @csrf
+                                <button type="submit" class="button" id="registered">
+                                    <img src="{{ asset('assets/img/detail-lomba/check.png') }}" alt=""
+                                        style="width: 25px">
+                                    Registered
+                                    <div class="arrow">›</div>
+                                </button>
+                            </form>
+                        @endrole
+                        <button class="guidebook" onclick=window.location.href="{{ Storage::url($lomba->lampiran) }}">
+                            <img src={{ asset('assets/img/detail-lomba/doc.png') }} alt="" style="width: 25px">
+                            Guidebook
                         </button>
-
-                        <button class="guidebook" onclick=window.location.href="{{ Storage::url($lomba->lampiran) }}"><img
-                                src={{ asset('assets/img/detail-lomba/doc.png') }} alt=""
-                                style="width: 25px">Guidebook</button>
-
 
                     </div>
                 </div>
