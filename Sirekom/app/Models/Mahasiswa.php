@@ -20,7 +20,7 @@ class Mahasiswa extends Authenticatable
 
     public function peserta()
     {
-        return $this->hasMany(Peserta::class, 'idLomba');
+        return $this->hasMany(Peserta::class, 'idMahasiswa');
     }
 
     protected $guard_name = 'mahasiswa';

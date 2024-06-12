@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Mahasiswa;
 
+use App\Models\Task;
 use App\Models\Lomba;
 use App\Models\Peserta;
 use App\Models\Mahasiswa;
@@ -15,9 +16,9 @@ class MahasiswaController extends Controller
 {
     public function index()
     {
-        $lomba = Lomba::all();
+        $lombas = Lomba::all();
         return view('app.mahasiswa.data-lomba', [
-            'lombas' => $lomba
+            'lombas' => $lombas
         ]);
     }
 
@@ -60,14 +61,9 @@ class MahasiswaController extends Controller
         $mahasiswa->update($validatedData);
         return redirect('/mahasiswa/lomba');
     }
+
     public function show(Lomba $lomba)
     {
-        // $tasks = Task::where('idLomba', $lomba->id)->get();
-
-        // return view("app.mahasiswa.detailLomba", [
-        //     "lomba" => $lomba,
-        //     "tasks" => $tasks
-        // ]);
         $tasks = DB::table('task')
             ->join('lombas', 'task.idLomba', '=', 'lombas.id')
             ->select(
@@ -92,6 +88,7 @@ class MahasiswaController extends Controller
         ]);
     }
 
+
     public function register(Request $request, $idLomba)
     {
         try {
@@ -112,7 +109,6 @@ class MahasiswaController extends Controller
                     return redirect()->route('app.mahasiswa.detailLomba', ['lomba' => $idLomba])->with('success', 'Anda telah berhasil mendaftar');
                 }
             }
-
             // Jika semua mahasiswa sudah terdaftar, kirim pesan error
             return redirect()->back()->withErrors(['error' => 'Semua posisi telah terdaftar.']);
         } catch (\Exception $e) {
@@ -144,3 +140,4 @@ class MahasiswaController extends Controller
         return redirect()->route('mahasiswa.lomba')->with('success', 'Give permission as admin division to ' . $datamahasiswa->name);
     }
 }
+

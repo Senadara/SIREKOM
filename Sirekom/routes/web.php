@@ -80,6 +80,13 @@ Route::get('/admin/detail-lomba', function () {
     return view('app.admin.detailLomba');
 });
 
+Route::get('/admin/create-lomba', function () {
+    return view('app.admin.create');
+});
+
+Route::get('/mahasiswa/profile', function () {
+    return view('app.mahasiswa.profile');
+});
 
 Route::get('/admin/lomba-store', function () {
     return view('app.admin.lombastore');
@@ -89,16 +96,14 @@ Route::get('/mahasiswa/detail-lomba', function () {
     return view('app.mahasiswa.detailLomba');
 });
 
-// Route::get('/mahasiswa/lomba', [MahasiswaController::class, 'index']);
-// Route::post('/mahasiswa/lomba/{idLomba}', [MahasiswaController::class, 'register'])->name('mahasiswa.register');
-// Route::get('/mahasiswa/lomba/{lomba}', [MahasiswaController::class, 'show'])->name('mahasiswa.lomba.show');
+Route::get('/mahasiswa/lomba', [MahasiswaController::class, 'index']);
+Route::post('/mahasiswa/lomba/{idLomba}', [MahasiswaController::class, 'register'])->name('mahasiswa.register');
+Route::get('/mahasiswa/lomba/{lomba}', [MahasiswaController::class, 'show'])->name('mahasiswa.lomba.show');
 
 
 // Route::get('/', function () {
 //     return view('login');
 // });
-
-
 
 
 // Announcement route

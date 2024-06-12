@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Lomba;
 use App\Models\Peserta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
@@ -75,7 +76,20 @@ class LombaController extends Controller
      */
     public function show(Lomba $lomba)
     {
-        return view("app.admin.detailLomba", ["lomba" => $lomba]);
+        $tasks = DB::table('tasks')
+            ->join('lombas', 'tasks.idLomba', '=', 'lombas.id')
+            ->select('tasks.namaTask', 'tasks.tipe', 'tasks.deskripsiTask', 'tasks.deadlineTask', 'tasks.lampiran', 
+            'lombas.namaLomba', 'lombas.deskripsiLomba', 'lombas.tanggalBukaPendaftaran', 'lombas.tanggalTutupPendaftaran', 
+            'lombas.posterLomba', 'lombas.lampiran')
+            ->where('tasks.idLomba', $lomba->id)
+            ->get();
+
+        return view('app.admin.detailLomba', [
+            'tasks' => $tasks,
+            'lomba' => $lomba,
+        ]);
+       
+        // return view("app.admin.detailLomba", ["lomba" => $lomba]);
         //yemima ubah
     }
 
