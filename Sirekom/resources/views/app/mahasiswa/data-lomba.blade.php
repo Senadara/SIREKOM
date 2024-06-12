@@ -11,6 +11,12 @@
         }
     </style>
 
+    @role('mahasiswa')
+        <p>User has mahasiswa role.</p>
+    @else
+        <p>User does not have mahasiswa role.</p>
+    @endrole
+
     <div class="container">
         <h1 class="text-white text-center py-3">DATA LOMBA</h1>
         <div class="row mb-3 d-flex justify-content-center ">

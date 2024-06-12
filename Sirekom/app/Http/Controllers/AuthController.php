@@ -23,6 +23,7 @@ class AuthController extends Controller
         }
         if (Auth::guard('mahasiswa')->attempt($credentials)) {
             $request->session()->regenerate();
+
             return redirect()->intended('/mahasiswa/lomba');
         }
 

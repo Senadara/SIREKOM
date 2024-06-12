@@ -41,14 +41,22 @@ return [
             'provider' => 'users',
         ],
 
+        'api' => [
+            'driver' => 'jwt',
+            'provider' => 'admins',
+        ],
+
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-
         'mahasiswa' => [
             'driver' => 'session',
             'provider' => 'mahasiswas',
+        ],
+        'peserta' => [
+            'driver' => 'session',
+            'provider' => 'pesertas',
         ],
     ],
 
