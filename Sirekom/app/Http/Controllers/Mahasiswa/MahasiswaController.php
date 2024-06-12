@@ -16,9 +16,9 @@ class MahasiswaController extends Controller
 {
     public function index()
     {
-        $lomba = Lomba::all();
+        $lombas = Lomba::all();
         return view('app.mahasiswa.data-lomba', [
-            'lombas' => $lomba
+            'lombas' => $lombas
         ]);
     }
 
@@ -115,6 +115,29 @@ class MahasiswaController extends Controller
             // Handle exception if save fails
             return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan saat mendaftar. Silakan coba lagi.']);
         }
+    }
+
+    public function PermissionTasks($idLomba)
+    {
+        // dd($idLomba);
+        $datamhs = session('id');
+        // dd($datamhs);
+        $datamahasiswa = Mahasiswa::findOrFail($datamhs);
+        $datamahasiswa->givePermissionTo('ViewTask');
+        $datalomba = Lomba::findOrFail($idLomba);
+        // Mengambil idMahasiswa dari data yang diambil
+        // $idMahasiswa = $datamahasiswa->id;
+
+        // Anda dapat mengganti ini dengan cara yang sesuai untuk mendapatkan idLomba
+        $idLomba = $datalomba; // Misalnya, Anda dapat mengambilnya dari input form atau sesuai dengan logika aplikasi Anda
+
+        // Menambahkan entri ke tabel peserta
+        Peserta::create([
+            'idLomba' => $idLomba,
+            'idMahasiswa' => $datamahasiswa
+        ]);
+
+        return redirect()->route('mahasiswa.lomba')->with('success', 'Give permission as admin division to ' . $datamahasiswa->name);
     }
 }
 
