@@ -36,9 +36,9 @@
 
         .detailProfile {
             /* display: flex;
-            width: 100%;
-            justify-content: flex-end;
-            background-color: aqua; */
+                                    width: 100%;
+                                    justify-content: flex-end;
+                                    background-color: aqua; */
             position: absolute;
             right: 0;
         }
@@ -241,6 +241,12 @@
         }
     </style>
 
+    @role('mahasiswa')
+        <p>User has mahasiswa role.</p>
+    @else
+        <p>User does not have mahasiswa role.</p>
+    @endrole
+
 
     <div class="container ">
         <div class="Header">
@@ -259,16 +265,22 @@
                 <div class="col-3">
                     <div class="leftContent">
                         {{-- btn uiverse --}}
-                        <button class="button">
-                            <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 25px">
-                            Registered
-                            <div class="arrow">›</div>
+                        @role('mahasiswa')
+                            <form id="register-form" action="{{ route('mahasiswa.register', ['idLomba' => $lomba->id]) }}"
+                                method="POST">
+                                @csrf
+                                <button type="submit" class="button" id="registered">
+                                    <img src="{{ asset('assets/img/detail-lomba/check.png') }}" alt=""
+                                        style="width: 25px">
+                                    Registered
+                                    <div class="arrow">›</div>
+                                </button>
+                            </form>
+                        @endrole
+                        <button class="guidebook" onclick=window.location.href="{{ Storage::url($lomba->lampiran) }}">
+                            <img src={{ asset('assets/img/detail-lomba/doc.png') }} alt="" style="width: 25px">
+                            Guidebook
                         </button>
-
-                        <button class="guidebook" onclick=window.location.href="{{ Storage::url($lomba->lampiran) }}"><img
-                                src={{ asset('assets/img/detail-lomba/doc.png') }} alt=""
-                                style="width: 25px">Guidebook</button>
-
 
                     </div>
                 </div>
@@ -298,23 +310,24 @@
                     </div>
                 </div>
                 <div class="col-9">
-                    <div class="information-task">
-                        <div class="card-it done">
-                            <img src={{ asset('assets/img/detail-lomba/document.png') }} alt=""
-                                style="width: 40px">
-                            <a href="">Ini adalah task/informasi untuk mahasiswa</a>
-                            <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 40px">
+                    @role('peserta')
+                        <div class="information-task">
+                            <div class="card-it done">
+                                <img src={{ asset('assets/img/detail-lomba/document.png') }} alt=""
+                                    style="width: 40px">
+                                <a href="">Ini adalah task/informasi untuk mahasiswa</a>
+                                <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 40px">
+                            </div>
+                            <div class="card-it undone">
+                                <img src={{ asset('assets/img/detail-lomba/document.png') }} alt=""
+                                    style="width: 40px">
+                                <a href="">Ini adalah task/informasi untuk mahasiswa</a>
+                                <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 40px">
+                            </div>
                         </div>
-                        <div class="card-it undone">
-                            <img src={{ asset('assets/img/detail-lomba/document.png') }} alt=""
-                                style="width: 40px">
-                            <a href="">Ini adalah task/informasi untuk mahasiswa</a>
-                            <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 40px">
-                        </div>
-                    </div>
+                    @endrole
                 </div>
             </div>
-
         </div>
     </div>
 @endsection
