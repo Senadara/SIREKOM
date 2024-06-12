@@ -64,21 +64,6 @@ class MahasiswaController extends Controller
 
     public function show(Lomba $lomba)
     {
-        // $tasks = Task::where('idLomba', $lomba->id)->get();
-
-        // return view("app.mahasiswa.detailLomba", [
-        //     "lomba" => $lomba,
-        //     "tasks" => $tasks
-        // ]);
-        // $tasks = DB::table('tasks')
-        //     ->join('lombas', 'tasks.idLomba', '=', 'lombas.id')
-        //     ->select(
-        //         'tasks.namaTask',
-        //         'tasks.tipe',
-        //         'tasks.deskripsiTask',
-        //         'tasks.deadlineTask',
-        //         'tasks.lampiran',
-
         $tasks = DB::table('task')
             ->join('lombas', 'task.idLomba', '=', 'lombas.id')
             ->select(
@@ -94,12 +79,6 @@ class MahasiswaController extends Controller
                 'lombas.posterLomba',
                 'lombas.lampiran'
             )
-        //     ->where('tasks.idLomba', $lomba->id)
-        //     ->get();
-
-        // return view('app.mahasiswa.detailLomba', [
-        //     'tasks' => $tasks,
-
             ->where('task.idLomba', $lomba->id)
             ->get();
 
@@ -108,6 +87,7 @@ class MahasiswaController extends Controller
             'lomba' => $lomba,
         ]);
     }
+
 
     public function register(Request $request, $idLomba)
     {

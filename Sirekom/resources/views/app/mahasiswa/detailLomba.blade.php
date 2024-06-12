@@ -164,12 +164,12 @@
         }
     }
 
-    <<<<<<< HEAD .button:active {
+    .button:active {
         transform: translate(1px, 1px);
         transition-duration: .2s;
     }
 
-    =======.detailProfile {
+    .detailProfile {
         /* display: flex;
                                                                                                                             width: 100%;
                                                                                                                             justify-content: flex-end;
