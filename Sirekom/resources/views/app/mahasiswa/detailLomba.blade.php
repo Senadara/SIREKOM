@@ -164,11 +164,81 @@
         }
     }
 
-    .button:active {
+    <<<<<<< HEAD .button:active {
         transform: translate(1px, 1px);
         transition-duration: .2s;
     }
 
+    =======.detailProfile {
+        /* display: flex;
+                                                                                                                            width: 100%;
+                                                                                                                            justify-content: flex-end;
+                                                                                                                            background-color: aqua; */
+        position: absolute;
+        right: 0;
+    }
+
+    .tagJudulLomba {
+        font-size: 36px;
+        color: white;
+        padding: 10px 80px;
+        background-color: #922E2C;
+        right: 0;
+        text-transform: uppercase;
+        font-weight: bold;
+        border-radius: 5px 0 0 5px;
+    }
+
+    .br {
+        margin-top: 15px;
+        position: absolute;
+        right: 0;
+    }
+
+    .contentLomba {
+        margin-top: 120px;
+    }
+
+    .leftContent {
+        display: flex;
+        padding-top: 4.5rem;
+        justify-content: flex-start;
+        flex-direction: column;
+    }
+
+    .leftContent button {
+        margin-bottom: 10px;
+    }
+
+    .guidebook {
+        left: 3rem;
+        width: 150px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+        padding: 0px 15px;
+        background-color: rgb(66, 66, 66);
+        border-radius: 10px;
+        color: white;
+        border: none;
+        position: relative;
+        cursor: pointer;
+        transition-duration: .2s;
+    }
+
+    .guidebook:hover {
+        background-color: rgb(77, 77, 77);
+        transition-duration: .2s;
+    }
+
+    .guidebook:active {
+        transform: translate(1px, 1px);
+        transition-duration: .2s;
+    }
+
+    >>>>>>>38846f17c2208bc041c2319b514fee681a87bb99
 
     /* Right Content */
     .rightContent {

@@ -40,12 +40,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-    
+
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-    
+
         'mahasiswa' => [
             'driver' => 'session',
             'provider' => 'mahasiswas',
@@ -72,17 +72,17 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class, // Update if using a User model for non-role specific users
+            'model' => App\Models\User::class,
         ],
         'admins' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Admin::class, // Replace with your Admin model
-            'table' => 'admins',
+            'model' => App\Models\Admin::class,
         ],
         'mahasiswas' => [
             'driver' => 'eloquent',
             'model' => App\Models\Mahasiswa::class, // Use your existing Mahasiswa model
-            'table' => 'mahaasiswas',
+            'table' => 'mahasiswas',
+
         ],
 
         // 'users' => [
@@ -121,10 +121,10 @@ return [
             'provider' => 'admins',
             'table' => 'password_reset_tokens',
             'expire' => 60,
-            'throttle' => 60, 
+            'throttle' => 60,
         ],
         'mahasiswas' => [
-            'provider' => 'admins',
+            'provider' => 'mahasiswas',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,

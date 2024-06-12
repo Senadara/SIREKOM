@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('content')
-
     <style>
-        .truncated-text{
+        .truncated-text {
             display: -webkit-box;
-            -webkit-line-clamp: 3; /* Jumlah baris yang ingin ditampilkan */
-            -webkit-box-orient: vertical;  
+            -webkit-line-clamp: 3;
+            /* Jumlah baris yang ingin ditampilkan */
+            -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
         }
@@ -29,11 +29,17 @@
                         <img src="{{ Storage::url($lomba->posterLomba) }}" class="card-img-top" alt="...">
                         <div class="card-body text-white" style="background-color: #922E2C; border-radius: 0 0 15px 15px">
                             <h5 class="card-title fw-semibold">{{ $lomba->namaLomba }}</h5>
-                            <p class="card-text fw-normal truncated-text" style="font-size: 16px">{{ $lomba->deskripsiLomba }}</p>
+                            <p class="card-text fw-normal truncated-text" style="font-size: 16px">
+                                {{ $lomba->deskripsiLomba }}</p>
                             <p class="card-text" style="color: #FFBF1A; font-size: 12px">{{ $lomba->tanggalPendaftaran }}
                             </p>
                             <div class="col-12 text-center rounded-3" style="background-color: #FFBF1A">
+<<<<<<< HEAD
                                 <a onclick="window.location.href='{{ route('mahasiswa.lomba.show', $lomba->id) }}'" class="btn text-decoration-none text-white">Bergabung Sekarang</a>
+=======
+                                <a onclick="window.location.href='{{ route('mahasiswa.lomba.show', $lomba->id) }}'"
+                                    class="btn text-decoration-none text-white">Bergabung Sekarang</a>
+>>>>>>> 38846f17c2208bc041c2319b514fee681a87bb99
                             </div>
                         </div>
                     </div>

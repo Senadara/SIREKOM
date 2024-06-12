@@ -11,14 +11,17 @@ class Mahasiswa extends Authenticatable
 {
     use HasFactory, HasRoles;
 
-    protected $guarded = ['idMahasiswa'];
+    protected $guarded = ['id'];
     protected $attributes = [
         'fotoProfile' => 'assets/img/profile/default.jpg'
     ];
+
     protected $guard_name = 'web';
+
 
     public function pesertas()
     {
         return $this->hasMany(Peserta::class, 'idMahasiswa');
     }
+
 }

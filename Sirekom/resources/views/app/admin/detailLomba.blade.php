@@ -34,11 +34,19 @@
         overflow: hidden;
     }
 
+<<<<<<< HEAD
     .detailProfile {
         /* display: flex;
                                                                     width: 100%;
                                                                     justify-content: flex-end;
                                                                     background-color: aqua; */
+=======
+        .detailProfile {
+            /* display: flex;
+                                                                                        width: 100%;
+                                                                                        justify-content: flex-end;
+                                                                                        background-color: aqua; */
+>>>>>>> 38846f17c2208bc041c2319b514fee681a87bb99
 
         position: absolute;
         right: 0;
@@ -248,11 +256,76 @@
         <img class="img-header" src="{{ asset('assets/img/detail-lomba/wallpaper.png') }}" alt="">
         <div class="header-lomba"><img class="img-profile" src="{{ Storage::url($lomba->posterLomba) }}" alt="">
         </div>
+<<<<<<< HEAD
         <div class="detailProfile">
             <div class="tagJudulLomba">{{ $lomba->namaLomba }}</div>
             <div class="br">
                 <img src={{ asset('assets/img/detail-lomba/break.png') }} alt="">
             </div>
+=======
+        <div class="contentLomba">
+            <div class="row">
+                <div class="col-3">
+                    <div class="leftContent">
+                        {{-- btn uiverse --}}
+                        <button class="button">
+                            <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 25px">
+                            Registered
+                            <div class="arrow">›</div>
+                        </button>
+
+                        <button class="guidebook" onclick=window.location.href="{{ Storage::url($lomba->lampiran) }}">
+                            <img src={{ asset('assets/img/detail-lomba/doc.png') }} alt="" style="width: 25px">
+                            Guidebook
+                        </button>
+
+
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="rightContent">
+                        <h6>Tanggal Pendaftaran {{ $lomba->tanggalBukaPendaftaran }} s/d
+                            {{ $lomba->tanggalTutupPendaftaran }} </h6>
+                        <p>{{ $lomba->deskripsiLomba }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <div class="">
+                        <div class="card-notification">
+                            <div class="header-announcement">
+                                <div class="logo-announcement">
+                                    <img src={{ asset('assets/img/detail-lomba/announcement.png') }} alt="">
+                                </div>
+
+                                <h6>Announcement!!!</h6>
+                            </div>
+                            <div class="message">
+                                <p>...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="information-task">
+                        <div class="card-it undone">
+                            <img src="{{ asset('assets/img/detail-lomba/document.png') }}" alt=""
+                                style="width: 40px">
+                            <a href="{{ url('/admin/list-task') }}">List Tugas</a>
+                            <img src="{{ asset('assets/img/detail-lomba/check.png') }}" alt="" style="width: 40px">
+                        </div>
+                        <div class="card-it undone">
+                            <img src={{ asset('assets/img/detail-lomba/document.png') }} alt=""
+                                style="width: 40px">
+                            <a href="{{ url('/admin/task-admin') }}">List Pengumpulan</a>
+                            <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 40px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+>>>>>>> 38846f17c2208bc041c2319b514fee681a87bb99
         </div>
     </div>
     <div class="contentLomba">
