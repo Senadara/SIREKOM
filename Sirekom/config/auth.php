@@ -80,8 +80,7 @@ return [
         ],
         'mahasiswas' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Mahasiswa::class, // Use your existing Mahasiswa model
-            'table' => 'mahasiswas',
+            'model' => App\Models\Mahasiswa::class,
 
         ],
 
