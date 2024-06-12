@@ -10,6 +10,7 @@ class AuthController extends Controller
 {
     public function index()
     {
+        
         return view('login');
     }
 
@@ -19,15 +20,17 @@ class AuthController extends Controller
 
         if (Auth::guard('admin')->attempt($credentials)) {
             $request->session()->regenerate();
+            $request->session()->put('idAdmin', Auth::guard('admin')->user()->id);
             return redirect()->intended('/admin/dashboard');
         }
         if (Auth::guard('mahasiswa')->attempt($credentials)) {
             $request->session()->regenerate();
+            $request->session()->put('idMahasiswa', Auth::guard('mahasiswa')->user()->id);
             return redirect()->intended('/mahasiswa/lomba');
         }
 
         return back()->withErrors([
-            'username' => 'The provided credentials do not match our records.',
+            'error' => 'The provided credentials do not match our records.',
         ]);
     }
 
