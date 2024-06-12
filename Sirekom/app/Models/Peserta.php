@@ -9,6 +9,7 @@ use Spatie\Permission\Traits\HasRoles;
 class Peserta extends Model
 {
     use HasFactory, HasRoles;
+    protected $table = 'pesertas';
 
     protected $guarded = ['id'];
 
@@ -21,5 +22,5 @@ class Peserta extends Model
     {
         return $this->belongsTo(Mahasiswa::class, 'idMahasiswa');
     }
-    protected $guard_name = 'web';
+    protected $guard_name = 'peserta';
 }
