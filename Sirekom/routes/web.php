@@ -31,7 +31,7 @@ use App\Http\Controllers\Api\PesertaController as ApiPesertaController;
 // });
 
 //Route Login
-Route::get('/', [AuthController::class, 'index']);
+Route::get('/', [AuthController::class, 'index'])->name('login');
 Route::post('/', [AuthController::class, 'RoleAuth']);
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index']);
@@ -48,7 +48,8 @@ route::middleware(['auth:admin', 'role:admin'])->group(function () {
 
     Route::get('/peserta/export_excel/{idLomba?}', [PesertaController::class, 'export_excel']);
 
-    Route::get('/admin/peserta-lomba/{idLomba?}', [PesertaController::class, 'index']);
+    //Route::get('/admin/peserta-lomba/{idLomba?}', [PesertaController::class, 'index']);
+    Route::get('/admin/peserta-lomba/{idLomba?}', [ApiPesertaController::class, 'memanggilAPIGetAlldata']);
 });
 
 
@@ -72,9 +73,7 @@ route::middleware(['auth:mahasiswa', 'role:mahasiswa'])->group(function () {
     Route::get('/mahasiswa/detailInfodanSubmit', function () {
         return view('app.mahasiswa.detailInfodanSubmit');
     });
-
-    // coba api
-    Route::get('/admin/peserta-lomba/{idLomba?}', [ApiPesertaController::class, 'memanggilAPIGetAlldata']);
+    
 });
 
 Route::get('/admin/detail-lomba', function () {
@@ -129,6 +128,4 @@ Route::get('/peserta/export_excel/{idLomba?}', [ApiPesertaController::class, 'ex
 
 // Route::get('/peserta/lomba/{idLomba}', [PesertaController::class, 'getPesertaByLomba'])->name('peserta.lomba');
 
-// Route Superadmin
-Route::resource('/superadmin', SuperadminController::class);
 

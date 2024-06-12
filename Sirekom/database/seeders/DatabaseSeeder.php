@@ -37,11 +37,18 @@ class DatabaseSeeder extends Seeder
                 //     'tanggalDaftar' => '2024-05-20',
                 // ]);
 
+<<<<<<< HEAD
+=======
+                Mahasiswa::factory(10)->create();
+>>>>>>> a7a6a0f8f7aea9d5cc23c3d87adcb297acb8b068
                 //roles
                 $this->call(RolesSeeder::class);
                 $this->call(AdminSeeder::class);
                 $this->call(MahasiswaSeeder::class);
+<<<<<<< HEAD
                 Mahasiswa::factory(10)->withRole()->create();
+=======
+>>>>>>> a7a6a0f8f7aea9d5cc23c3d87adcb297acb8b068
                 Lomba::factory(3)->create();
                 $this->call(PesertaSeeder::class);
         }
