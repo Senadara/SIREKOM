@@ -114,9 +114,9 @@ Route::get('/mahasiswa/detail-lomba', function () {
     return view('app.mahasiswa.detailLomba');
 });
 
-Route::get('/mahasiswa/lomba', [MahasiswaController::class, 'index']);
-Route::post('/mahasiswa/lomba/{idLomba}', [MahasiswaController::class, 'register'])->name('mahasiswa.register');
-Route::get('/mahasiswa/lomba/{lomba}', [MahasiswaController::class, 'show'])->name('mahasiswa.lomba.show');
+// Route::get('/mahasiswa/lomba', [MahasiswaController::class, 'index']);
+// Route::post('/mahasiswa/lomba/{idLomba}', [MahasiswaController::class, 'register'])->name('mahasiswa.register');
+// Route::get('/mahasiswa/lomba/{lomba}', [MahasiswaController::class, 'show'])->name('mahasiswa.lomba.show');
 
 
 // Route::get('/', function () {

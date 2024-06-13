@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\PesertaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\PesertaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::controller(LoginController::class)->group(function () {
+    Route::post('login', 'adminLoginAPI');
+    Route::post('logout', 'adminLogoutAPI');
+    Route::post('refresh', 'refresh');
+
 });
 
 Route::get('peserta/{idLomba?}', [PesertaController::class, 'index']);
