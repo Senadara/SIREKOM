@@ -16,8 +16,8 @@ return new class extends Migration {
             $table->string('namaTask', 100);
             $table->enum('tipe', [1, 2]);
             $table->text('deskripsiTask');
-            $table->date('deadlineTask');
-            $table->string('lampiran');
+            $table->date('deadlineTask')->nullable();
+            $table->string('lampiran')->nullable();
             $table->timestamps();
             $table->foreign('idLomba')->references('id')->on('lombas');
         });

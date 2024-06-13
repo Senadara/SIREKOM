@@ -34,20 +34,11 @@
         overflow: hidden;
     }
 
-<<<<<<< HEAD
     .detailProfile {
         /* display: flex;
-                                                                    width: 100%;
-                                                                    justify-content: flex-end;
-                                                                    background-color: aqua; */
-=======
-        .detailProfile {
-            /* display: flex;
-                                                                                        width: 100%;
-                                                                                        justify-content: flex-end;
-                                                                                        background-color: aqua; */
->>>>>>> 38846f17c2208bc041c2319b514fee681a87bb99
-
+        width: 100%;
+        justify-content: flex-end;
+        background-color: aqua; */
         position: absolute;
         right: 0;
     }
@@ -256,95 +247,16 @@
         <img class="img-header" src="{{ asset('assets/img/detail-lomba/wallpaper.png') }}" alt="">
         <div class="header-lomba"><img class="img-profile" src="{{ Storage::url($lomba->posterLomba) }}" alt="">
         </div>
-<<<<<<< HEAD
         <div class="detailProfile">
             <div class="tagJudulLomba">{{ $lomba->namaLomba }}</div>
             <div class="br">
                 <img src={{ asset('assets/img/detail-lomba/break.png') }} alt="">
             </div>
-=======
-        <div class="contentLomba">
-            <div class="row">
-                <div class="col-3">
-                    <div class="leftContent">
-                        {{-- btn uiverse --}}
-                        <button class="button">
-                            <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 25px">
-                            Registered
-                            <div class="arrow">›</div>
-                        </button>
-
-                        <button class="guidebook" onclick=window.location.href="{{ Storage::url($lomba->lampiran) }}">
-                            <img src={{ asset('assets/img/detail-lomba/doc.png') }} alt="" style="width: 25px">
-                            Guidebook
-                        </button>
-
-
-                    </div>
-                </div>
-                <div class="col-9">
-                    <div class="rightContent">
-                        <h6>Tanggal Pendaftaran {{ $lomba->tanggalBukaPendaftaran }} s/d
-                            {{ $lomba->tanggalTutupPendaftaran }} </h6>
-                        <p>{{ $lomba->deskripsiLomba }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-3">
-                    <div class="">
-                        <div class="card-notification">
-                            <div class="header-announcement">
-                                <div class="logo-announcement">
-                                    <img src={{ asset('assets/img/detail-lomba/announcement.png') }} alt="">
-                                </div>
-
-                                <h6>Announcement!!!</h6>
-                            </div>
-                            <div class="message">
-                                <p>...</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-9">
-                    <div class="information-task">
-                        <div class="card-it undone">
-                            <img src="{{ asset('assets/img/detail-lomba/document.png') }}" alt=""
-                                style="width: 40px">
-                            <a href="{{ url('/admin/list-task') }}">List Tugas</a>
-                            <img src="{{ asset('assets/img/detail-lomba/check.png') }}" alt="" style="width: 40px">
-                        </div>
-                        <div class="card-it undone">
-                            <img src={{ asset('assets/img/detail-lomba/document.png') }} alt=""
-                                style="width: 40px">
-                            <a href="{{ url('/admin/task-admin') }}">List Pengumpulan</a>
-                            <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 40px">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
->>>>>>> 38846f17c2208bc041c2319b514fee681a87bb99
         </div>
     </div>
     <div class="contentLomba">
         <div class="row">
             <div class="col-3">
-                <div class="leftContent">
-                    {{-- btn uiverse --}}
-                    <!-- <button class="button">
-                        <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 25px">
-                        Registered
-                        <div class="arrow">›</div>
-                    </button> -->
-
-                    <button class="guidebook" onclick=window.location.href="{{ Storage::url($lomba->lampiran) }}"><img
-                            src={{ asset('assets/img/detail-lomba/doc.png') }} alt=""
-                            style="width: 25px">Guidebook</button>
-
-
-                </div>
             </div>
             <div class="col-9">
                 <div class="rightContent">
@@ -355,37 +267,38 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-3">
-                <div class="">
-                    <div class="card-notification">
-                        <div class="header-announcement">
-                            <div class="logo-announcement">
-                                <img src={{ asset('assets/img/detail-lomba/announcement.png') }} alt="">
-                            </div>
-
-                            <h6>Announcement!!!</h6>
-                        </div>
-                        <div class="message">
-                            <p>...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-9">
-                <div class="information-task">
-                    <div class="card-it undone">
-                        <img src="{{ asset('assets/img/detail-lomba/document.png') }}" alt="" style="width: 40px">
-                        <a href="{{ url('/admin/announcement-admin') }}">Announcement</a>
-                        <img src="{{ asset('assets/img/detail-lomba/check.png') }}" alt="" style="width: 40px">
-                    </div>
-                    <div class="card-it undone">
-                        <img src={{ asset('assets/img/detail-lomba/document.png') }} alt="" style="width: 40px">
-                        <a href="{{ url('/admin/task-admin') }}">List Pengumpulan</a>
-                        <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 40px">
-                    </div>
-                </div>
-            </div>
+        <div class="container">
+            <br>
+            <a href="{{ url('admin/tasks/create/' . $lomba->id) }}" class="btn btn-dark">Create New Task</a>
+            <table class="table table-striped mt-3">
+                <thead>
+                    <tr>
+                        <th>Nama Task</th>
+                        <th>Deskripsi</th>
+                        <th>Deadline</th>
+                        <th>Type</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($tasks as $task)
+                    <tr>
+                        <td>{{ $task->namaTask }}</td>
+                        <td>{{ $task->deskripsiTask }}</td>
+                        <td>{{ $task->deadlineTask }}</td>
+                        <td>{{ $task->tipe }}</td>
+                        <td>
+                            <a href="{{ url('admin/tasks/edit/'. $task->id) }}" class="btn btn-warning">Edit</a>
+                            <form action="{{ url('admin/tasks/'. $task->id) }}" method="POST" style="display:inline-block;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
 
     </div>
