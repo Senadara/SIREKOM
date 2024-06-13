@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class MahasiswaController extends Controller
@@ -91,30 +92,111 @@ class MahasiswaController extends Controller
 
     public function register(Request $request, $idLomba)
     {
-        try {
-            // Menggunakan eager loading untuk mengambil semua data Mahasiswa beserta relasi Peserta
-            $mahasiswas = Mahasiswa::with('pesertas')->get();
 
-            foreach ($mahasiswas as $mahasiswa) {
-                // Cek apakah mahasiswa sudah terdaftar untuk Lomba tertentu
-                if (!$mahasiswa->pesertas->contains('idLomba', $idLomba)) {
-                    // Buat entri baru di tabel Peserta
-                    $peserta = new Peserta();
-                    $peserta->idLomba = $idLomba;
-                    $peserta->idMahasiswa = $mahasiswa->id;
-                    $peserta->tanggalDaftar = now();
-                    $peserta->save();
+        $idMahasiswa = Session::get('idMahasiswa');
+        // dd($idMahasiswa);
 
-                    // Redirect ke halaman detail Lomba setelah berhasil mendaftar
-                    return redirect()->route('app.mahasiswa.detailLomba', ['lomba' => $idLomba])->with('success', 'Anda telah berhasil mendaftar');
-                }
-            }
-            // Jika semua mahasiswa sudah terdaftar, kirim pesan error
-            return redirect()->back()->withErrors(['error' => 'Semua posisi telah terdaftar.']);
-        } catch (\Exception $e) {
-            // Handle exception if save fails
-            return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan saat mendaftar. Silakan coba lagi.']);
-        }
+        $peserta = new Peserta();
+
+
+        $peserta->idLomba = $idLomba;
+        $peserta->idMahasiswa = $idMahasiswa;
+        $peserta->tanggalDaftar = now();
+        $peserta->save();
+
+        return redirect()->route('mahasiswa.lomba.register', ['idLomba' => $idLomba])->with('success', 'Lomba berhasil diperbarui!!');
+        //         ->with('success', 'Anda telah berhasil mendaftar');
+
+
+
+
+
+
+
+
+        // // dd('Register method called'); // Debugging statement
+        // try {
+        //     // Mendapatkan ID mahasiswa dari session
+        //     $idMahasiswa = $request->session()->get('idMahasiswa');
+
+        //     // Mendapatkan objek mahasiswa yang sedang login
+        //     $mahasiswa = Mahasiswa::find($idMahasiswa);
+
+        //     // Cek apakah mahasiswa sudah memiliki peran 'peserta'
+        //     if ($mahasiswa->peserta()->where('idLomba', $idLomba)->exists()) {
+        //         return redirect()->back()->withErrors(['error' => 'Anda sudah terdaftar sebagai peserta dalam lomba ini.']);
+        //     }
+
+        //     // Buat entri baru di tabel Peserta
+        //     $peserta = new Peserta();
+        //     $peserta->idLomba = $idLomba;
+        //     $peserta->idMahasiswa = $mahasiswa->id;
+        //     $peserta->tanggalDaftar = now();
+        //     $peserta->save();
+
+        //     // Mengubah role mahasiswa menjadi peserta
+        //     $mahasiswa->assignRole('peserta');
+
+        //     // Redirect ke halaman detail Lomba setelah berhasil mendaftar
+        //     return redirect()->route('app.mahasiswa.detailLomba', ['lomba' => $idLomba])
+        //         ->with('success', 'Anda telah berhasil mendaftar');
+        // } catch (\Exception $e) {
+        //     return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan saat mendaftar. Silakan coba lagi.']);
+        // }
+
+        // try {
+        //     // Mengambil semua data Mahasiswa beserta relasi Peserta
+        //     $mahasiswas = Mahasiswa::with('pesertas')->get();
+
+        //     foreach ($mahasiswas as $mahasiswa) {
+        //         // Cek apakah mahasiswa sudah terdaftar untuk Lomba tertentu
+        //         if (!$mahasiswa->pesertas->contains('idLomba', $idLomba)) {
+        //             // Buat entri baru di tabel Peserta
+        //             $peserta = new Peserta();
+        //             $peserta->idLomba = $idLomba;
+        //             $peserta->idMahasiswa = $mahasiswa->id;
+        //             $peserta->tanggalDaftar = now();
+        //             $peserta->save();
+
+        //             // Redirect ke halaman detail Lomba setelah berhasil mendaftar
+        //             return redirect()->route('app.mahasiswa.detailLomba', ['lomba' => $idLomba])->with('success', 'Anda telah berhasil mendaftar');
+        //         }
+        //     }
+        //     // Jika semua mahasiswa sudah terdaftar, kirim pesan error
+        //     return redirect()->back()->withErrors(['error' => 'Semua posisi telah terdaftar.']);
+        // } catch (\Exception $e) {
+        //     // Handle exception if save fails
+        //     return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan saat mendaftar. Silakan coba lagi.']);
+        // }
+
+        // try {
+        //     // Mendapatkan mahasiswa yang sedang login
+        //     $mahasiswa = auth()->user();
+
+        //     // Cek apakah mahasiswa sudah terdaftar untuk Lomba tertentu
+        //     if (!$mahasiswa->pesertas->contains('idLomba', $idLomba)) {
+        //         // Buat entri baru di tabel Peserta
+        //         $peserta = new Peserta();
+        //         $peserta->idLomba = $idLomba;
+        //         $peserta->idMahasiswa = $mahasiswa->id;
+        //         $peserta->tanggalDaftar = now();
+        //         $peserta->save();
+
+        //         // Mengubah role mahasiswa menjadi peserta
+        //         $mahasiswa->assignRole('peserta');
+        //         // $mahasiswa->save();
+
+        //         // Redirect ke halaman detail Lomba setelah berhasil mendaftar
+        //         return redirect()->route('app.mahasiswa.detailLomba', ['lomba' => $idLomba])
+        //             ->with('success', 'Anda telah berhasil mendaftar');
+        //     }
+
+        //     // Jika mahasiswa sudah terdaftar, kirim pesan error
+        //     return redirect()->back()->withErrors(['error' => 'Anda sudah terdaftar untuk lomba ini.']);
+        // } catch (\Exception $e) {
+        //     // Handle exception if save fails
+        //     return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan saat mendaftar. Silakan coba lagi.']);
+        // }
     }
 
     public function PermissionTasks($idLomba)
