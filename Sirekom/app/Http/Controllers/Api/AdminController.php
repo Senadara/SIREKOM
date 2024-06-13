@@ -25,8 +25,8 @@ class AdminController extends Controller
         //dd($admin);
         return response()->json([
             'status' => 'success',
-            'message' => 'Admin baru berhasil ditambahkan',
+            //'message' => 'Admin baru berhasil ditambahkan',
             'admin' => $admin,
         ]);
-    }   
+    }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Admin\LombaController;
 use App\Http\Controllers\Admin\PesertaController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Mahasiswa\ProfileController;
 use App\Http\Controllers\Mahasiswa\MahasiswaController;
 use App\Http\Controllers\Mahasiswa\SubmissionController;
@@ -46,17 +47,10 @@ route::middleware(['auth:admin', 'role:admin'])->group(function () {
 
     Route::resource('/admin/lomba', LombaController::class);
 
-    // Route::get('/peserta/export_excel/{idLomba?}', [PesertaController::class, 'export_excel']);
-
-
-    // Route::get('/admin/peserta-lomba/{idLomba?}', [PesertaController::class, 'index']);
-    // coba api
- 
     // export excel
     Route::get('/peserta/export_excel/{idLomba?}', [ApiPesertaController::class, 'export_excel']);
 
-    //Route::get('/admin/peserta-lomba/{idLomba?}', [PesertaController::class, 'index']);
-    Route::get('/admin/peserta-lomba/{idLomba?}', [ApiPesertaController::class, 'memanggilAPIGetAlldata']);
+   Route::get('/admin/peserta-lomba/{idLomba?}', [ApiPesertaController::class, 'memanggilAPIGetAlldata']);
 
     // List all tasks
     Route::get('admin/tasks/create/{id}', [TaskController::class, 'create'])->name('tasks/create/{id}');
@@ -108,30 +102,12 @@ Route::get('/admin/lomba-store', function () {
     return view('app.admin.lombastore');
 });
 
-
-
 Route::get('/mahasiswa/detail-lomba', function () {
     return view('app.mahasiswa.detailLomba');
 });
 
-// Route::get('/mahasiswa/lomba', [MahasiswaController::class, 'index']);
-// Route::post('/mahasiswa/lomba/{idLomba}', [MahasiswaController::class, 'register'])->name('mahasiswa.register');
-// Route::get('/mahasiswa/lomba/{lomba}', [MahasiswaController::class, 'show'])->name('mahasiswa.lomba.show');
 
-
-// Route::get('/', function () {
-//     return view('login');
-// });
-
-
-// Announcement route
 Route::get('admin/announcement-admin', [LombaController::class, 'announ'])->name('announcement.admin');
 
-//Task route
-// Route::resource('tasks', TaskController::class);
-
-
-
-
-
-// Route::get('/peserta/lomba/{idLomba}', [PesertaController::class, 'getPesertaByLomba'])->name('peserta.lomba');
+Route::get('edit-admin', [ApiController::class, 'edit']);
+Route::post('update-admin', [ApiController::class, 'update']);
