@@ -273,9 +273,9 @@
             <table class="table table-striped mt-3">
                 <thead>
                     <tr>
-                        <th>Judul</th>
+                        <th>Nama Task</th>
                         <th>Deskripsi</th>
-                        <th>Tanggal Buka</th>
+                        <th>Deadline</th>
                         <th>Type</th>
                         <th>Actions</th>
                     </tr>
@@ -283,13 +283,13 @@
                 <tbody>
                     @foreach ($tasks as $task)
                     <tr>
-                        <td>{{ $task->judul }}</td>
-                        <td>{{ $task->deskripsi }}</td>
-                        <td>{{ $task->tanggal_buka }}</td>
-                        <td>{{ $task->type }}</td>
+                        <td>{{ $task->namaTask }}</td>
+                        <td>{{ $task->deskripsiTask }}</td>
+                        <td>{{ $task->deadlineTask }}</td>
+                        <td>{{ $task->tipe }}</td>
                         <td>
-                            <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-warning">Edit</a>
-                            <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display:inline-block;">
+                            <a href="{{ url('admin/tasks/edit/'. $task->id) }}" class="btn btn-warning">Edit</a>
+                            <form action="{{ url('admin/tasks/'. $task->id) }}" method="POST" style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>

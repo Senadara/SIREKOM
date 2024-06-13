@@ -58,6 +58,14 @@ route::middleware(['auth:admin', 'role:admin'])->group(function () {
     //Route::get('/admin/peserta-lomba/{idLomba?}', [PesertaController::class, 'index']);
     Route::get('/admin/peserta-lomba/{idLomba?}', [ApiPesertaController::class, 'memanggilAPIGetAlldata']);
 
+    // List all tasks
+    Route::get('admin/tasks/create/{id}', [TaskController::class, 'create'])->name('tasks/create/{id}');
+    Route::post('admin/tasks', [TaskController::class, 'store'])->name('tasks.store');
+    Route::get('admin/tasks/{task}', [TaskController::class, 'show'])->name('tasks.show');
+    Route::get('admin/tasks/edit/{id}', [TaskController::class, 'edit']);
+    Route::put('admin/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
+    Route::delete('admin/tasks/{task}', [TaskController::class, 'destroy']);
+
 });
 
 
@@ -122,13 +130,7 @@ Route::get('admin/announcement-admin', [LombaController::class, 'announ'])->name
 //Task route
 // Route::resource('tasks', TaskController::class);
 
-// List all tasks
-Route::get('admin/tasks/create/{id}', [TaskController::class, 'create'])->name('tasks/create/{id}');
-Route::post('admin/tasks', [TaskController::class, 'store'])->name('tasks.store');
-Route::get('admin/tasks/{task}', [TaskController::class, 'show'])->name('tasks.show');
-Route::get('admin/tasks/{task}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
-Route::put('admin/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
-Route::delete('admin/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
+
 
 
 

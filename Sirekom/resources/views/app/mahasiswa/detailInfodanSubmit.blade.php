@@ -53,20 +53,16 @@ $currentDate = date("Y-m-d H:i:s");
                             <th>Upload File</th>
                             <td>
                                 <input type="file" name="file" class="form-control-file">
-                                <button type="..." class="btn btn-warning">Edit</button>
-                                <button type="..." class="btn btn-danger">Delete</button>
-
+                            
                             </td>
                         </tr>
 
-                        <tr>
-                            <th>Submission comments</th>
-                            <td><input type="text" name="desc" class="form-control"></td>
-                        </tr>
                     </table>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
 
+                <h2 class="mt-5">Uploaded Files</h2>
+                
             </div>
         </div>
     </div>

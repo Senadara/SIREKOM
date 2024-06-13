@@ -77,12 +77,13 @@ class LombaController extends Controller
     {
         $tasks = DB::table('task')
             ->join('lombas', 'task.idLomba', '=', 'lombas.id')
-            ->select('task.namaTask', 'task.tipe', 'task.deskripsiTask', 'task.deadlineTask', 'task.lampiran', 
+            ->select('task.id','task.namaTask', 'task.tipe', 'task.deskripsiTask', 'task.deadlineTask', 'task.lampiran', 
             'lombas.namaLomba', 'lombas.deskripsiLomba', 'lombas.tanggalBukaPendaftaran', 'lombas.tanggalTutupPendaftaran', 
             'lombas.posterLomba', 'lombas.lampiran')
             ->where('task.idLomba', $lomba->id)
             ->get();
 
+            //dd($tasks);
         return view('app.admin.detailLomba', [
             'tasks' => $tasks,
             'lomba' => $lomba,
