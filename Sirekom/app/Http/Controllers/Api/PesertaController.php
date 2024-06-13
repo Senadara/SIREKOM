@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Admin;
 use App\Models\Lomba;
 use Illuminate\Http\Request;
+use App\Exports\PesertaExport;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\PesertaExport;
 
 class PesertaController extends Controller
 {
     public function memanggilAPIGetAlldata($idLomba = null)
     {
+
         // Buat URL API berdasarkan apakah idLomba diberikan atau tidak
         $url = $idLomba ? "http://127.0.0.1:8000/api/peserta/{$idLomba}" : 'http://127.0.0.1:8000/api/peserta';
 
@@ -23,7 +26,7 @@ class PesertaController extends Controller
 
         if ($response->getStatusCode() === 200) {
             $jsonData = json_decode($response->getContent(), true);
-            $pesertas = array_map(fn ($item) => (object) $item, $jsonData['data']);
+            $pesertas = array_map(fn($item) => (object) $item, $jsonData['data']);
 
             return view('app.admin.list-peserta-lomba', [
                 'pesertas' => $pesertas,
