@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Api\AdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\PesertaController;
+use App\Models\Admin;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +28,9 @@ Route::controller(LoginController::class)->group(function () {
     Route::post('refresh', 'refresh')->middleware('auth:api');
 });
 
-Route::get('peserta/{idLomba?}', [PesertaController::class, 'index']);
+Route::get('peserta/{idLomba?}', [PesertaController::class, 'index']);  
+
+Route::controller(AdminController::class)->group(function(){
+    Route::put('admin/{data}', 'store');
+    Route::put('admin/{data}', 'update');
+});
