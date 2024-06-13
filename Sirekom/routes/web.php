@@ -46,10 +46,18 @@ route::middleware(['auth:admin', 'role:admin'])->group(function () {
 
     Route::resource('/admin/lomba', LombaController::class);
 
-    Route::get('/peserta/export_excel/{idLomba?}', [PesertaController::class, 'export_excel']);
+    // Route::get('/peserta/export_excel/{idLomba?}', [PesertaController::class, 'export_excel']);
+
+
+    // Route::get('/admin/peserta-lomba/{idLomba?}', [PesertaController::class, 'index']);
+    // coba api
+ 
+    // export excel
+    Route::get('/peserta/export_excel/{idLomba?}', [ApiPesertaController::class, 'export_excel']);
 
     //Route::get('/admin/peserta-lomba/{idLomba?}', [PesertaController::class, 'index']);
     Route::get('/admin/peserta-lomba/{idLomba?}', [ApiPesertaController::class, 'memanggilAPIGetAlldata']);
+
 });
 
 
@@ -73,7 +81,7 @@ route::middleware(['auth:mahasiswa', 'role:mahasiswa'])->group(function () {
     Route::get('/mahasiswa/detailInfodanSubmit', function () {
         return view('app.mahasiswa.detailInfodanSubmit');
     });
-    
+
 });
 
 Route::get('/admin/detail-lomba', function () {
@@ -122,10 +130,6 @@ Route::put('admin/tasks/{task}', [TaskController::class, 'update'])->name('tasks
 Route::delete('admin/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
 
 
-// export excel
-
-Route::get('/peserta/export_excel/{idLomba?}', [ApiPesertaController::class, 'export_excel']);
 
 // Route::get('/peserta/lomba/{idLomba}', [PesertaController::class, 'getPesertaByLomba'])->name('peserta.lomba');
-
 
