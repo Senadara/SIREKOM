@@ -67,9 +67,17 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
+        // Invalidate the JWT token
+        if (Auth::guard('api')->check()) {
+            Auth::guard('api')->logout();
+        }
+
+        // Invalidate the session
         Auth::guard('web')->logout();
         $request->session()->invalidate();
-        // $request->session()->regenerateToken();
+        $request->session()->regenerateToken();
+
+        // Redirect to the homepage or login page
         return redirect('/');
     }
 }

@@ -22,9 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::controller(LoginController::class)->group(function () {
     Route::post('login', 'adminLoginAPI');
-    Route::post('logout', 'adminLogoutAPI');
-    Route::post('refresh', 'refresh');
-
+    Route::post('logout', 'adminLogoutAPI')->middleware('auth:api');
+    Route::post('refresh', 'refresh')->middleware('auth:api');
 });
 
 Route::get('peserta/{idLomba?}', [PesertaController::class, 'index']);

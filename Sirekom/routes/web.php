@@ -51,7 +51,7 @@ route::middleware(['auth:admin', 'role:admin'])->group(function () {
 
     // Route::get('/admin/peserta-lomba/{idLomba?}', [PesertaController::class, 'index']);
     // coba api
- 
+
     // export excel
     Route::get('/peserta/export_excel/{idLomba?}', [ApiPesertaController::class, 'export_excel']);
 
