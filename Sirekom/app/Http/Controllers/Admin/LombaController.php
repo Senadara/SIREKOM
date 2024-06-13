@@ -33,9 +33,9 @@ class LombaController extends Controller
      */
     public function store(Request $request)
     {
-        //ini manual biar bisa berjalan
-        $idAdmin = 1; // masih belum selesai
 
+        //get idAdmin from session
+        $idAdmin = $request->session()->get('idAdmin');
         // validasi data form yang dikirimkan oleh user
         $request->validate([
             'namaLomba' => 'required|max:50',
@@ -106,7 +106,9 @@ class LombaController extends Controller
      */
     public function update(Request $request, Lomba $lomba)
     {
-        $idAdmin = 1;
+        //get idAdmin from session
+        $idAdmin = $request->session()->get('idAdmin');
+        //validasi 
         $request->validate([
             'namaLomba' => 'required|max:50',
             'deskripsiLomba' => 'required',
