@@ -22,11 +22,17 @@
                 @csrf
                 <button class="btn btn-primary">logout</button>
             </form>
-            <a class="nav-link ms-3 text-white active" aria-current="page" href="/admin/peserta-lomba">Data Pendaftar</a>
-            <a class="nav-link ms-3 text-white active" aria-current="page" href="/admin/lomba">Data Lomba</a>
-            <a class="nav-link ms-3 text-white active" aria-current="page" href="/  ">Dashboard</a>
-            <a href="" class="mx-4 profile-link link-underline link-underline-opacity-0 "><img
-                    src="{{ asset('assets/img/profile.svg') }}" alt="Profile" width="50" height="50"></a>
+            @role('admin')
+                <a class="nav-link ms-3 text-white active" aria-current="page" href="/admin/peserta-lomba">Data
+                    Pendaftar</a>
+                <a class="nav-link ms-3 text-white active" aria-current="page" href="/admin/lomba">Data Lomba</a>
+                <a class="nav-link ms-3 text-white active" aria-current="page" href="/  ">Dashboard</a>
+            @endrole
+            @role('mahasiswa')
+                <a class="nav-link ms-3 text-white active" aria-current="page" href="/mahasiswa/lomba">Daftar Lomba</a>
+                <a href="/mahasiswa/profile" class="mx-4 profile-link link-underline link-underline-opacity-0 "><img
+                        src="{{ asset('assets/img/profile.svg') }}" alt="Profile" width="50" height="50"></a>
+            @endrole
         </div>
     </div>
 </nav>
