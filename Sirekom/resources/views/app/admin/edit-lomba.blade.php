@@ -61,7 +61,7 @@
                                         <label for="lampiran" class="form-label fw-bold">Lampiran</label>
                                         <a href="{{ Storage::url($lomba->lampiran) }}">Guidebook</a>
                                         <input type="file" class="form-control @error('lampiran') is-invalid @enderror"
-                                            id="lampiran" name="lampiran" >
+                                            id="lampiran" name="lampiran">
                                         @error('lampiran')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -73,8 +73,8 @@
                                     <div class="mb-3">
                                         <label for="posterLomba" class="form-label fw-bold">Poster Lomba</label>
                                         <div class="text-white">
-                                            <img src="{{ Storage::url($lomba->posterLomba) }}" id="result" alt=""
-                                                width="200" height="200" style="border-radius: 10px;">
+                                            <img src="{{ Storage::url($lomba->posterLomba) }}" id="result"
+                                                alt="" width="200" height="200" style="border-radius: 10px;">
                                             <input type="file"
                                                 class="form-control mt-3 @error('posterLomba') is-invalid @enderror"
                                                 id="posterLomba" name="posterLomba">
@@ -89,7 +89,7 @@
                             </div>
                             <div class="d-flex justify-content-center">
                                 <button type="submit" class="btn btn-primary"
-                                    style="background-color: #922E2C; border-radius: 10px; width: 362px; height: 48px; color: white;">Tambah
+                                    style="background-color: #922E2C; border-radius: 10px; width: 362px; height: 48px; color: white;">Edit
                                     Data</button>
                             </div>
                         </form>

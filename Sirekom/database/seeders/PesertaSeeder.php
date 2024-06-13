@@ -18,6 +18,21 @@ class PesertaSeeder extends Seeder
             'idMahasiswa' => '7',
             'tanggalDaftar' => '2024-06-04',
         ]);
+        $peserta = Peserta::create([
+            'idLomba' => '1',
+            'idMahasiswa' => '1',
+            'tanggalDaftar' => '2024-06-04',
+        ]);
+        $peserta = Peserta::create([
+            'idLomba' => '2',
+            'idMahasiswa' => '2',
+            'tanggalDaftar' => '2024-06-04',
+        ]);
+        $peserta = Peserta::create([
+            'idLomba' => '3',
+            'idMahasiswa' => '3',
+            'tanggalDaftar' => '2024-06-04',
+        ]);
         $peserta->assignRole('peserta');
     }
 }
