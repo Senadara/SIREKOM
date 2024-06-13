@@ -36,10 +36,9 @@
 
     .detailProfile {
         /* display: flex;
-                                                                    width: 100%;
-                                                                    justify-content: flex-end;
-                                                                    background-color: aqua; */
-
+        width: 100%;
+        justify-content: flex-end;
+        background-color: aqua; */
         position: absolute;
         right: 0;
     }
@@ -258,20 +257,6 @@
     <div class="contentLomba">
         <div class="row">
             <div class="col-3">
-                <div class="leftContent">
-                    {{-- btn uiverse --}}
-                    <!-- <button class="button">
-                        <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 25px">
-                        Registered
-                        <div class="arrow">›</div>
-                    </button> -->
-
-                    <button class="guidebook" onclick=window.location.href="{{ Storage::url($lomba->lampiran) }}"><img
-                            src={{ asset('assets/img/detail-lomba/doc.png') }} alt=""
-                            style="width: 25px">Guidebook</button>
-
-
-                </div>
             </div>
             <div class="col-9">
                 <div class="rightContent">
@@ -282,37 +267,38 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-3">
-                <div class="">
-                    <div class="card-notification">
-                        <div class="header-announcement">
-                            <div class="logo-announcement">
-                                <img src={{ asset('assets/img/detail-lomba/announcement.png') }} alt="">
-                            </div>
-
-                            <h6>Announcement!!!</h6>
-                        </div>
-                        <div class="message">
-                            <p>...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-9">
-                <div class="information-task">
-                    <div class="card-it undone">
-                        <img src="{{ asset('assets/img/detail-lomba/document.png') }}" alt="" style="width: 40px">
-                        <a href="{{ url('/admin/announcement-admin') }}">Announcement</a>
-                        <img src="{{ asset('assets/img/detail-lomba/check.png') }}" alt="" style="width: 40px">
-                    </div>
-                    <div class="card-it undone">
-                        <img src={{ asset('assets/img/detail-lomba/document.png') }} alt="" style="width: 40px">
-                        <a href="{{ url('/admin/task-admin') }}">List Pengumpulan</a>
-                        <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 40px">
-                    </div>
-                </div>
-            </div>
+        <div class="container">
+            <br>
+            <a href="{{ url('admin/tasks/create/' . $lomba->id) }}" class="btn btn-dark">Create New Task</a>
+            <table class="table table-striped mt-3">
+                <thead>
+                    <tr>
+                        <th>Judul</th>
+                        <th>Deskripsi</th>
+                        <th>Tanggal Buka</th>
+                        <th>Type</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($tasks as $task)
+                    <tr>
+                        <td>{{ $task->judul }}</td>
+                        <td>{{ $task->deskripsi }}</td>
+                        <td>{{ $task->tanggal_buka }}</td>
+                        <td>{{ $task->type }}</td>
+                        <td>
+                            <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-warning">Edit</a>
+                            <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display:inline-block;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
 
     </div>

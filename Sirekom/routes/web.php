@@ -100,6 +100,8 @@ Route::get('/admin/lomba-store', function () {
     return view('app.admin.lombastore');
 });
 
+
+
 Route::get('/mahasiswa/detail-lomba', function () {
     return view('app.mahasiswa.detailLomba');
 });
@@ -121,8 +123,7 @@ Route::get('admin/announcement-admin', [LombaController::class, 'announ'])->name
 // Route::resource('tasks', TaskController::class);
 
 // List all tasks
-Route::get('admin/list-task', [TaskController::class, 'index'])->name('tasks.index');
-Route::get('admin/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
+Route::get('admin/tasks/create/{id}', [TaskController::class, 'create'])->name('tasks/create/{id}');
 Route::post('admin/tasks', [TaskController::class, 'store'])->name('tasks.store');
 Route::get('admin/tasks/{task}', [TaskController::class, 'show'])->name('tasks.show');
 Route::get('admin/tasks/{task}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
@@ -132,4 +133,3 @@ Route::delete('admin/tasks/{task}', [TaskController::class, 'destroy'])->name('t
 
 
 // Route::get('/peserta/lomba/{idLomba}', [PesertaController::class, 'getPesertaByLomba'])->name('peserta.lomba');
-
