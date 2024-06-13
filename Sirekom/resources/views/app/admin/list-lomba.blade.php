@@ -81,27 +81,27 @@
             <div class="col-md-4 col-9 mb-4 d-flex justify-content-center">
                 <div class="card rounded-4 border-0" style="width: 20rem;">
                     <div class="action">
-                        <button class="action-btn blue" onclick="window.location.href='{{ route('lomba.show', $lomba->id) }}'">
+                        <button class="action-btn blue" onclick="window.location.href='{{ route('lomba.show', $lomba->id) }}';">
                             <img src="{{ asset('assets/img/list-lomba/eye.png') }}" alt="View" class="action-image">
                         </button>
 
-                        <button class="action-btn green" onclick="window.location.href='{{ route('lomba.edit', $lomba->id) }}'">
+                        <button class="action-btn green" onclick="window.location.href='{{ route('lomba.edit', $lomba->id) }}';">
                             <img src="{{ asset('assets/img/list-lomba/editing.png') }}" alt="Edit" class="action-image">
                         </button>
 
                         <form action="{{ route('lomba.destroy', $lomba->id) }}" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="action-btn red" onclick="return confirm('apakah benar ingin menghapus ini?')">
+                            <button type="submit" class="action-btn red" onclick="return confirm('Apakah benar ingin menghapus ini?');">
                                 <img src="{{ asset('assets/img/list-lomba/bin.png') }}" alt="Delete" class="action-image">
                             </button>
                         </form>
                     </div>
-                    <img class="img-card" src="{{ Storage::url($lomba->posterLomba) }}" class="card-img-top" alt="...">
+                    <img class="img-card" src="{{ Storage::url($lomba->posterLomba) }}" class="card-img-top" alt="Poster Lomba">
                     <div class="card-body text-white" style="background-color: #922E2C; border-radius: 0 0 15px 15px">
                         <h5 class="card-title fw-semibold">{{ $lomba->namaLomba }}</h5>
                         <p class="card-text fw-normal" style="font-size: 16px">{{ $lomba->deskripsiLomba }}</p>
-                        <a href="{{ Storage::url($lomba->lampiran) }}">Guidebook</a>
+                        <a href="{{ Storage::url($lomba->lampiran) }}" class="text-white">Guidebook</a>
                     </div>
                 </div>
             </div>

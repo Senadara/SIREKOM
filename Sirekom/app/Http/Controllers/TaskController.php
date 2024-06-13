@@ -13,14 +13,15 @@ class TaskController extends Controller
         return view('app.admin.tasks.list-task', compact('tasks'));
     }
 
-    public function create()
+    public function create(Request $id)
     {
-        return view('app.admin.tasks.announcement-admin');
+        return view('app.admin.tasks.announcement-admin', ['lomba' => $id]);
     }
 
     public function store(Request $request)
     {
         $request->validate([
+            'id' => 'required',
             'judul' => 'required',
             'deskripsi' => 'required',
             'tanggal_buka' => 'required|date',
@@ -42,7 +43,7 @@ class TaskController extends Controller
         $task->tanggal_deadline = $request->tanggal_deadline;
         $task->save();
 
-        return redirect()->route('tasks.index')->with('success', 'Task created successfully.');
+        return redirect ('admin/lomba/'. $request->id)->with('success', 'Task created successfully.');
     }
 
     public function show($id)

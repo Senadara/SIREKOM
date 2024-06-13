@@ -31,6 +31,11 @@
                             <div class="row justify-content-around">
                                 <div class="col-md-5">
                                     <div class="mb-3">
+                                        <label for="id" class="form-label fw-bold">Id Task</label>
+                                        <input value="{{$lomba}}" type="number" hidden 
+                                            id="id" name="id">
+                                    </div>
+                                    <div class="mb-3">
                                         <label for="judul" class="form-label fw-bold">Judul Task</label>
                                         <input type="text" class="form-control @error('judul') is-invalid @enderror"
                                             id="judul" name="judul">
