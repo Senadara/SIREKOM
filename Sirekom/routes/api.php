@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\AdminController2;
 use App\Http\Controllers\Api\PesertaController;
 
 /*
@@ -28,3 +29,7 @@ Route::controller(LoginController::class)->group(function () {
 });
 
 Route::get('peserta/{idLomba?}', [PesertaController::class, 'index']);
+
+Route::post('/admin', [AdminController2::class, 'store']);
+
+
