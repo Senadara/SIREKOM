@@ -1,6 +1,10 @@
 MIT License
 
+<<<<<<<< HEAD:Sirekom/node_modules/esbuild/LICENSE.md
+Copyright (c) 2020 Evan Wallace
+========
 Copyright (c) 2017 Luís Cobucci
+>>>>>>>> 38846f17c2208bc041c2319b514fee681a87bb99:Sirekom/vendor/lcobucci/clock/LICENSE
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -6,6 +6,7 @@ use App\Models\Lomba;
 use App\Models\Peserta;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
@@ -31,9 +32,9 @@ class LombaController extends Controller
      */
     public function store(Request $request)
     {
-        //ini manual biar bisa berjalan
-        $idAdmin = 1; // masih belum selesai
 
+        //get idAdmin from session
+        $idAdmin = $request->session()->get('idAdmin');
         // validasi data form yang dikirimkan oleh user
         $request->validate([
             'namaLomba' => 'required|max:50',
@@ -74,8 +75,19 @@ class LombaController extends Controller
      */
     public function show(Lomba $lomba)
     {
-    $tasks = Task::all();
-    return view("app.admin.detailLomba", compact('lomba', 'tasks'));
+        $tasks = DB::table('task')
+            ->join('lombas', 'task.idLomba', '=', 'lombas.id')
+            ->select('task.namaTask', 'task.tipe', 'task.deskripsiTask', 'task.deadlineTask', 'task.lampiran', 
+            'lombas.namaLomba', 'lombas.deskripsiLomba', 'lombas.tanggalBukaPendaftaran', 'lombas.tanggalTutupPendaftaran', 
+            'lombas.posterLomba', 'lombas.lampiran')
+            ->where('task.idLomba', $lomba->id)
+            ->get();
+
+        return view('app.admin.detailLomba', [
+            'tasks' => $tasks,
+            'lomba' => $lomba,
+        ]);
+       
     }
 
     /**
@@ -91,7 +103,9 @@ class LombaController extends Controller
      */
     public function update(Request $request, Lomba $lomba)
     {
-        $idAdmin = 1;
+        //get idAdmin from session
+        $idAdmin = $request->session()->get('idAdmin');
+        //validasi 
         $request->validate([
             'namaLomba' => 'required|max:50',
             'deskripsiLomba' => 'required',

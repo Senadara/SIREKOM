@@ -31,7 +31,7 @@ use App\Http\Controllers\Api\PesertaController as ApiPesertaController;
 // });
 
 //Route Login
-Route::get('/', [AuthController::class, 'index']);
+Route::get('/', [AuthController::class, 'index'])->name('login');
 Route::post('/', [AuthController::class, 'RoleAuth']);
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index']);
@@ -46,9 +46,18 @@ route::middleware(['auth:admin', 'role:admin'])->group(function () {
 
     Route::resource('/admin/lomba', LombaController::class);
 
-    Route::get('/peserta/export_excel/{idLomba?}', [PesertaController::class, 'export_excel']);
+    // Route::get('/peserta/export_excel/{idLomba?}', [PesertaController::class, 'export_excel']);
 
-    Route::get('/admin/peserta-lomba/{idLomba?}', [PesertaController::class, 'index']);
+
+    // Route::get('/admin/peserta-lomba/{idLomba?}', [PesertaController::class, 'index']);
+    // coba api
+ 
+    // export excel
+    Route::get('/peserta/export_excel/{idLomba?}', [ApiPesertaController::class, 'export_excel']);
+
+    //Route::get('/admin/peserta-lomba/{idLomba?}', [PesertaController::class, 'index']);
+    Route::get('/admin/peserta-lomba/{idLomba?}', [ApiPesertaController::class, 'memanggilAPIGetAlldata']);
+
 });
 
 
@@ -73,10 +82,19 @@ route::middleware(['auth:mahasiswa', 'role:mahasiswa'])->group(function () {
         return view('app.mahasiswa.detailInfodanSubmit');
     });
 
-    // coba api
-    Route::get('/admin/peserta-lomba/{idLomba?}', [ApiPesertaController::class, 'memanggilAPIGetAlldata']);
 });
 
+Route::get('/admin/detail-lomba', function () {
+    return view('app.admin.detailLomba');
+});
+
+Route::get('/admin/create-lomba', function () {
+    return view('app.admin.create');
+});
+
+Route::get('/mahasiswa/profile', function () {
+    return view('app.mahasiswa.profile');
+});
 
 Route::get('/admin/lomba-store', function () {
     return view('app.admin.lombastore');
@@ -88,16 +106,14 @@ Route::get('/mahasiswa/detail-lomba', function () {
     return view('app.mahasiswa.detailLomba');
 });
 
-// Route::get('/mahasiswa/lomba', [MahasiswaController::class, 'index']);
-// Route::post('/mahasiswa/lomba/{idLomba}', [MahasiswaController::class, 'register'])->name('mahasiswa.register');
-// Route::get('/mahasiswa/lomba/{lomba}', [MahasiswaController::class, 'show'])->name('mahasiswa.lomba.show');
+Route::get('/mahasiswa/lomba', [MahasiswaController::class, 'index']);
+Route::post('/mahasiswa/lomba/{idLomba}', [MahasiswaController::class, 'register'])->name('mahasiswa.register');
+Route::get('/mahasiswa/lomba/{lomba}', [MahasiswaController::class, 'show'])->name('mahasiswa.lomba.show');
 
 
 // Route::get('/', function () {
 //     return view('login');
 // });
-
-
 
 
 // Announcement route
@@ -115,12 +131,5 @@ Route::put('admin/tasks/{task}', [TaskController::class, 'update'])->name('tasks
 Route::delete('admin/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
 
 
-// export excel
-
-Route::get('/peserta/export_excel/{idLomba?}', [ApiPesertaController::class, 'export_excel']);
 
 // Route::get('/peserta/lomba/{idLomba}', [PesertaController::class, 'getPesertaByLomba'])->name('peserta.lomba');
-
-// Route Superadmin
-// Route::resource('/superadmin', SuperadminController::class);
-

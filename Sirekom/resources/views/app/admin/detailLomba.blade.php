@@ -9,7 +9,7 @@
         border-radius: 20px;
         overflow: hidden;
         position: relative;
-
+        height: 100vh;
     }
 
     .img-header {
@@ -36,10 +36,9 @@
 
     .detailProfile {
         /* display: flex;
-                                                                                        width: 100%;
-                                                                                        justify-content: flex-end;
-                                                                                      background-color: aqua; */
-
+        width: 100%;
+        justify-content: flex-end;
+        background-color: aqua; */
         position: absolute;
         right: 0;
     }
