@@ -12,16 +12,18 @@
                     <p>Sistem Registrasi Kompetisi Mahasiswa<br>Telkom University</p>
                 </div>
             </div>
-            @if ($errors->any())
-                <div>
-                    <strong>Error!</strong> {{ $errors->first('username') }}
-                </div>
-            @endif
             <div class="col-md-6 d-flex bg-white align-items-center justify-content-center"
                 style="height: 100vh; width: 30%;">
                 <div>
                     <div class="card p-4" style="width: 24rem;">
                         <h1 class="text-center mb-4 text-danger">Sign In</h1>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                @foreach ($errors->all() as $error)
+                                    {{ $error }}<br>
+                                @endforeach
+                            </div>
+                        @endif
                         <form action="/" method="POST">
                             @csrf
                             <div class="mb-3">

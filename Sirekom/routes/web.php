@@ -1,18 +1,19 @@
 <?php
 
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TaskController;
+use Spatie\Permission\Models\Permission;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Admin\LombaController;
 use App\Http\Controllers\Admin\PesertaController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Api\PesertaController as ApiPesertaController;
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Mahasiswa\ProfileController;
-use App\Http\Controllers\Mahasiswa\SubmissionController;
 use App\Http\Controllers\Mahasiswa\MahasiswaController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\TaskController;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
+use App\Http\Controllers\Mahasiswa\SubmissionController;
+use App\Http\Controllers\Superadmin\SuperadminController;
+use App\Http\Controllers\Api\PesertaController as ApiPesertaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,14 +31,14 @@ use Spatie\Permission\Models\Permission;
 // });
 
 //Route Login
-Route::get('/', [AuthController::class, 'index']);
+Route::get('/', [AuthController::class, 'index'])->name('login');
 Route::post('/', [AuthController::class, 'RoleAuth']);
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'register']);
 
 
-route::middleware(['auth:admin'])->group(function () {
+route::middleware(['auth:admin', 'role:admin'])->group(function () {
     Route::get('/admin/create-lomba', function () {
         return view('app.admin.create');
     });
@@ -47,22 +48,28 @@ route::middleware(['auth:admin'])->group(function () {
 
     // Route::get('/peserta/export_excel/{idLomba?}', [PesertaController::class, 'export_excel']);
 
+
     // Route::get('/admin/peserta-lomba/{idLomba?}', [PesertaController::class, 'index']);
     // coba api
-    Route::get('/admin/peserta-lomba/{idLomba?}', [ApiPesertaController::class, 'memanggilAPIGetAlldata']);
+ 
     // export excel
     Route::get('/peserta/export_excel/{idLomba?}', [ApiPesertaController::class, 'export_excel']);
+
+    //Route::get('/admin/peserta-lomba/{idLomba?}', [PesertaController::class, 'index']);
+    Route::get('/admin/peserta-lomba/{idLomba?}', [ApiPesertaController::class, 'memanggilAPIGetAlldata']);
+
 });
 
 
-route::middleware(['auth:mahasiswa'])->group(function () {
+route::middleware(['auth:mahasiswa', 'role:mahasiswa'])->group(function () {
     Route::get('/mahasiswa/{id}/submission', [SubmissionController::class, 'index']);
     Route::post('/mahasiswa/submission/store', [SubmissionController::class, 'FileUpload'])->name('FileUpload');
     Route::delete('/mahasiswa/submission/{id}', [SubmissionController::class, 'destroy'])->name('submission.destroy');
     Route::post('/mahasiswa/submission', [SubmissionController::class, 'store'])->name('storeSubmission');
 
-    Route::get('/mahasiswa/lomba', [MahasiswaController::class, 'index']);
-    Route::get('/mahasiswa/lomba/{lomba}', [MahasiswaController::class, 'show']);
+    Route::get('/mahasiswa/lomba', [MahasiswaController::class, 'index'])->name('mahasiswa.lomba');
+    Route::post('/mahasiswa/lomba/{idLomba}', [MahasiswaController::class, 'PermissionTasks'])->name('mahasiswa.register');
+    Route::get('/mahasiswa/lomba/{lomba}', [MahasiswaController::class, 'show'])->name('mahasiswa.lomba.show');
 
     Route::get('/mahasiswa/profile', function () {
         return view('app.mahasiswa.profile');
@@ -74,12 +81,20 @@ route::middleware(['auth:mahasiswa'])->group(function () {
     Route::get('/mahasiswa/detailInfodanSubmit', function () {
         return view('app.mahasiswa.detailInfodanSubmit');
     });
+
 });
 
 Route::get('/admin/detail-lomba', function () {
     return view('app.admin.detailLomba');
 });
 
+Route::get('/admin/create-lomba', function () {
+    return view('app.admin.create');
+});
+
+Route::get('/mahasiswa/profile', function () {
+    return view('app.mahasiswa.profile');
+});
 
 Route::get('/admin/lomba-store', function () {
     return view('app.admin.lombastore');
@@ -97,8 +112,6 @@ Route::get('/mahasiswa/lomba/{lomba}', [MahasiswaController::class, 'show'])->na
 // Route::get('/', function () {
 //     return view('login');
 // });
-
-
 
 
 // Announcement route
@@ -119,3 +132,4 @@ Route::delete('admin/tasks/{task}', [TaskController::class, 'destroy'])->name('t
 
 
 // Route::get('/peserta/lomba/{idLomba}', [PesertaController::class, 'getPesertaByLomba'])->name('peserta.lomba');
+

@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class RolesSeeder extends Seeder
 {
@@ -13,8 +14,9 @@ class RolesSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::create(['name' => 'admin', 'guard_name' => 'admin']);
-        Role::create(['name' => 'mahasiswa', 'guard_name' => 'mahasiswa']);
-        Role::create(['name' => 'peserta']);
+        Permission::create(['name' => 'ViewTask', 'guard_name' => 'mahasiswa']);
+        Role::create(['name' => 'admin', 'guard_name' => 'admin', 'role_name' => 'admin']);
+        Role::create(['name' => 'mahasiswa', 'guard_name' => 'mahasiswa', 'role_name' => 'mahasiswa']);
+        Role::create(['name' => 'peserta', 'guard_name' => 'peserta', 'role_name' => 'peserta']);
     }
 }

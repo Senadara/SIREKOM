@@ -2,6 +2,12 @@
 @section('title', 'Dashboard')
 @section('content')
 
+    @role('admin')
+        <p>User has admin role.</p>
+    @else
+        <p>User does not have asdmin role.</p>
+    @endrole
+
     <div class="container dashboard-container">
         <h1 class="text-center dashboard-title">Dashboard</h1>
 

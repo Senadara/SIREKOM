@@ -1,7 +1,11 @@
 The MIT License (MIT)
 
+<<<<<<<< HEAD:Sirekom/node_modules/asynckit/LICENSE
+Copyright (c) 2016 Alex Indigo
+========
 Copyright (c) 2014-2021 Sean Tymon
 Copyright (c) 2021 PHP Open Source Saver
+>>>>>>>> 38846f17c2208bc041c2319b514fee681a87bb99:Sirekom/vendor/php-open-source-saver/jwt-auth/LICENSE
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
