@@ -19,10 +19,12 @@ class AuthController extends Controller
 
         if (Auth::guard('admin')->attempt($credentials)) {
             $request->session()->regenerate();
+            $request->session()->put('idAdmin', Auth::guard('admin')->user()->id);
             return redirect()->intended('/admin/dashboard');
         }
         if (Auth::guard('mahasiswa')->attempt($credentials)) {
             $request->session()->regenerate();
+            $request->session()->put('idMahasiswa', Auth::guard('mahasiswa')->user()->id);
             return redirect()->intended('/mahasiswa/lomba');
         }
 
