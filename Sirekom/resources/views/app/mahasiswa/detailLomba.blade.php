@@ -375,17 +375,20 @@
             </div>
             <div class="col-9">
                 <div class="information-task">
-                    @foreach ($task as $tk)
-                        <div class="card-it {{ $tk->tipe == 1 ? 'done' : 'undone' }}">
+                    @foreach ($tasks as $tk)
+                        @if ($tk->tipe == 1 )
+                        <div class="card-it ">
                             <img src={{ asset('assets/img/detail-lomba/document.png') }} alt="" style="width: 40px">
                             <a href="">{{ $tk->namaTask }}</a>
                             <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 40px">
-                        </div>
-                        <div class="card-it {{ $tk->tipe == 2 ? 'done' : 'undone' }}">
-                            <img src={{ asset('assets/img/detail-lomba/document.png') }} alt="" style="width: 40px">
+                        </div>   
+                        @else
+                        <div class="card-it">
+                            <img src={{ asset('assets/img/detail-lomba/email.png') }} alt="" style="width: 40px">
                             <a href="">{{ $tk->namaTask }}</a>
                             <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 40px">
                         </div>
+                        @endif
                     @endforeach
                 </div>
             </div>

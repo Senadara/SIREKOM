@@ -68,6 +68,7 @@ class MahasiswaController extends Controller
         $tasks = DB::table('task')
             ->join('lombas', 'task.idLomba', '=', 'lombas.id')
             ->select(
+                'task.id',
                 'task.namaTask',
                 'task.tipe',
                 'task.deskripsiTask',
@@ -83,8 +84,9 @@ class MahasiswaController extends Controller
             ->where('task.idLomba', $lomba->id)
             ->get();
 
+        //dd($tasks);
         return view('app.mahasiswa.detailLomba', [
-            'task' => $tasks,
+            'tasks' => $tasks,
             'lomba' => $lomba,
         ]);
     }
@@ -94,24 +96,20 @@ class MahasiswaController extends Controller
     {
 
         $idMahasiswa = Session::get('idMahasiswa');
-        // dd($idMahasiswa);
 
         $peserta = new Peserta();
-
-
         $peserta->idLomba = $idLomba;
         $peserta->idMahasiswa = $idMahasiswa;
         $peserta->tanggalDaftar = now();
         $peserta->save();
 
-        return redirect()->route('mahasiswa.lomba.register', ['idLomba' => $idLomba])->with('success', 'Lomba berhasil diperbarui!!');
+        // Assign role 'peserta' ke mahasiswa
+        // $mahasiswa->assignRole('peserta');
+
+
+        // Redirect ke rute dengan parameter yang benar
+        return redirect()->route('mahasiswa.lomba.show', ['lomba' => $idLomba])->with('success', 'Lomba berhasil diperbarui!!');
         //         ->with('success', 'Anda telah berhasil mendaftar');
-
-
-
-
-
-
 
 
         // // dd('Register method called'); // Debugging statement
