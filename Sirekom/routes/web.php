@@ -73,7 +73,7 @@ route::middleware(['auth:mahasiswa', 'role:mahasiswa'])->group(function () {
     Route::get('/mahasiswa/detailInfodanSubmit', function () {
         return view('app.mahasiswa.detailInfodanSubmit');
     });
-    
+
 });
 
 Route::get('/admin/detail-lomba', function () {
@@ -96,9 +96,9 @@ Route::get('/mahasiswa/detail-lomba', function () {
     return view('app.mahasiswa.detailLomba');
 });
 
-Route::get('/mahasiswa/lomba', [MahasiswaController::class, 'index']);
-Route::post('/mahasiswa/lomba/{idLomba}', [MahasiswaController::class, 'register'])->name('mahasiswa.register');
-Route::get('/mahasiswa/lomba/{lomba}', [MahasiswaController::class, 'show'])->name('mahasiswa.lomba.show');
+// Route::get('/mahasiswa/lomba', [MahasiswaController::class, 'index']);
+// Route::post('/mahasiswa/lomba/{idLomba}', [MahasiswaController::class, 'register'])->name('mahasiswa.register');
+// Route::get('/mahasiswa/lomba/{lomba}', [MahasiswaController::class, 'show'])->name('mahasiswa.lomba.show');
 
 
 // Route::get('/', function () {

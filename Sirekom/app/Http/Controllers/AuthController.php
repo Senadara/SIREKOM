@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mahasiswa;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -10,12 +11,11 @@ class AuthController extends Controller
 {
     public function index()
     {
-        
         return view('login');
     }
 
     public function RoleAuth(Request $request)
-    {
+    {   
         $credentials = $request->only('username', 'password');
 
         if (Auth::guard('admin')->attempt($credentials)) {
@@ -25,7 +25,9 @@ class AuthController extends Controller
         }
         if (Auth::guard('mahasiswa')->attempt($credentials)) {
             $request->session()->regenerate();
-            $request->session()->put('idMahasiswa', Auth::guard('mahasiswa')->user()->id);
+            $mahasiswaId = Auth::guard('mahasiswa')->user()->id;
+            $request->session()->put('idMahasiswa', $mahasiswaId);
+
             return redirect()->intended('/mahasiswa/lomba');
         }
 
