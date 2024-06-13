@@ -24,13 +24,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::controller(LoginController::class)->group(function () {
     Route::post('login', 'adminLoginAPI');
+    Route::get('peserta/{idLomba?}', [PesertaController::class, 'index'])->middleware('auth:api');
     Route::post('logout', 'adminLogoutAPI')->middleware('auth:api');
     Route::post('refresh', 'refresh')->middleware('auth:api');
 });
 
-Route::get('peserta/{idLomba?}', [PesertaController::class, 'index']);  
 
-Route::controller(AdminController::class)->group(function(){
+Route::controller(AdminController::class)->group(function () {
     Route::put('admin/{data}', 'store');
     Route::put('admin/{data}', 'update');
 });
