@@ -2,25 +2,18 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Admin;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Responses\AdminResponse;
 
-class AdminController2 extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+class AdminController extends Controller
+{
+
     public function store(Request $request)
     { {
             // Validasi data yang diterima
@@ -37,27 +30,23 @@ class AdminController2 extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Admin $admin)
+    public function update(Request $request, $id)
     {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Admin $admin)
-    {
-        //
-    }
+        $request->validate([
+            'username' => 'required|max:20|unique:admins,username',
+            'password' => 'required|min:8',
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Admin $admin)
-    {
-        //
+        $admin = Admin::find($id);
+        $admin->username = $request->username;
+        $admin->password = Hash::make($request->password);
+        $admin->save();
+        //dd($admin);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Admin baru berhasil ditambahkan',
+            'admin' => $admin,
+        ]);
     }
 }
