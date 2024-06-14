@@ -28,30 +28,29 @@ class AuthController extends Controller
             $request->session()->regenerate();
             $request->session()->put('idAdmin', Auth::guard('admin')->user()->id);
 
-            // Membuat permintaan internal ke endpoint API untuk mendapatkan token JWT
+            // Create a new internal request to the login API endpoint
             $internalRequest = Request::create('http://127.0.0.1:8000/api/login', 'POST', [
                 'username' => $credentials['username'],
                 'password' => $credentials['password'],
             ]);
 
-            // Mengatur properti header
             $internalRequest->headers->set('Accept', 'application/json');
 
+            // Handle the internal request
             $response = app()->handle($internalRequest);
 
-            // Mengambil status respons dan data dari respons JSON
             $status = $response->getStatusCode();
             $data = json_decode($response->getContent());
-            //dd($data);
 
-            if ($status == 200 && isset($data->authorisation->token)) {
-                $token = $data->authorisation->token;
-                // Simpan token dalam sesi atau cookie sesuai kebutuhan Anda
-                $request->session()->put('jwt_token', $token);
+            if ($status == 200 && isset($data->access_token)) {
+                // Store the bearer token in the session
+                $token = $data->access_token;
+                // dd($token);
+                $request->session()->put('bearer_token', $token);
 
                 return redirect()->intended('/admin/dashboard');
             } else {
-                return redirect()->back()->withErrors(['error' => 'Failed to get JWT token from API']);
+                return redirect()->back()->withErrors(['error' => 'Failed to get bearer token from API']);
             }
         }
         if (Auth::guard('mahasiswa')->attempt($credentials)) {
@@ -68,9 +67,17 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
+        // menginvalidasi token jwt
+        if (Auth::guard('api')->check()) {
+            Auth::guard('api')->logout();
+        }
+
+        // menginvalidasi session
         Auth::guard('web')->logout();
         $request->session()->invalidate();
-        // $request->session()->regenerateToken();
+        $request->session()->regenerateToken();
+
+        // Redirect to the homepage or login page
         return redirect('/');
     }
 }
