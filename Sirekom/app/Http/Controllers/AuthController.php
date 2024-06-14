@@ -28,6 +28,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
             $request->session()->put('idAdmin', Auth::guard('admin')->user()->id);
 
+            // Create a new internal request to the login API endpoint
             $internalRequest = Request::create('http://127.0.0.1:8000/api/login', 'POST', [
                 'username' => $credentials['username'],
                 'password' => $credentials['password'],
@@ -35,20 +36,21 @@ class AuthController extends Controller
 
             $internalRequest->headers->set('Accept', 'application/json');
 
+            // Handle the internal request
             $response = app()->handle($internalRequest);
 
             $status = $response->getStatusCode();
             $data = json_decode($response->getContent());
-            //dd($data);
 
-            if ($status == 200 && isset($data->authorisation->token)) {
-                $token = $data->authorisation->token;
-
-                $request->session()->put('jwt_token', $token);
+            if ($status == 200 && isset($data->access_token)) {
+                // Store the bearer token in the session
+                $token = $data->access_token;
+                // dd($token);
+                $request->session()->put('bearer_token', $token);
 
                 return redirect()->intended('/admin/dashboard');
             } else {
-                return redirect()->back()->withErrors(['error' => 'Failed to get JWT token from API']);
+                return redirect()->back()->withErrors(['error' => 'Failed to get bearer token from API']);
             }
         }
         if (Auth::guard('mahasiswa')->attempt($credentials)) {

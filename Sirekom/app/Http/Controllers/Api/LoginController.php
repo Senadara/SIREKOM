@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Admin;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -15,32 +16,31 @@ class LoginController extends Controller
 
     public function adminLoginAPI(Request $request)
     {
+        // Validate the request data
         $request->validate([
             'username' => 'required|string',
             'password' => 'required|string',
         ]);
-        $credentials = $request->only('username', 'password');
 
-        $token = Auth::attempt($credentials);
-        if (!$token) {
+        // Attempt to log in with the provided credentials
+        if (!Auth::guard('admin')->attempt($request->only('username', 'password'))) {
             return response()->json([
-                'status' => 'error',
-                'message' => 'Unauthorized',
+                'message' => 'Invalid username or password',
             ], 401);
         }
 
-        $user = Auth::user();
+        // Get the authenticated admin
+        $admin = Admin::where('username', $request['username'])->firstOrFail();
+
+        // Generate the token (assuming you are using Laravel Passport or Sanctum for token management)
+        $token = $admin->createToken('auth_token')->plainTextToken;
+
+        // Return the success response with the token
         return response()->json([
-            'status' => 'success',
-            'user' => $user,
-            'authorisation' => [
-                'token' => $token,
-                'type' => 'bearer',
-            ]
+            'access_token' => $token,
+            'token_type' => 'Bearer',
         ]);
-
     }
-
     public function adminLogoutAPI()
     {
         Auth::logout();
