@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Charts\DashboardChart;
 use App\Http\Controllers\Controller;
+use Laravel\LarapexCharts\Classes\Chart;
 use App\Models\Lomba;
 use App\Models\Peserta;
 use ArielMejiaDev\LarapexCharts\LarapexChart;

@@ -84,3 +84,34 @@ w.dashboard-container {
     margin-top: 10px;
     font-weight: bold;
 }
+
+.card-body-timeline{
+    background-color: maroon;
+    border-radius: 15px;
+    padding: 140px;
+}
+
+.dashboard-timeline-heading {
+    font-size: 1.25rem;
+    text-align: center;
+    margin-bottom: 20px;
+    color: whitesmoke;
+    margin-bottom: 25px;
+    padding: 0px;
+}
+
+.timeline {
+    list-style-type: none;
+    margin-top: 25px;
+    text-align: center;
+    padding-left: 0;
+
+    
+}
+
+.timeline-item {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: whitesmoke;
+  
+}

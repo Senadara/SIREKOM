@@ -200,9 +200,14 @@ return array(
     'Database\\Factories\\UserFactory' => $baseDir . '/database/factories/UserFactory.php',
     'Database\\Seeders\\AdminSeeder' => $baseDir . '/database/seeders/AdminSeeder.php',
     'Database\\Seeders\\DatabaseSeeder' => $baseDir . '/database/seeders/DatabaseSeeder.php',
+<<<<<<< HEAD
+    'Database\\Seeders\\LombaSeeder' => $baseDir . '/database/seeders/LombaSeeder.php',
+    'Database\\Seeders\\TaskSeeder' => $baseDir . '/database/seeders/TaskSeeder.php',
+=======
     'Database\\Seeders\\MahasiswaSeeder' => $baseDir . '/database/seeders/MahasiswaSeeder.php',
     'Database\\Seeders\\PesertaSeeder' => $baseDir . '/database/seeders/PesertaSeeder.php',
     'Database\\Seeders\\RolesSeeder' => $baseDir . '/database/seeders/RolesSeeder.php',
+>>>>>>> 38846f17c2208bc041c2319b514fee681a87bb99
     'DateError' => $vendorDir . '/symfony/polyfill-php83/Resources/stubs/DateError.php',
     'DateException' => $vendorDir . '/symfony/polyfill-php83/Resources/stubs/DateException.php',
     'DateInvalidOperationException' => $vendorDir . '/symfony/polyfill-php83/Resources/stubs/DateInvalidOperationException.php',

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TaskController extends Controller
 {
@@ -13,36 +14,41 @@ class TaskController extends Controller
         return view('app.admin.tasks.list-task', compact('tasks'));
     }
 
-    public function create()
+    public function create($id)
     {
-        return view('app.admin.tasks.announcement-admin');
+        return view('app.admin.tasks.announcement-admin', ['lomba' => $id]);
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'judul' => 'required',
-            'deskripsi' => 'required',
-            'tanggal_buka' => 'required|date',
-            'type' => 'required',
+
+        
+        $request->validate([    
+            'idLomba' => 'required',
+            'namaTask' => 'required',
+            'deskripsiTask' => 'required',
+            'tipe' => 'required',
             'lampiran' => 'nullable|file',
-            'tanggal_deadline' => 'nullable|date',
+            'deadlineTask' => 'nullable|date',
         ]);
+            
+            
+        //dd($request);
 
         $task = new Task();
-        $task->judul = $request->judul;
-        $task->deskripsi = $request->deskripsi;
-        $task->tanggal_buka = $request->tanggal_buka;
-        $task->type = $request->type;
+        $task->idLomba = $request->idLomba;
+        $task->namaTask = $request->namaTask;
+        $task->deskripsiTask = $request->deskripsiTask;
+        $task->lampiran = $request->lampiran;
+        $task->deadlineTask = $request->deadlineTask;
+        $task->tipe = $request->tipe;
         if ($request->hasFile('lampiran')) {
-            $fileName = time() . '.' . $request->lampiran->extension();
-            $request->lampiran->move(public_path('uploads'), $fileName);
-            $task->lampiran = $fileName;
+            $lampiranPath = $request->file('lampiran')->store('lampirans', 'public');
         }
-        $task->tanggal_deadline = $request->tanggal_deadline;
+        $task->lampiran = $lampiranPath;
         $task->save();
 
-        return redirect()->route('tasks.index')->with('success', 'Task created successfully.');
+        return redirect ('admin/lomba/'. $request->idLomba)->with('success', 'Task created successfully.');
     }
 
     public function show($id)
@@ -54,40 +60,43 @@ class TaskController extends Controller
     public function edit($id)
     {
         $task = Task::findOrFail($id);
+        //dd($task);
         return view('app.admin.tasks.edit-list', compact('task'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Task $task)
     {
         $request->validate([
-            'judul' => 'required',
-            'deskripsi' => 'required',
-            'tanggal_buka' => 'required|date',
-            'type' => 'required',
+            'deskripsiTask' => 'required',
+            'tipe' => 'required',
             'lampiran' => 'nullable|file',
-            'tanggal_deadline' => 'nullable|date',
-        ]);
+            'deadlineTask' => 'nullable|date',
+            ]);
+        
+            //dd($request);
+        $task = Task::findOrFail($task->id);
+        $task->namaTask = $request->namaTask;
+        $task->deskripsiTask = $request->deskripsiTask;
+        $task->lampiran = $request->lampiran;
+        $task->deadlineTask = $request->deadlineTask;
+        $task->tipe = $request->tipe;
+        //dd($task);
 
-        $task = Task::findOrFail($id);
-        $task->judul = $request->judul;
-        $task->deskripsi = $request->deskripsi;
-        $task->tanggal_buka = $request->tanggal_buka;
-        $task->type = $request->type;
         if ($request->hasFile('lampiran')) {
-            $fileName = time() . '.' . $request->lampiran->extension();
-            $request->lampiran->move(public_path('uploads'), $fileName);
-            $task->lampiran = $fileName;
+            if ($task->posterLomba) {
+                Storage::disk('public')->delete($task->lampiran);
+            }
+            $task->lampiran = $request->file('lampiran')->store('lampirans', 'public');
         }
-        $task->tanggal_deadline = $request->tanggal_deadline;
         $task->save();
 
-        return redirect()->route('tasks.index')->with('success', 'Task updated successfully.');
+        return redirect ('admin/lomba/'. $task->idLomba)->with('success', 'Task created successfully.');
     }
 
     public function destroy($id)
     {
         $task = Task::findOrFail($id);
         $task->delete();
-        return redirect()->route('tasks.index')->with('success', 'Task deleted successfully.');
+        return redirect ('admin/lomba/'. $task->idLomba)->with('success', 'Task created successfully.');
     }
 }

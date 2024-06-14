@@ -29,7 +29,7 @@ class RegisterController extends Controller
         $year = substr($request->nim, 4, 2);
         $angkatan = '20' . $year;
 
-        $validatedData['password'] =  Hash::make($request->password);
+        $validatedData['password'] = Hash::make($request->password);
         $validatedData['angkatan'] = $angkatan;
         $validatedData['fotoProfile'] = 'assets/img/profile/default.jpg';
 

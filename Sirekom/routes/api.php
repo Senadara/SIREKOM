@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\Admin\PesertaController;
 use App\Http\Controllers\Api\RegisterController;
+use App\Http\Controllers\Api\AdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\LoginController;
+// use App\Http\Controllers\Api\PesertaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +26,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('peserta/{idLomba?}', [PesertaController::class, 'index']);
 
 Route::get('/register/{nama}', [RegisterController::class, 'validation']);
+Route::post('/login', [LoginController::class, 'login']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('peserta/{idLomba?}', [PesertaController::class, 'index']);
+});
+
+Route::controller(AdminController::class)->group(function () {
+    Route::put('admin/{data}', 'store');
+    Route::put('admin/{data}', 'update');
+});

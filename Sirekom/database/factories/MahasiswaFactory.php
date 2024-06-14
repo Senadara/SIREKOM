@@ -5,9 +5,10 @@ namespace Database\Factories;
 use App\Models\Mahasiswa;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Spatie\Permission\Models\Role;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Mahasiswa>
  */
 class MahasiswaFactory extends Factory
 {
@@ -17,6 +18,7 @@ class MahasiswaFactory extends Factory
      * @return array<string, mixed>
      */
     protected $model = Mahasiswa::class;
+
     public function definition(): array
     {
         return [
@@ -30,5 +32,17 @@ class MahasiswaFactory extends Factory
             'noHP' => $this->faker->numerify('##########'),
             'fotoProfile' => $this->faker->imageUrl(640, 480, 'people', true, 'Faker'),
         ];
+    }
+
+    /**
+     * Indicate that the model should have the 'mahasiswa' role.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function withRole(): Factory
+    {
+        return $this->afterCreating(function (Mahasiswa $mahasiswa) {
+            $mahasiswa->assignRole('mahasiswa');
+        });
     }
 }
