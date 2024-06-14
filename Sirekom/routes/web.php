@@ -9,13 +9,12 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Admin\LombaController;
 use App\Http\Controllers\Admin\PesertaController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\Mahasiswa\SubmissionController;
 use App\Http\Controllers\Mahasiswa\ProfileController;
 use App\Http\Controllers\Mahasiswa\MahasiswaController;
+use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Api\PesertaController as ApiPesertaController;
 use App\Http\Controllers\Api\RegisterController as ApiRegisterController;
-use App\Http\Controllers\Mahasiswa\SubmissionController;
-use App\Http\Controllers\Superadmin\SuperadminController;
 
 /*
 |--------------------------------------------------------------------------

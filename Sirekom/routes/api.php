@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\Admin\PesertaController;
+// use App\Http\Controllers\Admin\PesertaController;
 use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\Api\AdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\LoginController;
-// use App\Http\Controllers\Api\PesertaController;
+use App\Http\Controllers\Api\PesertaController;
 
 /*
 |--------------------------------------------------------------------------
