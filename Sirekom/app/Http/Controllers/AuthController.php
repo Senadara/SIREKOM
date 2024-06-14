@@ -42,7 +42,7 @@ class AuthController extends Controller
             // Mengambil status respons dan data dari respons JSON
             $status = $response->getStatusCode();
             $data = json_decode($response->getContent());
-            dd($data);
+            //dd($data);
 
             if ($status == 200 && isset($data->authorisation->token)) {
                 $token = $data->authorisation->token;
