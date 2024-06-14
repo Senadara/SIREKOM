@@ -3,11 +3,16 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Task;
 use App\Models\Admin;
 use App\Models\Lomba;
-use App\Models\Mahasiswa;
 use App\Models\Peserta;
+use App\Models\Mahasiswa;
 use Illuminate\Database\Seeder;
+use Database\Seeders\AdminSeeder;
+use Database\Seeders\RolesSeeder;
+use Database\Seeders\PesertaSeeder;
+use Database\Seeders\MahasiswaSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,8 +21,6 @@ class DatabaseSeeder extends Seeder
          */
         public function run(): void
         {
-
-                Mahasiswa::factory(10)->create();
                 // Peserta::create([
                 //         'idLomba' => 1,
                 //         'idMahasiswa' => 1,
@@ -38,6 +41,7 @@ class DatabaseSeeder extends Seeder
                 $this->call(RolesSeeder::class);
                 $this->call(AdminSeeder::class);
                 $this->call(MahasiswaSeeder::class);
+                Mahasiswa::factory(10)->withRole()->create();
                 Lomba::factory(3)->create();
                 $this->call(PesertaSeeder::class);
         }

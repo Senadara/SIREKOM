@@ -77,9 +77,16 @@
 
                 $('#export-link').attr('href', '/peserta/export_excel/' + idLomba);
 
+                // Ambil token dari session atau meta tag (sesuaikan dengan aplikasi Anda)
+                var token = "{{ session('bearer_token') }}";
+
                 $.ajax({
                     url: 'http://127.0.0.1:8000/api/peserta/' + (idLomba ? idLomba : ''),
                     type: 'GET',
+                    headers: {
+                        'Authorization': 'Bearer ' + token,
+                        'Accept': 'application/json'
+                    },
                     success: function(response) {
                         var tableBody = $('#peserta-table-body');
                         tableBody.empty();

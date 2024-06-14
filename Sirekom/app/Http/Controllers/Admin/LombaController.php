@@ -4,27 +4,27 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Lomba;
 use App\Models\Peserta;
+use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
 class LombaController extends Controller
 {
-
     public function index()
     {
-        $lomba = Lomba::all();
+        $lombas = Lomba::all();
         return view('app.admin.list-lomba', [
-            'lombas' => $lomba
+            'lombas' => $lombas
         ]);
     }
-
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Lomba $lomba)
     {
-        return view('app.admin.create');
+        return view('app.admin.create', ['lomba' => $lomba]);
     }
 
     /**
@@ -75,8 +75,20 @@ class LombaController extends Controller
      */
     public function show(Lomba $lomba)
     {
-        return view("app.admin.detailLomba", ["lomba" => $lomba]);
-        //yemima ubah
+        $tasks = DB::table('task')
+            ->join('lombas', 'task.idLomba', '=', 'lombas.id')
+            ->select('task.id','task.namaTask', 'task.tipe', 'task.deskripsiTask', 'task.deadlineTask', 'task.lampiran', 
+            'lombas.namaLomba', 'lombas.deskripsiLomba', 'lombas.tanggalBukaPendaftaran', 'lombas.tanggalTutupPendaftaran', 
+            'lombas.posterLomba', 'lombas.lampiran')
+            ->where('task.idLomba', $lomba->id)
+            ->get();
+
+            //dd($tasks);
+        return view('app.admin.detailLomba', [
+            'tasks' => $tasks,
+            'lomba' => $lomba,
+        ]);
+       
     }
 
     /**
@@ -157,11 +169,14 @@ class LombaController extends Controller
         return view("app.admin.announcement-admin", ["lomba" => $lomba]);
     }
 
-    public function task()
-    {
-        // Fetch the relevant Lomba model data if needed, for example:
-        $lomba = Lomba::first(); // Adjust this as necessary
+    public function task(Lomba $lomba)
+{
+    // Ambil semua tugas yang terkait dengan lomba tertentu
+    $tasks = Task::where('id_lomba', $lomba->id)->get();
+    
+    // Kembalikan tampilan Blade dengan data tugas
+    return view('app.admin.detailLomba', compact('lomba', 'tasks'));
+}
 
-        return view("app.admin.task-admin", ["lomba" => $lomba]);
-    }
+    
 }

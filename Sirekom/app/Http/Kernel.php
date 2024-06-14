@@ -69,7 +69,10 @@ class Kernel extends HttpKernel
     ];
 
     // protected $routeMiddleware = [
-    //     'auth.admin' => \App\Http\Middleware\RedirectIfNotAdmin::class,
-    //     'auth.mahasiswa' => \App\Http\Middleware\RedirectIfNotMahasiswa::class,
+    //     //  'auth.admin' => \App\Http\Middleware\RedirectIfNotAdmin::class,
+    //     // 'auth.mahasiswa' => \App\Http\Middleware\RedirectIfNotMahasiswa::class,
+    //     'auth' => \App\Http\Middleware\Authenticate::class,
+    //     'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        
     // ];
 }
