@@ -59,7 +59,6 @@ route::middleware(['auth:admin', 'role:admin'])->group(function () {
     Route::get('admin/tasks/edit/{id}', [TaskController::class, 'edit']);
     Route::put('admin/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
     Route::delete('admin/tasks/{task}', [TaskController::class, 'destroy']);
-
 });
 
 
@@ -83,7 +82,6 @@ route::middleware(['auth:mahasiswa', 'role:mahasiswa'])->group(function () {
     Route::get('/mahasiswa/detailInfodanSubmit', function () {
         return view('app.mahasiswa.detailInfodanSubmit');
     });
-
 });
 
 Route::get('/admin/detail-lomba', function () {
