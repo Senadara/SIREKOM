@@ -4,13 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LombaController;
 use App\Http\Controllers\Admin\PesertaController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Api\PesertaController as ApiPesertaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Mahasiswa\ProfileController;
 use App\Http\Controllers\Mahasiswa\SubmissionController;
 use App\Http\Controllers\Mahasiswa\MahasiswaController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\Api\PesertaController as ApiPesertaController;
+use App\Http\Controllers\Api\RegisterController as ApiRegisterController;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -35,6 +36,10 @@ Route::post('/', [AuthController::class, 'RoleAuth']);
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'register']);
+Route::post('/register', [RegisterController::class, 'register']);
+Route::post('/register/save', [RegisterController::class, 'save'])->name('register.save');
+Route::post('/register/validate', [ApiRegisterController::class, 'validation'])->name('register.validate');
+Route::get('/register/validation/{nama}', [ApiRegisterController::class, 'validation'])->name('api.register.validation');
 
 
 route::middleware(['auth:admin'])->group(function () {
@@ -121,7 +126,3 @@ Route::delete('admin/tasks/{task}', [TaskController::class, 'destroy'])->name('t
 Route::get('/peserta/export_excel/{idLomba?}', [ApiPesertaController::class, 'export_excel']);
 
 // Route::get('/peserta/lomba/{idLomba}', [PesertaController::class, 'getPesertaByLomba'])->name('peserta.lomba');
-
-// Route Superadmin
-Route::resource('/superadmin', SuperadminController::class);
-

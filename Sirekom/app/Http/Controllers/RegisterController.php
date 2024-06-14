@@ -10,12 +10,11 @@ class RegisterController extends Controller
 {
     public function index()
     {
-        return view('register'); // assuming your Blade template is named 'register.blade.php'
+        return view('register');
     }
 
     public function register(Request $request)
     {
-        // Validate the form data
         // dd($request);
         $validatedData = $request->validate([
             'username' => 'required|string|max:255',
@@ -35,15 +34,27 @@ class RegisterController extends Controller
         $validatedData['fotoProfile'] = 'assets/img/profile/default.jpg';
 
         // dd($validatedData);
-        $mahasiswa = Mahasiswa::create($validatedData);
+        // $mahasiswa = Mahasiswa::create($validatedData);
 
-        $mahasiswa->assignRole('mahasiswa');
-        return redirect('/');
+        // return redirect('/')->with('success', 'Anda Berhasil Daftar');
 
+        return redirect()->route('api.register.validate', ['nama' => $validatedData['namaMahasiswa']]);
 
-        // For now, just return the validated data as a JSON response
         // return response()->json($validatedData);
+    }
 
+    public function save(Request $request)
+    {
+        $validatedData = $request->except('_token');
 
+        $validatedData['password'] = bcrypt($validatedData['password']);
+        $year = substr($request->nim, 4, 2);
+        $angkatan = '20' . $year;
+        $validatedData['angkatan'] = $angkatan;
+        $validatedData['fotoProfile'] = 'assets/img/profile/default.jpg';
+
+        // dd($validatedData);
+        Mahasiswa::create($validatedData);
+        return redirect('/')->with('success', 'Berhasil Registrasi.');
     }
 }
