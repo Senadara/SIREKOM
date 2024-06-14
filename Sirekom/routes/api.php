@@ -4,7 +4,7 @@ use App\Http\Controllers\Api\AdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\LoginController;
-use App\Http\Controllers\Api\PesertaController;
+use App\Http\Controllers\Admin\PesertaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +25,11 @@ Route::post('/login', [LoginController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('peserta/{idLomba?}', [PesertaController::class, 'index']);
+    Route::put('admin/{data}', [AdminController::class, 'update']);
 });
 
-Route::controller(AdminController::class)->group(function () {
-    Route::put('admin/{data}', 'store');
-    Route::put('admin/{data}', 'update');
-});
+
+// Route::controller(AdminController::class)->group(function () {
+//     Route::put('admin/{data}', 'store');
+//     Route::put('admin/{data}', 'update');
+// });

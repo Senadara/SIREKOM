@@ -16,41 +16,34 @@ class ApiController extends Controller
 
     public function edit()
     {
-        return view('app.admin.api.update-admin');
+        $admin = Admin::all();
+        return view('app.admin.api.update-admin', [
+            'admin' => $admin,
+        ]);
     }
 
     public function update(Request $request)
     {
-        // Validate the incoming request
-        $request->validate([
-            'id' => 'required',
-            'username' => 'required|max:20|unique:admins,username',
-            'password' => 'required|min:8',
-        ]);
-
-        // Data to be sent in the internal request
+        $token = $request->session()->get('bearer_token');
+        //dd($token);
         $data = [
             'username' => $request->username,
             'password' => $request->password,
         ];
+        //dd($data);
+        $url = "http://127.0.0.1:8000/api/admin/{$request->id}";
+        
+        $apiRequest = Request::create($url, 'PUT', $data);
+        $apiRequest->headers->set('Authorization', 'Bearer ' . $token);
+        $response = app()->handle($apiRequest);
+        //dd($response);
+        
+        if ($response->getStatusCode() == 200) {
 
-        // Create a new internal request
-        $internalRequest = Request::create('http://127.0.0.1:8000/api/admin/', 'POST', $data);
-        $internalRequest->headers->set('Authorization', 'Bearer ' . session('jwt_token'));
-
-        // Dispatch the request
-        $response = Route::dispatch($internalRequest);
-
-        // Handle the response
-        if ($response->isSuccessful()) {
-            // Decode the response data
             $responseData = json_decode($response->getContent(), true);
 
-            // Redirect with a success message
-            return redirect('students')
-                ->with('status', 'Mahasiswa berhasil ditambahkan.');
+            return redirect('edit-admin')->with('success', "Admin berhasil diupdate!!");
         } else {
-            // Handle error response
             return redirect()->back()->withErrors('Error adding Mahasiswa.');
         }
     }
