@@ -50,7 +50,7 @@ route::middleware(['auth:admin', 'role:admin'])->group(function () {
     // export excel
     Route::get('/peserta/export_excel/{idLomba?}', [ApiPesertaController::class, 'export_excel']);
 
-   Route::get('/admin/peserta-lomba/{idLomba?}', [ApiPesertaController::class, 'memanggilAPIGetAlldata']);
+    Route::get('/admin/peserta-lomba/{idLomba?}', [ApiPesertaController::class, 'memanggilAPIGetAlldata']);
 
     // List all tasks
     Route::get('admin/tasks/create/{id}', [TaskController::class, 'create'])->name('tasks/create/{id}');
@@ -111,3 +111,4 @@ Route::get('admin/announcement-admin', [LombaController::class, 'announ'])->name
 
 Route::get('edit-admin', [ApiController::class, 'edit']);
 Route::post('update-admin', [ApiController::class, 'update']);
+Route::post('create-admin', [ApiController::class, 'store']);

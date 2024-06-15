@@ -33,6 +33,6 @@ Route::controller(LoginController::class)->group(function () {
 Route::get('peserta/{idLomba?}', [PesertaController::class, 'index']);
 
 Route::controller(AdminController::class)->group(function () {
-    Route::put('admin/{data}', 'store');
+    Route::post('/admin', 'store');
     Route::put('admin/{data}', 'update');
 });
