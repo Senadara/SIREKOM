@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\AdminController2;
 use App\Http\Controllers\Api\PesertaController;
 use App\Models\Admin;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,16 +24,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::controller(LoginController::class)->group(function () {
-    Route::post('login', 'adminLoginAPI');
-    Route::post('logout', 'adminLogoutAPI');
-    Route::post('refresh', 'refresh');
+Route::post('/login', [LoginController::class, 'login']);
 
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/admin', [AdminController::class, 'store']);
+    Route::get('peserta/{idLomba?}', [PesertaController::class, 'index']);
+    Route::put('admin/{data}', [AdminController::class, 'update']);
 });
 
-Route::get('peserta/{idLomba?}', [PesertaController::class, 'index']);
 
-Route::controller(AdminController::class)->group(function () {
-    Route::post('/admin', 'store');
-    Route::put('admin/{data}', 'update');
-});
+// Route::controller(AdminController::class)->group(function () {
+//     Route::post('/admin', 'store');
+//     Route::put('admin/{data}', 'update');
+// });

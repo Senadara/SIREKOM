@@ -60,6 +60,11 @@ route::middleware(['auth:admin', 'role:admin'])->group(function () {
     Route::put('admin/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
     Route::delete('admin/tasks/{task}', [TaskController::class, 'destroy']);
 
+    // Api Admin routes
+    Route::get('edit-admin', [ApiController::class, 'edit']);
+    Route::get('create-admin', [ApiController::class, 'create']);
+    Route::post('update-admin', [ApiController::class, 'update']);
+    Route::post('create-admin', [ApiController::class, 'store']);
 });
 
 
@@ -83,7 +88,6 @@ route::middleware(['auth:mahasiswa', 'role:mahasiswa'])->group(function () {
     Route::get('/mahasiswa/detailInfodanSubmit', function () {
         return view('app.mahasiswa.detailInfodanSubmit');
     });
-
 });
 
 Route::get('/admin/detail-lomba', function () {
@@ -109,6 +113,4 @@ Route::get('/mahasiswa/detail-lomba', function () {
 
 Route::get('admin/announcement-admin', [LombaController::class, 'announ'])->name('announcement.admin');
 
-Route::get('edit-admin', [ApiController::class, 'edit']);
-Route::post('update-admin', [ApiController::class, 'update']);
-Route::post('create-admin', [ApiController::class, 'store']);
+

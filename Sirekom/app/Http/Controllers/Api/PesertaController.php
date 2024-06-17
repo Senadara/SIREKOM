@@ -2,40 +2,42 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Admin;
 use App\Models\Lomba;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Exports\PesertaExport;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PesertaController extends Controller
 {
-    public function memanggilAPIGetAlldata($idLomba = null)
+    public function memanggilAPIGetAlldata(Request $request, $idLomba = null)
     {
-
-        // Buat URL API berdasarkan apakah idLomba diberikan atau tidak
-        $url = $idLomba ? "http://127.0.0.1:8000/api/peserta/{$idLomba}" : 'http://127.0.0.1:8000/api/peserta';
-
-        // Buat instance dari Request dan dapatkan respons
-        $apiRequest = Request::create($url, 'GET');
-        $response = app()->handle($apiRequest);
+        $token = $request->session()->get('bearer_token');
+        //dd($token);
         $lombas = Lomba::all();
+        $url = $idLomba ? "http://127.0.0.1:8000/api/peserta/{$idLomba}" : 'http://127.0.0.1:8000/api/peserta';
+        // Buat permintaan ke API dengan menyertakan token di header
+        $apiRequest = Request::create($url, 'GET');
+        $apiRequest->headers->set('Authorization', 'Bearer ' . $token);
+        $response = app()->handle($apiRequest);
 
-        if ($response->getStatusCode() === 200) {
-            $jsonData = json_decode($response->getContent(), true);
-            $pesertas = array_map(fn($item) => (object) $item, $jsonData['data']);
+        if ($response->getStatusCode() == 200) {
+            // Mengubah data JSON menjadi objek
+            $jsonData = json_decode($response->getContent(), false);
+            $pesertas = array_map(fn ($item) => (object) $item, $jsonData->data);
 
             return view('app.admin.list-peserta-lomba', [
                 'pesertas' => $pesertas,
                 'lombas' => $lombas,
                 'idLomba' => $idLomba,
             ]);
+        } else {
+            return response()->json([
+                'message' => 'Unauthorized'
+            ], 401);
         }
-
-        return response()->json(['error' => 'Failed to fetch data'], $response->getStatusCode());
     }
 
     public function export_excel($idLomba = null)

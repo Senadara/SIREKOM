@@ -2,64 +2,26 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {
-    public function __construct()
+    public function login(Request $request)
     {
-        $this->middleware('auth:api', ['except' => ['adminLoginAPI']]);
-    }
-
-    public function adminLoginAPI(Request $request)
-    {
-        $request->validate([
-            'username' => 'required|string',
-            'password' => 'required|string',
-        ]);
-        $credentials = $request->only('username', 'password');
-
-        $token = Auth::attempt($credentials);
-        if (!$token) {
+        // dd($request);
+        if (!Auth::attempt($request->only('username', 'password'))) {
             return response()->json([
-                'status' => 'error',
-                'message' => 'Unauthorized',
+                'message' => 'Invalid login details'
             ], 401);
         }
-
-        $user = Auth::user();
+        $user = Admin::where('username', $request['username'])->firstOrFail();
+        $token = $user->createToken('auth_token')->plainTextToken;
         return response()->json([
-            'status' => 'success',
-            'user' => $user,
-            'authorisation' => [
-                'token' => $token,
-                'type' => 'bearer',
-            ]
-        ]);
-
-    }
-
-    public function adminLogoutAPI()
-    {
-        Auth::logout();
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Successfully logged out',
+            'access_token' => $token,
+            'token_type' => 'Bearer',
         ]);
     }
-
-    public function refresh()
-    {
-        return response()->json([
-            'status' => 'success',
-            'user' => Auth::user(),
-            'authorisation' => [
-                'token' => Auth::refresh(),
-                'type' => 'bearer',
-            ]
-        ]);
-    }
-
 }
