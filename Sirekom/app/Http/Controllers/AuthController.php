@@ -61,8 +61,9 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'error' => 'The provided credentials do not match our records.',
-        ]);
+            'username' => 'Invalid credentials',
+            'password' => 'Invalid credentials',
+        ])->withInput();
     }
 
     public function logout(Request $request)
