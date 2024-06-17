@@ -16,7 +16,7 @@
                 style="height: 100vh; width: 30%;">
                 <div class="card p-4" style="width: 24rem;">
                     <h1 class="text-center mb-4 text-danger">Sign up</h1>
-                    <form action="/register" method="POST">
+                    <form action="{{ route('register.validate') }}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>

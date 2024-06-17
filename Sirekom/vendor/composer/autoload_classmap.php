@@ -13,9 +13,11 @@ return array(
     'App\\Http\\Controllers\\Admin\\DashboardController' => $baseDir . '/app/Http/Controllers/Admin/DashboardController.php',
     'App\\Http\\Controllers\\Admin\\LombaController' => $baseDir . '/app/Http/Controllers/Admin/LombaController.php',
     'App\\Http\\Controllers\\Admin\\PesertaController' => $baseDir . '/app/Http/Controllers/Admin/PesertaController.php',
+
     'App\\Http\\Controllers\\Api\\AdminController' => $baseDir . '/app/Http/Controllers/Api/AdminController.php',
     'App\\Http\\Controllers\\Api\\ApiController' => $baseDir . '/app/Http/Controllers/Api/ApiController.php',
     'App\\Http\\Controllers\\Api\\LoginController' => $baseDir . '/app/Http/Controllers/Api/LoginController.php',
+
     'App\\Http\\Controllers\\Api\\PesertaController' => $baseDir . '/app/Http/Controllers/Api/PesertaController.php',
     'App\\Http\\Controllers\\Api\\RegisterController' => $baseDir . '/app/Http/Controllers/Api/RegisterController.php',
     'App\\Http\\Controllers\\AuthController' => $baseDir . '/app/Http/Controllers/AuthController.php',
@@ -39,6 +41,7 @@ return array(
     'App\\Http\\Middleware\\ValidateSignature' => $baseDir . '/app/Http/Middleware/ValidateSignature.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Resources\\Peserta' => $baseDir . '/app/Http/Resources/Peserta.php',
+
     'App\\Http\\Responses\\AdminResponse' => $baseDir . '/app/Http/Responses/AdminResponse.php',
     'App\\Models\\Admin' => $baseDir . '/app/Models/Admin.php',
     'App\\Models\\Lomba' => $baseDir . '/app/Models/Lomba.php',

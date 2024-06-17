@@ -9,12 +9,12 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Admin\LombaController;
 use App\Http\Controllers\Admin\PesertaController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\Mahasiswa\SubmissionController;
 use App\Http\Controllers\Mahasiswa\ProfileController;
 use App\Http\Controllers\Mahasiswa\MahasiswaController;
-use App\Http\Controllers\Mahasiswa\SubmissionController;
-use App\Http\Controllers\Superadmin\SuperadminController;
+use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Api\PesertaController as ApiPesertaController;
+use App\Http\Controllers\Api\RegisterController as ApiRegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +37,10 @@ Route::post('/', [AuthController::class, 'RoleAuth']);
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'register']);
+Route::post('/register', [RegisterController::class, 'register']);
+Route::post('/register/save', [RegisterController::class, 'save'])->name('register.save');
+Route::post('/register/validate', [ApiRegisterController::class, 'validation'])->name('register.validate');
+Route::get('/register/validation/{nama}', [ApiRegisterController::class, 'validation'])->name('api.register.validation');
 
 
 route::middleware(['auth:admin', 'role:admin'])->group(function () {
@@ -112,5 +116,6 @@ Route::get('/mahasiswa/detail-lomba', function () {
 
 
 Route::get('admin/announcement-admin', [LombaController::class, 'announ'])->name('announcement.admin');
+
 
 

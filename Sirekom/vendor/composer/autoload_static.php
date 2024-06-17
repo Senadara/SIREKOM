@@ -616,9 +616,11 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         'App\\Http\\Controllers\\Admin\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/DashboardController.php',
         'App\\Http\\Controllers\\Admin\\LombaController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/LombaController.php',
         'App\\Http\\Controllers\\Admin\\PesertaController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PesertaController.php',
+
         'App\\Http\\Controllers\\Api\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/AdminController.php',
         'App\\Http\\Controllers\\Api\\ApiController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/ApiController.php',
         'App\\Http\\Controllers\\Api\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/LoginController.php',
+
         'App\\Http\\Controllers\\Api\\PesertaController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/PesertaController.php',
         'App\\Http\\Controllers\\Api\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/RegisterController.php',
         'App\\Http\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/AuthController.php',
@@ -642,7 +644,9 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Resources\\Peserta' => __DIR__ . '/../..' . '/app/Http/Resources/Peserta.php',
+
         'App\\Http\\Responses\\AdminResponse' => __DIR__ . '/../..' . '/app/Http/Responses/AdminResponse.php',
+
         'App\\Models\\Admin' => __DIR__ . '/../..' . '/app/Models/Admin.php',
         'App\\Models\\Lomba' => __DIR__ . '/../..' . '/app/Models/Lomba.php',
         'App\\Models\\Mahasiswa' => __DIR__ . '/../..' . '/app/Models/Mahasiswa.php',
