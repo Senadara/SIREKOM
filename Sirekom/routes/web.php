@@ -116,6 +116,3 @@ Route::get('/mahasiswa/detail-lomba', function () {
 
 
 Route::get('admin/announcement-admin', [LombaController::class, 'announ'])->name('announcement.admin');
-
-
-

@@ -27,8 +27,7 @@ class ApiController extends Controller
 
     public function create()
     {
-        return view('app.admin.api.create-admin', [
-        ]);
+        return view('app.admin.api.create-admin', []);
     }
 
     public function store(Request $request)
@@ -76,38 +75,12 @@ class ApiController extends Controller
 
     public function update(Request $request)
     {
-        $request->validate([
-            'id' => 'required',
-            'username' => 'required|max:20|unique:admins,username',
-            'password' => 'required|min:8',
-        ]);
-
-
         $token = $request->session()->get('bearer_token');
         //dd($token);
         $data = [
             'username' => $request->username,
             'password' => $request->password,
         ];
-
-        $client = new Client();
-        $url = "localhost/laravel10PassportJWT/public/api/admin/";
-
-        $params = [
-            'username' => $request->username,
-            'password' => $request->password,
-        ];
-
-        $response = $client->request("POST", $url, [
-            'headers' => [
-                'Authorization' => 'Bearer ' . session('JWT_TOKEN')
-            ],
-            'form_params' => $params
-        ]);
-
-        $data = json_decode($response->getBody()->getContents());
-        return redirect('students')
-            ->with('status', 'Mahasiswa berhasil ditambahkan.');
         //dd($data);
         $url = "http://127.0.0.1:8000/api/admin/{$request->id}";
 
