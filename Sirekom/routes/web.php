@@ -63,6 +63,12 @@ route::middleware(['auth:admin', 'role:admin'])->group(function () {
     Route::get('admin/tasks/edit/{id}', [TaskController::class, 'edit']);
     Route::put('admin/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
     Route::delete('admin/tasks/{task}', [TaskController::class, 'destroy']);
+
+    // Api Admin routes
+    Route::get('edit-admin', [ApiController::class, 'edit']);
+    Route::get('create-admin', [ApiController::class, 'create']);
+    Route::post('update-admin', [ApiController::class, 'update']);
+    Route::post('create-admin', [ApiController::class, 'store']);
 });
 
 
@@ -73,7 +79,7 @@ route::middleware(['auth:mahasiswa', 'role:mahasiswa'])->group(function () {
     Route::post('/mahasiswa/submission', [SubmissionController::class, 'store'])->name('storeSubmission');
 
     Route::get('/mahasiswa/lomba', [MahasiswaController::class, 'index'])->name('mahasiswa.lomba');
-    Route::post('/mahasiswa/lomba/{idLomba}', [MahasiswaController::class, 'PermissionTasks'])->name('mahasiswa.register');
+    Route::post('/mahasiswa/lomba/{idLomba}', [MahasiswaController::class, 'register'])->name('mahasiswa.lomba.register');
     Route::get('/mahasiswa/lomba/{lomba}', [MahasiswaController::class, 'show'])->name('mahasiswa.lomba.show');
 
     Route::get('/mahasiswa/profile', function () {
@@ -111,23 +117,5 @@ Route::get('/mahasiswa/detail-lomba', function () {
 
 Route::get('admin/announcement-admin', [LombaController::class, 'announ'])->name('announcement.admin');
 
-//Task route
-// Route::resource('tasks', TaskController::class);
-
-// List all tasks
-Route::get('admin/list-task', [TaskController::class, 'index'])->name('tasks.index');
-Route::get('admin/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
-Route::post('admin/tasks', [TaskController::class, 'store'])->name('tasks.store');
-Route::get('admin/tasks/{task}', [TaskController::class, 'show'])->name('tasks.show');
-Route::get('admin/tasks/{task}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
-Route::put('admin/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
-Route::delete('admin/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
 
 
-// export excel
-
-Route::get('/peserta/export_excel/{idLomba?}', [ApiPesertaController::class, 'export_excel']);
-
-// Route::get('/peserta/lomba/{idLomba}', [PesertaController::class, 'getPesertaByLomba'])->name('peserta.lomba');
-Route::get('edit-admin', [ApiController::class, 'edit']);
-Route::post('update-admin', [ApiController::class, 'update']);

@@ -22,19 +22,19 @@ class DatabaseSeeder extends Seeder
         public function run(): void
         {
                 // Peserta::create([
-                //         'idLomba' => 1,
-                //         'idMahasiswa' => 1,
-                //         'tanggalDaftar' => '2024-05-18',
+                //     'idLomba' => 1,
+                //     'idMahasiswa' => 1,
+                //     'tanggalDaftar' => '2024-05-18',
                 // ]);
                 // Peserta::create([
-                //         'idLomba' => 2,
-                //         'idMahasiswa' => 2,
-                //         'tanggalDaftar' => '2024-05-19',
+                //     'idLomba' => 2,
+                //     'idMahasiswa' => 2,
+                //     'tanggalDaftar' => '2024-05-19',
                 // ]);
                 // Peserta::create([
-                //         'idLomba' => 3,
-                //         'idMahasiswa' => 3,
-                //         'tanggalDaftar' => '2024-05-20',
+                //     'idLomba' => 3,
+                //     'idMahasiswa' => 3,
+                //     'tanggalDaftar' => '2024-05-20',
                 // ]);
 
                 //roles
