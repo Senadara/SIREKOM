@@ -17,6 +17,6 @@ class RolesSeeder extends Seeder
         Permission::create(['name' => 'ViewTask', 'guard_name' => 'mahasiswa']);
         Role::create(['name' => 'admin', 'guard_name' => 'admin', 'role_name' => 'admin']);
         Role::create(['name' => 'mahasiswa', 'guard_name' => 'mahasiswa', 'role_name' => 'mahasiswa']);
-        Role::create(['name' => 'peserta', 'guard_name' => 'peserta', 'role_name' => 'peserta']);
+        Role::create(['name' => 'peserta', 'guard_name' => 'mahasiswa', 'role_name' => 'peserta']);
     }
 }

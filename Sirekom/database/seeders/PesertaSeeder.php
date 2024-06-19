@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Peserta;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Mahasiswa;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class PesertaSeeder extends Seeder
 {
@@ -13,26 +14,22 @@ class PesertaSeeder extends Seeder
      */
     public function run(): void
     {
-        $peserta = Peserta::create([
-            'idLomba' => '1',
-            'idMahasiswa' => '7',
-            'tanggalDaftar' => '2024-06-04',
-        ]);
-        $peserta = Peserta::create([
-            'idLomba' => '1',
-            'idMahasiswa' => '1',
-            'tanggalDaftar' => '2024-06-04',
-        ]);
-        $peserta = Peserta::create([
-            'idLomba' => '2',
-            'idMahasiswa' => '2',
-            'tanggalDaftar' => '2024-06-04',
-        ]);
-        $peserta = Peserta::create([
-            'idLomba' => '3',
-            'idMahasiswa' => '3',
-            'tanggalDaftar' => '2024-06-04',
-        ]);
-        $peserta->assignRole('peserta');
+        // Seed Peserta records
+        $pesertas = [
+            ['idLomba' => '1', 'idMahasiswa' => '7', 'tanggalDaftar' => '2024-06-04'],
+            ['idLomba' => '1', 'idMahasiswa' => '1', 'tanggalDaftar' => '2024-06-04'],
+            ['idLomba' => '2', 'idMahasiswa' => '2', 'tanggalDaftar' => '2024-06-04'],
+            ['idLomba' => '3', 'idMahasiswa' => '3', 'tanggalDaftar' => '2024-06-04'],
+        ];
+
+        foreach ($pesertas as $data) {
+            $peserta = Peserta::create($data);
+
+            // Assign role to the associated User
+            $user = Mahasiswa::find($data['idMahasiswa']);
+            if ($user) {
+                $user->assignRole('peserta'); // Ensure 'peserta' role exists for the 'mahasiswa' guard
+            }
+        }
     }
 }

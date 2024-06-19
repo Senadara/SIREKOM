@@ -97,19 +97,39 @@ class MahasiswaController extends Controller
 
         $idMahasiswa = Session::get('idMahasiswa');
 
+        // Create a new Peserta instance and set its properties
         $peserta = new Peserta();
         $peserta->idLomba = $idLomba;
         $peserta->idMahasiswa = $idMahasiswa;
         $peserta->tanggalDaftar = now();
         $peserta->save();
 
-        // Assign role 'peserta' ke mahasiswa
-        // $mahasiswa->assignRole('peserta');
+        // Get the mahasiswa instance using the authenticated ID
+        $mahasiswa = Mahasiswa::find($idMahasiswa);
 
+        // Ensure mahasiswa instance is found
+        if ($mahasiswa) {
+            // Assuming Mahasiswa uses the 'mahasiswa' guard
+            $mahasiswaGuard = 'mahasiswa';
 
-        // Redirect ke rute dengan parameter yang benar
+            // Retrieve the user instance if Mahasiswa extends or is related to User model
+            $user = Mahasiswa::find($idMahasiswa);
+
+            // Ensure user instance is found and has role management methods
+            if ($user) {
+                // Assign the 'mahasiswa' and 'peserta' roles using the appropriate guard
+                $user->syncRoles(['mahasiswa', 'peserta']);
+                // Optional: Assign permission to view tasks
+                // $user->givePermissionTo('ViewTask');
+            } else {
+                return redirect()->back()->with('error', 'User not found.');
+            }
+        } else {
+            return redirect()->back()->with('error', 'Mahasiswa not found.');
+        }
+
+        // Redirect to the correct route with a success message
         return redirect()->route('mahasiswa.lomba.show', ['lomba' => $idLomba])->with('success', 'Lomba berhasil diperbarui!!');
-        //         ->with('success', 'Anda telah berhasil mendaftar');
 
 
         // // dd('Register method called'); // Debugging statement
