@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                             <div class="tombol">
-                                <button type="submit">Update Data</button>
+                                <button type="submit" class="btn btn-primary">Update Data</button>
                             </div>
                         </form>
 
