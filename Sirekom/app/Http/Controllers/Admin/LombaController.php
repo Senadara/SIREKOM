@@ -93,13 +93,11 @@ class LombaController extends Controller
             )
             ->where('task.idLomba', $lomba->id)
             ->get();
-
         //dd($tasks);
         return view('app.admin.detailLomba', [
-            'task' => $tasks,
+            'tasks' => $tasks,
             'lomba' => $lomba,
         ]);
-
     }
 
     /**

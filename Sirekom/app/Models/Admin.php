@@ -5,14 +5,13 @@ namespace App\Models;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laravel\Sanctum\HasApiTokens;
 
 class Admin extends Authenticatable
 {
     use HasApiTokens, HasFactory, HasRoles, Notifiable;
-  
     protected $table = 'admins';
 
     protected $fillable = [

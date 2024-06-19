@@ -74,7 +74,6 @@ return new class extends Migration {
                     'model_has_permissions_permission_model_type_primary'
                 );
             }
-
         });
 
         Schema::create($tableNames['model_has_roles'], function (Blueprint $table) use ($tableNames, $columnNames, $pivotRole, $teams) {
