@@ -27,12 +27,11 @@ class AdminController extends Controller
         }
         $admin = Admin::create($input);
         return AdminResponse::success($admin, 'Admin created successfully.', 201);
-
     }
 
     public function update(Request $request, $id)
     {
-
+        // dd($id);
         $request->validate([
             'username' => 'required|max:20|unique:admins,username',
             'password' => 'required|min:8',
