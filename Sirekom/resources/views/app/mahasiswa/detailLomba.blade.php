@@ -328,7 +328,6 @@
     <div class="contentLomba">
         <div class="row">
             <div class="col-3">
-
                 <div class="leftContent">
                     @role('mahasiswa')
                     @if (!auth()->user()->hasRole('peserta'))
@@ -344,7 +343,6 @@
                         </form>
                     @endif
                     @endrole
-
 
                     <button class="guidebook" onclick=window.location.href="{{ Storage::url($lomba->lampiran) }}"><img
                             src={{ asset('assets/img/detail-lomba/doc.png') }} alt="" style="width: 25px">
@@ -379,6 +377,11 @@
                 </div>
             </div>
             <div class="col-9">
+                @role('mahasiswa')
+                @if (!auth()->user()->hasRole('peserta'))
+                    <h1>Harap Registrasi Dahulu Yaa</h1>
+                @endif
+                @endrole
                 @role('peserta')
                 <div class="information-task">
                     @foreach ($tasks as $tk)
