@@ -55,13 +55,10 @@ $currentDate = date("Y-m-d H:i:s");
                             <td>
                                 <input type="file" name="lampiran" class="form-control-file">
                                 <button type="submit" class="btn btn-primary">Submit</button>
+
                             </td>
                         </tr>
 
-                        <tr>
-                            <th>Submission comments</th>
-                            <td><input type="text" name="desc" class="form-control"></td>
-                        </tr>
                     </table>
                 </form>
 
@@ -81,7 +78,6 @@ $currentDate = date("Y-m-d H:i:s");
                         </li>
                     @endforeach
                 </ul>
-
             </div>
         </div>
     </div>

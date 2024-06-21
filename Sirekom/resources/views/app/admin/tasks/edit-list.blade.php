@@ -8,7 +8,7 @@
         function handleTypeChange() {
             var typeSelect = document.getElementById('typeSelect');
             var deadlineField = document.getElementById('deadlineField');
-            if (typeSelect.value === 'Task') {
+            if (typeSelect.value === '2') {
                 deadlineField.style.display = 'block';
             } else {
                 deadlineField.style.display = 'none';
@@ -33,34 +33,24 @@
                         <form action="{{ route('tasks.update', $task->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
+                            
                             <div class="row justify-content-around">
                                 <div class="col-md-5">
                                     <div class="mb-3">
-                                        <label for="judul" class="form-label fw-bold">Judul Task</label>
-                                        <input type="text" class="form-control @error('judul') is-invalid @enderror"
-                                            id="judul" name="judul" value="{{ $task->judul }}">
-                                        @error('judul')
+                                        <label for="namaTask" class="form-label fw-bold">Nama Task</label>
+                                        <input type="text" class="form-control @error('namaTask') is-invalid @enderror"
+                                            id="namaTask" name="namaTask" value="{{ $task->namaTask }}">
+                                        @error('namaTask')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label for="deskripsi" class="form-label fw-bold">Deskripsi Task</label>
-                                        <textarea class="form-control @error('deskripsi') is-invalid @enderror" id="deskripsi" name="deskripsi"
-                                            rows="5">{{ $task->deskripsi }}</textarea>
-                                        @error('deskripsi')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="tanggal_buka" class="form-label fw-bold">Tanggal Buka Task</label>
-                                        <input type="date"
-                                            class="form-control @error('tanggal_buka') is-invalid @enderror"
-                                            id="tanggal_buka" name="tanggal_buka" value="{{ $task->tanggal_buka }}">
-                                        @error('tanggal_buka')
+                                        <label for="deskripsiTask" class="form-label fw-bold">Deskripsi</label>
+                                        <textarea class="form-control @error('deskripsiTask') is-invalid @enderror" id="deskripsiTask" name="deskripsiTask"
+                                            rows="5">{{ $task->deskripsiTask }}</textarea>
+                                        @error('deskripsiTask')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
@@ -68,9 +58,9 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="typeSelect" class="form-label fw-bold">Select Type</label>
-                                        <select class="form-control" id="typeSelect" name="type" onchange="handleTypeChange()">
-                                            <option value="Announcement" {{ $task->type === 'Announcement' ? 'selected' : '' }}>Announcement</option>
-                                            <option value="Task" {{ $task->type === 'Task' ? 'selected' : '' }}>Task</option>
+                                        <select class="form-control" id="typeSelect" name="tipe" onchange="handleTypeChange()">
+                                            <option value="1" {{ $task->type === '1' ? 'selected' : '' }}>Announcement</option>
+                                            <option value="2" {{ $task->type === '2' ? 'selected' : '' }}>Task</option>
                                         </select>
                                     </div>
 
@@ -89,8 +79,8 @@
                                     </div>
 
                                     <div class="mb-3" id="deadlineField" style="display: none;">
-                                        <label for="tanggal_deadline" class="form-label fw-bold">Tanggal Deadline</label>
-                                        <input type="date" class="form-control" id="tanggal_deadline" name="tanggal_deadline" value="{{ $task->tanggal_deadline }}">
+                                        <label for="deadlineTask" class="form-label fw-bold">Tanggal Deadline</label>
+                                        <input type="date" class="form-control" id="deadlineTask" name="deadlineTask" value="{{ $task->deadlineTask }}">
                                     </div>
                                 </div>
                             </div>

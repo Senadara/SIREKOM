@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Mahasiswa;
 
+use App\Models\Task;
 use App\Models\Lomba;
 use App\Models\Peserta;
 use App\Models\Mahasiswa;
@@ -9,15 +10,16 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class MahasiswaController extends Controller
 {
     public function index()
     {
-        $lomba = Lomba::all();
+        $lombas = Lomba::all();
         return view('app.mahasiswa.data-lomba', [
-            'lombas' => $lomba
+            'lombas' => $lombas
         ]);
     }
 
@@ -60,17 +62,13 @@ class MahasiswaController extends Controller
         $mahasiswa->update($validatedData);
         return redirect('/mahasiswa/lomba');
     }
+
     public function show(Lomba $lomba)
     {
-        // $tasks = Task::where('idLomba', $lomba->id)->get();
-
-        // return view("app.mahasiswa.detailLomba", [
-        //     "lomba" => $lomba,
-        //     "tasks" => $tasks
-        // ]);
         $tasks = DB::table('task')
             ->join('lombas', 'task.idLomba', '=', 'lombas.id')
             ->select(
+                'task.id',
                 'task.namaTask',
                 'task.tipe',
                 'task.deskripsiTask',
@@ -86,39 +84,40 @@ class MahasiswaController extends Controller
             ->where('task.idLomba', $lomba->id)
             ->get();
 
+        //dd($tasks);
         return view('app.mahasiswa.detailLomba', [
-            'task' => $tasks,
+            'tasks' => $tasks,
             'lomba' => $lomba,
         ]);
     }
 
+
     public function register(Request $request, $idLomba)
     {
-        try {
-            // Menggunakan eager loading untuk mengambil semua data Mahasiswa beserta relasi Peserta
-            $mahasiswas = Mahasiswa::with('pesertas')->get();
 
-            foreach ($mahasiswas as $mahasiswa) {
-                // Cek apakah mahasiswa sudah terdaftar untuk Lomba tertentu
-                if (!$mahasiswa->pesertas->contains('idLomba', $idLomba)) {
-                    // Buat entri baru di tabel Peserta
-                    $peserta = new Peserta();
-                    $peserta->idLomba = $idLomba;
-                    $peserta->idMahasiswa = $mahasiswa->id;
-                    $peserta->tanggalDaftar = now();
-                    $peserta->save();
+        $idMahasiswa = Session::get('idMahasiswa');
 
-                    // Redirect ke halaman detail Lomba setelah berhasil mendaftar
-                    return redirect()->route('app.mahasiswa.detailLomba', ['lomba' => $idLomba])->with('success', 'Anda telah berhasil mendaftar');
-                }
-            }
+        // Create a new Peserta instance and set its properties
+        $peserta = new Peserta();
+        $peserta->idLomba = $idLomba;
+        $peserta->idMahasiswa = $idMahasiswa;
+        $peserta->tanggalDaftar = now();
+        $peserta->save();
 
-            // Jika semua mahasiswa sudah terdaftar, kirim pesan error
-            return redirect()->back()->withErrors(['error' => 'Semua posisi telah terdaftar.']);
-        } catch (\Exception $e) {
-            // Handle exception if save fails
-            return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan saat mendaftar. Silakan coba lagi.']);
+        // Get the mahasiswa instance using the authenticated ID
+        $mahasiswa = Mahasiswa::find($idMahasiswa);
+        if ($mahasiswa) {
+            // Assign the 'mahasiswa' and 'peserta' roles using the appropriate guard
+            $mahasiswa->syncRoles(['mahasiswa', 'peserta']);
+            // Optional: Assign permission to view tasks
+            // $user->givePermissionTo('ViewTask');
+        } else {
+            return redirect()->back()->with('error', 'User not found.');
         }
+
+        // Redirect to the correct route with a success message
+        return redirect()->route('mahasiswa.lomba.show', ['lomba' => $idLomba])->with('success', 'Lomba berhasil diperbarui!!');
+
     }
 
     public function PermissionTasks($idLomba)
@@ -144,3 +143,4 @@ class MahasiswaController extends Controller
         return redirect()->route('mahasiswa.lomba')->with('success', 'Give permission as admin division to ' . $datamahasiswa->name);
     }
 }
+

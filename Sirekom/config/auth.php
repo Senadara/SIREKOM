@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'api',
         'passwords' => 'users',
     ],
 
@@ -42,7 +42,7 @@ return [
         ],
 
         'api' => [
-            'driver' => 'jwt',
+            'driver' => 'session',
             'provider' => 'admins',
         ],
 
@@ -89,7 +89,10 @@ return [
         'mahasiswas' => [
             'driver' => 'eloquent',
             'model' => App\Models\Mahasiswa::class,
-
+        ],
+        'pesertas' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Peserta::class,
         ],
 
         // 'users' => [

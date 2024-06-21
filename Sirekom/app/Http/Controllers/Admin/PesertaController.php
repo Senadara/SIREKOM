@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+// use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\BaseController;
@@ -25,7 +26,6 @@ class PesertaController extends BaseController
 
         //get semua data
         $pesertas = $query->get();
-
         //cek apakah request ajax ada atau tidak
         if ($request->ajax()) {
             //jika ada maka return json peserta
