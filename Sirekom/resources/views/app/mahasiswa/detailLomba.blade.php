@@ -329,17 +329,20 @@
         <div class="row">
             <div class="col-3">
                 <div class="leftContent">
-                    {{-- btn uiverse --}}
-                    <form id="register-form" action="{{ route('mahasiswa.lomba.register', ['idLomba' => $lomba->id]) }}"
-                        method="POST">
-                        @csrf
-                        <button type="submit" class="button" id="registered">
-                            <img src="{{ asset('assets/img/detail-lomba/check.png') }}" alt="" style="width: 25px">
-                            Registered
-                            <div class="arrow">›</div>
-                        </button>
-                    </form>
-
+                    @role('mahasiswa')
+                    @if (!auth()->user()->hasRole('peserta'))
+                        {{-- btn uiverse --}}
+                        <form id="register-form" action="{{ route('mahasiswa.lomba.register', ['idLomba' => $lomba->id]) }}"
+                            method="POST">
+                            @csrf
+                            <button type="submit" class="button" id="registered">
+                                <img src="{{ asset('assets/img/detail-lomba/check.png') }}" alt="" style="width: 25px">
+                                Registered
+                                <div class="arrow">›</div>
+                            </button>
+                        </form>
+                    @endif
+                    @endrole
 
                     <button class="guidebook" onclick=window.location.href="{{ Storage::url($lomba->lampiran) }}"><img
                             src={{ asset('assets/img/detail-lomba/doc.png') }} alt="" style="width: 25px">
@@ -374,23 +377,30 @@
                 </div>
             </div>
             <div class="col-9">
-                <div class="information-task">
+                @role('mahasiswa')
+                @if (!auth()->user()->hasRole('peserta'))
+                    <h1>Harap Registrasi Dahulu Yaa</h1>
+                @endif
+                @endrole
+                @role('peserta')
+                <div class="information-task ">
                     @foreach ($tasks as $tk)
-                        @if ($tk->tipe == 1 )
-                        <div class="card-it ">
-                            <img src={{ asset('assets/img/detail-lomba/document.png') }} alt="" style="width: 40px">
-                            <a href="">{{ $tk->namaTask }}</a>
-                            <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 40px">
-                        </div>   
+                        @if ($tk->tipe == 1)
+                            <div class="card-it done">
+                                <img src={{ asset('assets/img/detail-lomba/document.png') }} alt="" style="width: 40px">
+                                <a href="{{ route('detailInfodanSubmit', ['id' => 1]) }}">{{ $tk->namaTask }}</a>
+                                <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 40px">
+                            </div>
                         @else
-                        <div class="card-it">
-                            <img src={{ asset('assets/img/detail-lomba/email.png') }} alt="" style="width: 40px">
-                            <a href="">{{ $tk->namaTask }}</a>
-                            <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 40px">
-                        </div>
+                            <div class="card-it undone">
+                                <img src={{ asset('assets/img/detail-lomba/email.png') }} alt="" style="width: 40px">
+                                <a href="{{ route('detailInfodanSubmit', ['id' => 2]) }}">{{ $tk->namaTask }}</a>
+                                <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 40px">
+                            </div>
                         @endif
                     @endforeach
                 </div>
+                @endrole
             </div>
         </div>
     </div>

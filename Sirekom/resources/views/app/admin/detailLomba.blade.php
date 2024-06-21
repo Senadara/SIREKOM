@@ -26,7 +26,7 @@
         position: absolute;
         top: 150px;
         left: 50px;
-        width: 15rem;
+        width: 20rem;
         height: 15rem;
         padding: 10px;
         background-color: #922E2C;
@@ -63,6 +63,20 @@
     .contentLomba {
         margin-top: 120px;
     }
+
+    /* Right Content */
+        .rightContent {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+            left: 90px;
+            bottom: 110px;            
+        }
+
+        .rightContent h6 {
+            font-weight: bolder;
+        }
 
     .leftContent {
         display: flex;
@@ -103,6 +117,16 @@
         transition-duration: .2s;
     }
 
+    .container1 {
+        background-color: white;
+        width: 80%;
+        padding-top: 10px;
+
+        border-radius: 20px;
+        overflow: hidden;
+        position: relative;
+        left: 130px;
+    }
 
     /*---- btn uiverse ----*/
     .button {
@@ -172,7 +196,7 @@
         .br {
             margin-top: 15px;
             position: absolute;
-            right: 0;
+            right: 15;
         }
 
         .contentLomba {
@@ -285,15 +309,7 @@
         }
 
 
-        /* Right Content */
-        .rightContent {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .rightContent h6 {
-            font-weight: bolder;
-        }
+        
 
 
         /* leftContent bottom */
@@ -365,7 +381,7 @@
         <div class="detailProfile">
             <div class="tagJudulLomba">{{ $lomba->namaLomba }}</div>
             <div class="br">
-                <img src={{ asset('assets/img/detail-lomba/break.png') }} alt="">
+            
             </div>
         </div>
     </div>
@@ -375,15 +391,14 @@
             </div>
             <div class="col-9">
                 <div class="rightContent">
-                    <h6>Tanggal Pendaftaran {{ $lomba->tanggalBukaPendaftaran }} s/d
-                        {{ $lomba->tanggalTutupPendaftaran }}
-                    </h6>
-                    <p>{{ $lomba->deskripsiLomba }}</p>
+                <h5>Tanggal Pendaftaran : {{ $lomba->tanggalBukaPendaftaran }}</h5>
+                <h5>Tanggal Penutupan   : {{ $lomba->tanggalTutupPendaftaran }}</h5>
+                <h6>Deskripsi : </h6>
+                <p>{{ $lomba->deskripsiLomba }}</p>
                 </div>
             </div>
         </div>
-        <div class="container">
-            <br>
+        <div class="container1">
             <a href="{{ url('admin/tasks/create/' . $lomba->id) }}" class="btn btn-dark">Create New Task</a>
             <table class="table table-striped mt-3">
                 <thead>

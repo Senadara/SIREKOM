@@ -45,7 +45,7 @@
                                         @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label for="deskripsiTask" class="form-label fw-bold">DeskripsiTask Task</label>
+                                        <label for="deskripsiTask" class="form-label fw-bold">Deskripsi Task</label>
                                         <textarea class="form-control @error('deskripsiTask') is-invalid @enderror" id="deskripsiTask" name="deskripsiTask"
                                             rows="5"></textarea>
                                         @error('deskripsiTask')
@@ -55,7 +55,7 @@
                                         @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label for="typeSelect" class="form-label fw-bold">Select Type</label>
+                                        <label for="typeSelect" class="form-label fw-bold">Jenis</label>
                                         <select class="form-control" id="typeSelect" name="tipe" onchange="handleTypeChange()">
                                             <option value="1">Announcement</option>
                                             <option value="2">Task</option>

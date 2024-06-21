@@ -99,7 +99,6 @@
                                 <img src="{{ asset('assets/img/list-lomba/editing.png') }}" alt="Edit"
                                     class="action-image">
                             </button>
-
                             <form action="{{ route('lomba.destroy', $lomba->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
