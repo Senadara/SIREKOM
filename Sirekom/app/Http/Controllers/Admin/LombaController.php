@@ -19,7 +19,7 @@ class LombaController extends Controller
         // dd($lomba);
 
         return view('app.admin.list-lomba', [
-            'lombas' => $lombas
+            'lombas' => $lomba
         ]);
     }
     /**
