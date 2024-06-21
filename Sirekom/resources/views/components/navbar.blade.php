@@ -30,7 +30,7 @@
             @endrole
             @role('mahasiswa')
                 <a class="nav-link ms-3 text-white active" aria-current="page" href="/mahasiswa/lomba">Daftar Lomba</a>
-                <a href="/mahasiswa/profile" class="mx-4 profile-link link-underline link-underline-opacity-0 "><img
+                <a href="{{ route('mahasiswa.profile.show',['id' => session('idMahasiswa')]) }}" class="mx-4 profile-link link-underline link-underline-opacity-0 "><img
                         src="{{ asset('assets/img/profile.svg') }}" alt="Profile" width="50" height="50"></a>
             @endrole
         </div>

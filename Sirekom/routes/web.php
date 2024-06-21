@@ -82,12 +82,8 @@ route::middleware(['auth:mahasiswa', 'role:mahasiswa'])->group(function () {
     Route::post('/mahasiswa/lomba/{idLomba}', [MahasiswaController::class, 'register'])->name('mahasiswa.lomba.register');
     Route::get('/mahasiswa/lomba/{lomba}', [MahasiswaController::class, 'show'])->name('mahasiswa.lomba.show');
 
-    Route::get('/mahasiswa/profile', function () {
-        return view('app.mahasiswa.profile');
-    });
-
-    Route::get('/mahasiswa/profile/{$id}', [ProfileController::class, 'edit']);
-    Route::put('/mahasiswa/profile/{$id}', [ProfileController::class, 'update']);
+    Route::get('/mahasiswa/profile/{id}',[ProfileController::class, 'show'])->name('mahasiswa.profile.show');
+    Route::put('/mahasiswa/profile/{id}', [ProfileController::class, 'update'])->name('mahasiswa.profile.update');
 
     Route::get('/mahasiswa/detailInfodanSubmit', function () {
         return view('app.mahasiswa.detailInfodanSubmit');
