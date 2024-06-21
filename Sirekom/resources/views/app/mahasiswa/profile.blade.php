@@ -10,61 +10,78 @@
                     <div class="d-flex flex-row">
                         <div class="mt-3 mx-4">
                             <div class="text-center">
-                                <img src="{{ asset('assets/img/profile.svg') }}" alt="profile">
+                                <img src="{{ asset('storage/img/profile/' . $mahasiswa->fotoProfile) }}"
+                                alt="profile" class="rounded-circle" width="100" height="100">
                             </div>
                             <div class="text-center">
-                                <th>Alif Gayuh Arimukti</th>
+                                <th>{{ $mahasiswa->namaMahasiswa }}</th>
                             </div>
                             <div class="text-center">
-                                <th>120000000</th>
+                                <th>{{ $mahasiswa->nim }}</th>
                             </div>
                             <div class="text-center">
-                                <th>RPL</th>
+                                <th>{{ $mahasiswa->jurusan }}</th>
                             </div>
                             <div class="text-center">
-                                <th>2022</th>
+                                <th>{{ $mahasiswa->angkatan }}</th>
                             </div>
                             <div class="text-center">
-                                <th>0899999999</th>
+                                <th>{{ $mahasiswa->noHP }}</th>
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="" method="">
+                            <form action="{{ route('mahasiswa.profile.update',$mahasiswa->id) }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input type="text" name="name" id="name" class="form-control"
-                                        value="Alif Gayuh Arimukti">
+                                    <input type="text" name="namaMahasiswa" id="name" class="form-control"
+                                        value="{{ $mahasiswa->namaMahasiswa }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="nim">NIM</label>
-                                    <input type="text" name="nim" id="nim" class="form-control"
-                                        value="120000000">
+                                    <input disabled type="text" name="nim" id="nim" class="form-control"
+                                        value="{{ $mahasiswa->nim }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="prodi">Prodi</label>
-                                    <input type="text" name="prodi" id="prodi" class="form-control" value="RPL">
+                                    <input disabled type="text" name="prodi" id="prodi" class="form-control" value="{{ $mahasiswa->jurusan }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="angkatan">Angkatan</label>
-                                    <input type="text" name="angkatan" id="angkatan" class="form-control"
-                                        value="2022">
+                                    <input disabled type="text" name="angkatan" id="angkatan" class="form-control"
+                                        value="{{ $mahasiswa->angkatan }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="noWa">no Whatsapp</label>
                                     <input type="text" name="noWa" id="noWa" class="form-control"
-                                        value="0899999999">
+                                        value="{{ $mahasiswa->noHP }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="password">New Password (optional)</label>
                                     <input type="password" name="password" id="password" class="form-control"
-                                        value="*****">
+                                        value="">
                                 </div>
                                 <div class="form-group">
                                     <label for="password_confirmation">Confirm New Password</label>
                                     <input type="password" name="password_confirmation" class="form-control">
                                 </div>
+                                <div class="form-group">
+                                    <label for="fotoProfile">Foto Profile</label>
+                                    <input type="file" name="fotoProfile" class="form-control">
+                                </div>
                                 <br>
                                 <button type="submit" class="btn btn-danger">Update Profile</button>
+                                @if ($errors->any())
+                                    <div class="alert alert-danger mt-3">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                                
                             </form>
                         </div>
                     </div>

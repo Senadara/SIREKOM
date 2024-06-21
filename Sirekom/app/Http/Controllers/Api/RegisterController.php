@@ -10,6 +10,15 @@ class RegisterController extends Controller
 {
     public function validation(Request $request)
     {
+        $validatedData = $request->validate([
+            'username' => 'required|string|max:255|unique:mahasiswas,username',
+            'password' => 'required|min:8',
+            'namaMahasiswa' => 'required|string|max:255',
+            'email' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z0-9._%+-]+@student\.telkomuniversity\.ac\.id$/', 'unique:mahasiswas,email'],
+            'nim' => 'required|string|max:11|unique:mahasiswas,nim',
+            'jurusan' => 'required|string|max:100',
+            'noHP' => 'required|string|max:12',
+        ]);
         $nama = $request->input('namaMahasiswa');
 
         $response = Http::get("https://api-frontend.kemdikbud.go.id/hit_mhs/" . $nama);
