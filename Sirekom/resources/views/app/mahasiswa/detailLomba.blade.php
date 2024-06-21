@@ -383,18 +383,18 @@
                 @endif
                 @endrole
                 @role('peserta')
-                <div class="information-task">
+                <div class="information-task ">
                     @foreach ($tasks as $tk)
                         @if ($tk->tipe == 1)
-                            <div class="card-it ">
+                            <div class="card-it done">
                                 <img src={{ asset('assets/img/detail-lomba/document.png') }} alt="" style="width: 40px">
-                                <a href="">{{ $tk->namaTask }}</a>
+                                <a href="{{ route('detailInfodanSubmit', ['id' => 1]) }}">{{ $tk->namaTask }}</a>
                                 <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 40px">
                             </div>
                         @else
-                            <div class="card-it">
+                            <div class="card-it undone">
                                 <img src={{ asset('assets/img/detail-lomba/email.png') }} alt="" style="width: 40px">
-                                <a href="">{{ $tk->namaTask }}</a>
+                                <a href="{{ route('detailInfodanSubmit', ['id' => 2]) }}">{{ $tk->namaTask }}</a>
                                 <img src={{ asset('assets/img/detail-lomba/check.png') }} alt="" style="width: 40px">
                             </div>
                         @endif

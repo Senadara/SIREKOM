@@ -6,55 +6,84 @@ use App\Models\Submission;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class SubmissionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        return view('app.mahasiswa.submission');
+        $submissions = Submission::all();
+        return view('app.mahasiswa.detailInfodanSubmit', ['submissions' => $submissions]);
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        if ($request->hasFile('lampiran')) {
-            $images = $request->file('lampiran');
-            foreach ($images as $image) {
-                $randomString = Str::random(5);
-                $imageName = $randomString . '_' . $image->getClientOriginalName();
-                $image->storeAs(public_path('storage/submission'), $imageName);
+        $request->validate([
+            'lampiran' => 'required|file|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048',
+            'idTask' => 'required|integer',
+            'idPeserta' => 'required|integer',
+            'desc' => 'nullable|string'
+        ]);
 
-                $file = new Submission();
-                $file->filename = $imageName;
-                $file->save();
-            }
-            return response()->json(['success' => 'Files uploaded successfully.']);
+        if ($request->hasFile('lampiran')) {
+            $file = $request->file('lampiran');
+            $fileName = Str::random(5) . '_' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('submission', $fileName, 'public');
+
+            Submission::create([
+                'id' => $request->input('id'),
+                'idTask' => $request->input('idTask'),
+                'idPeserta' => $request->input('idPeserta'),
+                'lampiran' => $filePath,
+            ]);
+
+            return redirect()->back()->with('success', 'File uploaded successfully.');
         } else {
-            return response()->json(['error' => 'No files found to upload.'], 400);
+            return redirect()->back()->with('error', 'No file found to upload.');
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Request $request)
+    public function edit(Request $request, $id)
     {
-        $files = Submission::all();
+        $submission = Submission::findOrFail($id);
 
-        foreach ($files as $file) {
-            $filePath = public_path('storage/submission/' . $file->filename);
-            if (File::exists($filePath)) {
-                File::delete($filePath);
+        $request->validate([
+            'lampiran' => 'required|file|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048'
+        ]);
+
+        if ($request->hasFile('lampiran')) {
+            if ($submission->lampiran) {
+                Storage::disk('public')->delete($submission->lampiran);
             }
-            $file->delete();
-        }
 
-        return response()->json(['success' => 'All files deleted successfully.']);
+            $file = $request->file('lampiran');
+            $fileName = Str::random(5) . '_' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('submission', $fileName, 'public');
+
+            $submission->lampiran = $filePath;
+            $submission->save();
+
+            return redirect()->back()->with('success', 'File updated successfully.');
+        } else {
+            return redirect()->back()->with('error', 'No file found to update.');
+        }
+    }
+    public function destroy($id)
+    {
+        $submission = Submission::findOrFail($id);
+        Storage::disk('public')->delete($submission->lampiran);
+        $submission->delete();
+
+        return redirect()->back()->with('success', 'File deleted successfully.');
+    }
+    public function detailInfodanSubmit($idLomba)
+    {
+        $submissions = Submission::where('idTask', $idLomba)->get();
+        $lomba = Lomba::findOrFail($idLomba);
+
+        return view('app.mahasiswa.detailInfodanSubmit', compact('submissions', 'lomba'));
     }
 }
+

@@ -14,7 +14,10 @@ class LombaController extends Controller
 {
     public function index()
     {
-        $lombas = Lomba::all();
+
+        $lomba = Lomba::all();
+        // dd($lomba);
+
         return view('app.admin.list-lomba', [
             'lombas' => $lombas
         ]);
@@ -105,7 +108,7 @@ class LombaController extends Controller
      */
     public function edit(Lomba $lomba)
     {
-        return view("app.admin.edit-lomba", ["lomba" => $lomba]);
+       return view("app.admin.edit-lomba", ["lomba" => $lomba]);
     }
 
     /**
