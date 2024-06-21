@@ -81,7 +81,7 @@ route::middleware(['auth:mahasiswa', 'role:mahasiswa'])->group(function () {
     Route::get('/mahasiswa/lomba', [MahasiswaController::class, 'index'])->name('mahasiswa.lomba');
     Route::post('/mahasiswa/lomba/{idLomba}', [MahasiswaController::class, 'register'])->name('mahasiswa.lomba.register');
     Route::get('/mahasiswa/lomba/{lomba}', [MahasiswaController::class, 'show'])->name('mahasiswa.lomba.show');
-    route::get('/mahasiswa/lomba/{idTask}', [MahasiswaController::class, 'show'])->
+    Route::get('/mahasiswa/lomba/{idTask}', [MahasiswaController::class, 'show']);
 
     Route::get('/mahasiswa/profile', function () {
         return view('app.mahasiswa.profile');
@@ -147,9 +147,6 @@ Route::get('/admin/peserta-lomba/{idLomba?}', [PesertaController::class, 'index'
 
 Route::get('/peserta/export_excel/{idLomba?}', [ApiPesertaController::class, 'export_excel']);
 
-// Route::get('/peserta/lomba/{idLomba}', [PesertaController::class, 'getPesertaByLomba'])->name('peserta.lomba');
 
-// Route Superadmin
-Route::resource('/superadmin', SuperadminController::class);
 
 
