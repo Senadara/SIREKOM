@@ -9,12 +9,12 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Admin\LombaController;
 use App\Http\Controllers\Admin\PesertaController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\Mahasiswa\SubmissionController;
 use App\Http\Controllers\Mahasiswa\ProfileController;
 use App\Http\Controllers\Mahasiswa\MahasiswaController;
-use App\Http\Controllers\Mahasiswa\SubmissionController;
-use App\Http\Controllers\Superadmin\SuperadminController;
+use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Api\PesertaController as ApiPesertaController;
+use App\Http\Controllers\Api\RegisterController as ApiRegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +37,10 @@ Route::post('/', [AuthController::class, 'RoleAuth']);
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'register']);
+Route::post('/register', [RegisterController::class, 'register']);
+Route::post('/register/save', [RegisterController::class, 'save'])->name('register.save');
+Route::post('/register/validate', [ApiRegisterController::class, 'validation'])->name('register.validate');
+Route::get('/register/validation/{nama}', [ApiRegisterController::class, 'validation'])->name('api.register.validation');
 
 
 route::middleware(['auth:admin', 'role:admin'])->group(function () {
@@ -60,6 +64,11 @@ route::middleware(['auth:admin', 'role:admin'])->group(function () {
     Route::put('admin/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
     Route::delete('admin/tasks/{task}', [TaskController::class, 'destroy']);
 
+    // Api Admin routes
+    Route::get('edit-admin', [ApiController::class, 'edit']);
+    Route::get('create-admin', [ApiController::class, 'create']);
+    Route::post('update-admin', [ApiController::class, 'update']);
+    Route::post('create-admin', [ApiController::class, 'store']);
 });
 
 
@@ -70,7 +79,7 @@ route::middleware(['auth:mahasiswa', 'role:mahasiswa'])->group(function () {
     Route::post('/mahasiswa/submission', [SubmissionController::class, 'store'])->name('storeSubmission');
 
     Route::get('/mahasiswa/lomba', [MahasiswaController::class, 'index'])->name('mahasiswa.lomba');
-    Route::post('/mahasiswa/lomba/{idLomba}', [MahasiswaController::class, 'PermissionTasks'])->name('mahasiswa.register');
+    Route::post('/mahasiswa/lomba/{idLomba}', [MahasiswaController::class, 'register'])->name('mahasiswa.lomba.register');
     Route::get('/mahasiswa/lomba/{lomba}', [MahasiswaController::class, 'show'])->name('mahasiswa.lomba.show');
 
     Route::get('/mahasiswa/profile', function () {
@@ -83,7 +92,6 @@ route::middleware(['auth:mahasiswa', 'role:mahasiswa'])->group(function () {
     Route::get('/mahasiswa/detailInfodanSubmit', function () {
         return view('app.mahasiswa.detailInfodanSubmit');
     });
-
 });
 
 Route::get('/admin/detail-lomba', function () {
@@ -108,6 +116,3 @@ Route::get('/mahasiswa/detail-lomba', function () {
 
 
 Route::get('admin/announcement-admin', [LombaController::class, 'announ'])->name('announcement.admin');
-
-Route::get('edit-admin', [ApiController::class, 'edit']);
-Route::post('update-admin', [ApiController::class, 'update']);

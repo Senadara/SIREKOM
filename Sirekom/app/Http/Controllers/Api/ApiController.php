@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Validator;
+use GuzzleHttp\Client;
 
 class ApiController extends Controller
 {
@@ -16,41 +18,83 @@ class ApiController extends Controller
 
     public function edit()
     {
-        return view('app.admin.api.update-admin');
+        $admin = Admin::all();
+        return view('app.admin.api.update-admin', [
+            'admin' => $admin,
+        ]);
     }
 
-    public function update(Request $request)
+
+    public function create()
     {
-        // Validate the incoming request
+        return view('app.admin.api.create-admin', []);
+    }
+
+    public function store(Request $request)
+    {
+        // Validate the request inputs
         $request->validate([
-            'id' => 'required',
             'username' => 'required|max:20|unique:admins,username',
             'password' => 'required|min:8',
         ]);
 
-        // Data to be sent in the internal request
+        // Get the token from the session
+        $token = $request->session()->get('bearer_token');
+
+        // Define the API URL
+        $url = "http://127.0.0.1:8000/api/admin/";
+
+        // Create a new Request for the API call with the original request data
+        $apiRequest = Request::create($url, 'POST', $request->all());
+        $apiRequest->headers->set('Authorization', 'Bearer ' . $token);
+
+        // Handle the request and get the response
+        $response = app()->handle($apiRequest);
+        // dd($response);
+
+        // Check the response status code
+        if ($response->getStatusCode() == 201) {
+            // Decode the JSON response to an object
+            $jsonData = json_decode($response->getContent(), false);
+
+            return redirect('create-admin')->with('success', "Admin berhasil ditambah!!");
+
+            // Return the view with the necessary data
+            // return view('app.admin.api.create-admin', [
+            //     // Add any required data here, for example:
+            //     // 'admin' => $jsonData->admin,
+            // ]);
+        } else {
+            // Return an unauthorized response
+            return response()->json([
+                'message' => 'Unauthorized'
+            ], 401);
+        }
+    }
+
+
+    public function update(Request $request)
+    {
+        $token = $request->session()->get('bearer_token');
+        //dd($token);
         $data = [
             'username' => $request->username,
             'password' => $request->password,
         ];
+        //dd($data);
+        $url = "http://127.0.0.1:8000/api/admin/{$request->id}";
 
-        // Create a new internal request
-        $internalRequest = Request::create('http://127.0.0.1:8000/api/admin/', 'POST', $data);
-        $internalRequest->headers->set('Authorization', 'Bearer ' . session('jwt_token'));
+        $apiRequest = Request::create($url, 'PUT', $data);
+        $apiRequest->headers->set('Authorization', 'Bearer ' . $token);
+        $response = app()->handle($apiRequest);
+        //dd($response);
 
-        // Dispatch the request
-        $response = Route::dispatch($internalRequest);
+        if ($response->getStatusCode() == 200) {
 
-        // Handle the response
-        if ($response->isSuccessful()) {
-            // Decode the response data
             $responseData = json_decode($response->getContent(), true);
 
-            // Redirect with a success message
-            return redirect('students')
-                ->with('status', 'Mahasiswa berhasil ditambahkan.');
+            return redirect('edit-admin')->with('success', "Admin berhasil diupdate!!");
         } else {
-            // Handle error response
             return redirect()->back()->withErrors('Error adding Mahasiswa.');
         }
     }

@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Admin;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function __construct()
+    public function login(Request $request)
     {
         $this->middleware('auth:api', ['except' => ['adminLoginAPI']]);
     }
@@ -23,18 +23,13 @@ class LoginController extends Controller
 
         if (!Auth::guard('admin')->attempt($request->only('username', 'password'))) {
             return response()->json([
-                'message' => 'Invalid username or password',
+                'message' => 'Invalid login details'
             ], 401);
         }
 
         $admin = Admin::where('username', $request['username'])->firstOrFail();
 
         $token = $admin->createToken('auth_token')->plainTextToken;
-
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-        ]);
     }
     public function adminLogoutAPI(Request $request)
     {

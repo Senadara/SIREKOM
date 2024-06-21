@@ -330,7 +330,7 @@
             <div class="col-3">
                 <div class="leftContent">
                     {{-- btn uiverse --}}
-                    <form id="register-form" action="{{ route('mahasiswa.register', ['idLomba' => $lomba->id]) }}"
+                    <form id="register-form" action="{{ route('mahasiswa.lomba.register', ['idLomba' => $lomba->id]) }}"
                         method="POST">
                         @csrf
                         <button type="submit" class="button" id="registered">

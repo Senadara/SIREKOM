@@ -26,18 +26,30 @@
                         @endif
                         <form action="/" method="POST">
                             @csrf
-                            <div class="mb-3">
-                                <label for="username" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="username" name="username"
-                                    placeholder="Masukkan Username" required>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" name="password"
-                                    placeholder="Masukkan Password" required>
-                            </div>
-                            <button type="submit" class="btn btn-danger w-100">Login</button>
+                            @if (@session('success'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('success') }}
+                                </div>
+                                @endsession
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Username</label>
+                                    <input type="text" class="form-control @error('username') is-invalid @enderror"
+                                        id="username" name="username" value="{{ old('username') }}"
+                                        placeholder="Masukkan Username">
+                                    @if ($errors->has('username'))
+                                        <div class="error">{{ $errors->first('username') }}</div>
+                                    @endif
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                        id="password" name="password" value="{{ old('password') }}"
+                                        placeholder="Masukkan Password">
+                                    @if ($errors->has('password'))
+                                        <div class="error">{{ $errors->first('password') }}</div>
+                                    @endif
+                                </div>
+                                <button type="submit" class="btn btn-danger w-100">Login</button>
                         </form>
                     </div>
                     <div class="text-center mt-3">
