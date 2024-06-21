@@ -16,50 +16,45 @@ class LoginController extends Controller
 
     public function adminLoginAPI(Request $request)
     {
-        // Validate the request data
         $request->validate([
             'username' => 'required|string',
             'password' => 'required|string',
         ]);
 
-        // Attempt to log in with the provided credentials
         if (!Auth::guard('admin')->attempt($request->only('username', 'password'))) {
             return response()->json([
                 'message' => 'Invalid username or password',
             ], 401);
         }
 
-        // Get the authenticated admin
         $admin = Admin::where('username', $request['username'])->firstOrFail();
 
-        // Generate the token (assuming you are using Laravel Passport or Sanctum for token management)
         $token = $admin->createToken('auth_token')->plainTextToken;
 
-        // Return the success response with the token
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
         ]);
     }
-    public function adminLogoutAPI()
+    public function adminLogoutAPI(Request $request)
     {
-        Auth::logout();
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Successfully logged out',
-        ]);
-    }
+        $admin = Auth::guard('admin')->user();
 
-    public function refresh()
-    {
-        return response()->json([
-            'status' => 'success',
-            'user' => Auth::user(),
-            'authorisation' => [
-                'token' => Auth::refresh(),
-                'type' => 'bearer',
-            ]
-        ]);
+        if ($admin) {
+            $request->user('admin')->currentAccessToken()->delete();
+
+            Auth::guard('admin')->logout();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Successfully logged out',
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'No authenticated admin found',
+            ], 401);
+        }
     }
 
 }
