@@ -1,66 +1,216 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🏆 SIREKOM - Sistem Informasi Registrasi Kompetisi
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="https://img.shields.io/badge/Laravel-10.x-red?style=for-the-badge&logo=laravel" alt="Laravel Version">
+  <img src="https://img.shields.io/badge/PHP-8.1+-blue?style=for-the-badge&logo=php" alt="PHP Version">
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License">
+  <img src="https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge" alt="Status">
 </p>
 
-## About Laravel
+<p align="center">
+  <strong>Sistem Informasi Registrasi Kompetisi</strong> adalah aplikasi web berbasis Laravel yang dirancang untuk mengelola pendaftaran dan administrasi kompetisi mahasiswa dengan fitur dashboard interaktif, manajemen peserta, dan pelaporan yang komprehensif.
+</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## ✨ Fitur Utama
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 🎯 Manajemen Kompetisi
+- **Pendaftaran Kompetisi**: Sistem pendaftaran online yang mudah dan efisien
+- **Manajemen Lomba**: CRUD lengkap untuk data kompetisi dengan poster dan lampiran
+- **Periode Pendaftaran**: Pengaturan waktu buka dan tutup pendaftaran yang fleksibel
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 👥 Manajemen Peserta
+- **Registrasi Mahasiswa**: Pendaftaran mahasiswa dengan data lengkap
+- **Role-based Access**: Sistem hak akses berbasis peran (Admin, Mahasiswa)
+- **Upload Dokumen**: Fitur upload file pendukung pendaftaran
 
-## Learning Laravel
+### 📊 Dashboard & Analytics
+- **Dashboard Interaktif**: Grafik dan statistik real-time menggunakan LarapexCharts
+- **Statistik Peserta**: Visualisasi data pendaftar per kompetisi
+- **Monitoring Kompetisi**: Tracking status dan progress kompetisi
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 📈 Export & Reporting
+- **Export Excel**: Export data peserta ke format Excel menggunakan Laravel Excel
+- **Laporan Komprehensif**: Generate laporan detail dengan berbagai filter
+- **Data Analytics**: Analisis tren pendaftaran dan statistik kompetisi
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 🔐 Keamanan & Autentikasi
+- **Multi-Auth System**: Sistem autentikasi terpisah untuk Admin dan Mahasiswa
+- **JWT Authentication**: API authentication menggunakan JWT
+- **Role Permissions**: Manajemen hak akses menggunakan Spatie Laravel Permission
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🛠️ Teknologi yang Digunakan
 
-## Laravel Sponsors
+- **Backend**: Laravel 10.x
+- **Database**: MySQL
+- **Frontend**: Blade Templates, CSS, JavaScript
+- **Charts**: LarapexCharts
+- **Export**: Laravel Excel
+- **Authentication**: JWT Auth, Spatie Laravel Permission
+- **File Upload**: Laravel Storage
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## 🚀 Instalasi
 
-### Premium Partners
+### Prerequisites
+- PHP >= 8.1
+- Composer
+- MySQL
+- Node.js & NPM (untuk asset compilation)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+### Langkah Instalasi
 
-## Contributing
+1. **Clone Repository**
+   ```bash
+   git clone https://github.com/username/SIREKOM.git
+   cd SIREKOM
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2. **Install Dependencies**
+   ```bash
+   composer install
+   npm install
+   ```
 
-## Code of Conduct
+3. **Environment Setup**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+4. **Database Configuration**
+   - Edit file `.env` dan sesuaikan konfigurasi database
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=sirekom_db
+   DB_USERNAME=your_username
+   DB_PASSWORD=your_password
+   ```
 
-## Security Vulnerabilities
+5. **Database Migration & Seeding**
+   ```bash
+   php artisan migrate
+   php artisan db:seed
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+6. **Storage Setup**
+   ```bash
+   php artisan storage:link
+   ```
 
-## License
+7. **Compile Assets**
+   ```bash
+   npm run dev
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+8. **Jalankan Server**
+   ```bash
+   php artisan serve
+   ```
+
+Aplikasi akan berjalan di `http://localhost:8000`
+
+## 📁 Struktur Proyek
+
+```
+SIREKOM/
+├── app/
+│   ├── Charts/           # Chart components
+│   ├── Exports/          # Excel export classes
+│   ├── Http/Controllers/ # Controllers
+│   ├── Models/           # Eloquent models
+│   └── Providers/        # Service providers
+├── database/
+│   ├── migrations/       # Database migrations
+│   ├── seeders/          # Database seeders
+│   └── factories/        # Model factories
+├── public/
+│   ├── assets/          # Compiled assets
+│   └── uploads/         # Uploaded files
+├── resources/
+│   ├── views/           # Blade templates
+│   ├── css/             # Stylesheets
+│   └── js/              # JavaScript files
+└── routes/              # Route definitions
+```
+
+## 👤 Akun Default
+
+Setelah menjalankan seeder, Anda dapat login dengan akun default:
+
+### Admin
+- **Username**: admin
+- **Password**: password
+
+### Mahasiswa
+- **Email**: mahasiswa@example.com
+- **Password**: password
+
+## 🔧 Konfigurasi
+
+### File Upload
+File upload disimpan di direktori `public/uploads/` sesuai dengan preferensi Anda untuk menghindari symlinks di cPanel.
+
+### JWT Configuration
+Untuk menggunakan API dengan JWT, pastikan konfigurasi JWT sudah benar di file `.env`:
+```env
+JWT_SECRET=your_jwt_secret
+JWT_TTL=60
+```
+
+## 📊 Fitur Dashboard
+
+Dashboard admin menyediakan:
+- **Total Peserta**: Jumlah keseluruhan peserta terdaftar
+- **Total Lomba**: Jumlah kompetisi yang tersedia
+- **Grafik Pendaftaran**: Visualisasi tren pendaftaran
+- **Info Lomba Terbaru**: Daftar 3 kompetisi terbaru
+
+## 📈 Export Data
+
+Sistem mendukung export data peserta ke Excel dengan fitur:
+- Export semua peserta
+- Export berdasarkan kompetisi tertentu
+- Format data yang terstruktur
+- Headers yang informatif
+
+## 🤝 Kontribusi
+
+Kami sangat menghargai kontribusi dari komunitas! Untuk berkontribusi:
+
+1. Fork repository ini
+2. Buat branch fitur baru (`git checkout -b feature/AmazingFeature`)
+3. Commit perubahan Anda (`git commit -m 'Add some AmazingFeature'`)
+4. Push ke branch (`git push origin feature/AmazingFeature`)
+5. Buka Pull Request
+
+### Guidelines
+- Ikuti standar coding Laravel
+- Tambahkan test untuk fitur baru
+- Update dokumentasi jika diperlukan
+- Pastikan semua test berhasil
+
+## 🐛 Bug Reports
+
+Jika Anda menemukan bug, silakan buat issue di repository ini dengan:
+- Deskripsi bug yang jelas
+- Langkah-langkah untuk reproduce
+- Screenshot jika diperlukan
+- Informasi environment (OS, PHP version, dll)
+
+## 📝 License
+
+Proyek ini dilisensikan di bawah [MIT License](LICENSE).
+
+## 📞 Kontak
+
+- **Email**: [your-email@example.com]
+- **Website**: [your-website.com]
+- **GitHub**: [github.com/username]
+
+---
+
+<div align="center">
+  <p>Dibuat dengan ❤️ menggunakan Laravel</p>
+  <p>SIREKOM - Sistem Informasi Registrasi Kompetisi</p>
+</div>
